@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="必要基础知识点： 1.内外网简单知识">
+  <meta name="description" content="70-内网安全-域横向内网漫游Socks代理隧道技术">
 <meta property="og:type" content="article">
 <meta property="og:title" content="70-内网安全-域横向内网漫游Socks代理隧道技术">
 <meta property="og:url" content="http://example.com/2023/04/28/70-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8Socks%E4%BB%A3%E7%90%86%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/index.html">
 <meta property="og:site_name" content="HVVL404">
-<meta property="og:description" content="必要基础知识点： 1.内外网简单知识">
+<meta property="og:description" content="70-内网安全-域横向内网漫游Socks代理隧道技术">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210928152908376-69296813.png">
 <meta property="og:image" content="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210928154605586-1580443015.png">
@@ -90,7 +90,7 @@
 <meta property="og:image" content="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210930151108406-1982534252.png">
 <meta property="og:image" content="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210930151126265-242510343.png">
 <meta property="article:published_time" content="2023-04-28T07:42:59.868Z">
-<meta property="article:modified_time" content="2023-04-28T07:57:55.202Z">
+<meta property="article:modified_time" content="2023-05-04T09:42:36.790Z">
 <meta property="article:author" content="HVVL">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210928152908376-69296813.png">
@@ -250,9 +250,24 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-04-28 15:42:59 / 修改时间：15:57:55" itemprop="dateCreated datePublished" datetime="2023-04-28T15:42:59+08:00">2023-04-28</time>
+              <time title="创建时间：2023-04-28 15:42:59" itemprop="dateCreated datePublished" datetime="2023-04-28T15:42:59+08:00">2023-04-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-05-04 17:42:36" itemprop="dateModified" datetime="2023-05-04T17:42:36+08:00">2023-05-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8-%E5%86%85%E7%BD%91%E7%AF%87/" itemprop="url" rel="index"><span itemprop="name">小迪安全(内网篇)</span></a>
+                </span>
             </span>
 
           
@@ -266,10 +281,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><strong>必要基础知识点：</strong></p>
-<p>1.内外网简单知识</p>
+        <p>70-内网安全-域横向内网漫游Socks代理隧道技术</p>
 <span id="more"></span>
 
+<p><strong>必要基础知识点：</strong></p>
+<p>1.内外网简单知识</p>
 <ul>
 <li>内网ip地址是私有ip地址（10&#x2F;8, 172.16&#x2F;12 , 192.168&#x2F;16），除此之外就是外网ip。</li>
 </ul>
@@ -606,9 +622,15 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
 </div>
@@ -648,7 +670,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共30.7k字</span>
+  <span class="post-count">博客全站共33.2k字</span>
 </div>
 
         
