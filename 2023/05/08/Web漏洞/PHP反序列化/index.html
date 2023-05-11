@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="PHP反序列化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP反序列化">
+<meta property="og:url" content="http://example.com/2023/05/08/Web%E6%BC%8F%E6%B4%9E/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/index.html">
+<meta property="og:site_name" content="HVVL404">
+<meta property="og:description" content="PHP反序列化">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-08T14:15:02.390Z">
+<meta property="article:modified_time" content="2023-05-10T05:25:29.114Z">
+<meta property="article:author" content="HVVL404">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/05/08/Web%E6%BC%8F%E6%B4%9E/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>PHP反序列化 | HVVL404</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">HVVL404</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="house fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="categories fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/08/Web%E6%BC%8F%E6%B4%9E/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="HVVL404">
+      <meta itemprop="description" content="欢迎来到我的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HVVL404">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PHP反序列化
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-05-08 22:15:02" itemprop="dateCreated datePublished" datetime="2023-05-08T22:15:02+08:00">2023-05-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-05-10 13:25:29" itemprop="dateModified" datetime="2023-05-10T13:25:29+08:00">2023-05-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web%E6%BC%8F%E6%B4%9E/" itemprop="url" rel="index"><span itemprop="name">Web漏洞</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>PHP反序列化</p>
+<span id="more"></span>
+
+<h4 id="一、常规反序列化"><a href="#一、常规反序列化" class="headerlink" title="一、常规反序列化"></a>一、常规反序列化</h4><br>
+
+<h4 id="二、原生类反序列化"><a href="#二、原生类反序列化" class="headerlink" title="二、原生类反序列化"></a>二、原生类反序列化</h4><br>
+
+<h4 id="三、字符串逃逸"><a href="#三、字符串逃逸" class="headerlink" title="三、字符串逃逸"></a>三、字符串逃逸</h4><h5 id="1、扩张"><a href="#1、扩张" class="headerlink" title="1、扩张"></a>1、扩张</h5><p>通俗来说，就是他会有一个替换的函数，把你输入的替换成他要求的，一般会多出来一个，然后依旧可以利用逃出来的字符构造你想要改变的值。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filter</span>(<span class="params"><span class="variable">$str</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">str_replace</span>(<span class="string">&#x27;bb&#x27;</span>, <span class="string">&#x27;ccc&#x27;</span>, <span class="variable">$str</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$name</span>=<span class="string">&#x27;aaaa&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$pass</span>=<span class="string">&#x27;123456&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$AA</span>=<span class="keyword">new</span> <span class="title function_ invoke__">A</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">serialize</span>(<span class="variable">$AA</span>).<span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="variable">$res</span>=<span class="title function_ invoke__">filter</span>(<span class="title function_ invoke__">serialize</span>(<span class="variable">$AA</span>));</span><br><span class="line"><span class="variable">$c</span>=<span class="title function_ invoke__">unserialize</span>(<span class="variable">$res</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$c</span>-&gt;pass;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 结果如下： </span></span><br><span class="line"><span class="comment">// O:1:&quot;A&quot;:2:&#123;s:4:&quot;name&quot;;s:4:&quot;aaaa&quot;;s:4:&quot;pass&quot;;s:6:&quot;123456&quot;;&#125;</span></span><br><span class="line"><span class="comment">// 123456</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到上面序列化的结果是以 <code>&quot;;&#125;</code> 结尾的，然后思考，我们传入的 <code>bb</code> 会被替换成 <code>ccc</code> ，修改一下代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$name</span>=<span class="string">&#x27;aaaabb&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$pass</span>=<span class="string">&#x27;123456&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 结果如下：</span></span><br><span class="line"><span class="comment">// O:1:&quot;A&quot;:2:&#123;s:4:&quot;name&quot;;s:6:&quot;aaaaccc&quot;;s:4:&quot;pass&quot;;s:6:&quot;123456&quot;;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>在上面的结果中看到 name 的值变成了 <code>aaaaccc</code>，是7个字符，但是字符的长度却还是6，而在反序列化后我们系统只能看到 <code>aaaacc</code> 这六个，也就是说有一个 <code>c</code> 逃出来了，那么我们输入几个 <code>bb</code> 不就能逃逸几个字符了吗，逃逸的字符就是我们要构造的 payload 。</p>
+<p>接下来的任务就是修改 <code>pass</code> 的值，payload如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;;s:4:&quot;pass&quot;;s:6:&quot;hacker&quot;;&#125; // 27个字符</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$name</span>=<span class="string">&#x27;aaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb&quot;;s:4:&quot;pass&quot;;s:6:&quot;hacker&quot;;&#125;&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$pass</span>=<span class="string">&#x27;123456&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 结果如下：</span></span><br><span class="line"><span class="comment">// O:1:&quot;A&quot;:2:&#123;s:4:&quot;name&quot;;s:81:&quot;aaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb&quot;;s:4:&quot;pass&quot;;s:6:&quot;hacker&quot;;&#125;&quot;;s:4:&quot;pass&quot;;s:6:&quot;123456&quot;;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面说过了 <code>&quot;;&#125;</code> 是结束的标志，所以当系统识别到结束符号，就不再执行后面的字符串了，也就是说 <code>&quot;;s:4:&quot;pass&quot;;s:6:&quot;123456&quot;;&#125;</code> 就被丢弃了，从而完成了 <code>pass</code> 值的修改。</p>
+<h5 id="2、收缩"><a href="#2、收缩" class="headerlink" title="2、收缩"></a>2、收缩</h5><p>上面讲到了扩张的字符串逃逸，那么收缩的字符串比扩张的要简单很多，这里继续沿用扩张的例子讲解，修改了一下代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filter</span>(<span class="params"><span class="variable">$str</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">str_replace</span>(<span class="string">&#x27;bbb&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$str</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// O:1:&quot;A&quot;:2:&#123;s:4:&quot;name&quot;;s:4:&quot;aaaa&quot;;s:4:&quot;pass&quot;;s:6:&quot;123456&quot;;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到修改 name 的值为 aaaabb 后，序列化出来的 name 的长度变为了 6 ，但是值的长度却只有 4 个，那么消失的字符串是不是就可以构造 payload 了呢？</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$name</span>=<span class="string">&#x27;aaaabb&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$pass</span>=<span class="string">&#x27;123456&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// O:1:&quot;A&quot;:2:&#123;s:4:&quot;name&quot;;s:6:&quot;aaaa&quot;;s:4:&quot;pass&quot;;s:6:&quot;123456&quot;;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里我们要构造的 payload 是 <code>&quot;;s:4:&quot;pass&quot;;s:6:&quot;hacker&quot;;&#125;</code> ，也就是 27 个字符长度，那么就需要 9 个 <code>bbb</code> ，传入 payload 就成了</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">函数执行前：</span><br><span class="line"><span class="comment">// O:1:&quot;A&quot;:2:&#123;s:4:&quot;name&quot;;s:6:&quot;bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb&quot;;s:4:&quot;pass&quot;;s:6:&quot;hacker&quot;;&#125;&quot;;s:4:&quot;pass&quot;;s:6:&quot;123456&quot;;&#125;</span></span><br><span class="line"></span><br><span class="line">函数执行后：</span><br><span class="line"><span class="comment">// O:1:&quot;A&quot;:2:&#123;s:4:&quot;name&quot;;s:54:&quot;&quot;;s:4:&quot;pass&quot;;s:6:&quot;hacker&quot;;&#125;&quot;;s:4:&quot;pass&quot;;s:6:&quot;123456&quot;;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>发现了 name 的值有 54 个，27 个 <code>bbb</code> 被替换为空，另外 27 个是我们传入的 payload ，那么这就导致了一个问题——报错，name 的值无法满足，那么该怎么构造？还有一个参数——pass，可以利用它来帮助我们构造 payload.</p>
+<p>那么我们利用了 pass 参数来构造，我们不用在 name 后面加 payload 了，但是还是有个问题，就是 name 的值是 27 个 <code>bbb</code>，那么函数执行后就会替换为空，那么空出来的 27 个放什么呢？又给谁去构造呢？</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">name=bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span><br><span class="line">pass=<span class="string">&quot;;s:4:&quot;</span>pass<span class="string">&quot;;s:6:&quot;</span>hacker<span class="string">&quot;;&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">O:1:&quot;</span>A<span class="string">&quot;:2:&#123;s:4:&quot;</span>name<span class="string">&quot;;s:27:&quot;</span><span class="string">&quot;;s:4:&quot;</span>pass<span class="string">&quot;;s:27:&quot;</span><span class="string">&quot;;s:4:&quot;</span>pass<span class="string">&quot;;s:6:&quot;</span>hacker<span class="string">&quot;;&#125;&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>答案依然是 pass ， pass 来帮我们来构造 27 个字符给 name。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">name=bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span><br><span class="line">pass=abcdefgh<span class="string">&quot;;s:4:&quot;</span>pass<span class="string">&quot;;s:6:&quot;</span>hacker<span class="string">&quot;;&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">结果如下：</span></span><br><span class="line"><span class="string">O:1:&quot;</span>A<span class="string">&quot;:2:&#123;s:4:&quot;</span>name<span class="string">&quot;;s:27:&quot;</span><span class="string">&quot;;s:4:&quot;</span>pass<span class="string">&quot;;s:27:&quot;</span>abcdefgh<span class="string">&quot;;s:4:&quot;</span>pass<span class="string">&quot;;s:6:&quot;</span>hacker<span class="string">&quot;;&#125;&quot;</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// &quot;;s:4:&quot;pass&quot;;s:27:&quot;abcdefgh 这一串就是 name 的值</span></span><br><span class="line"><span class="comment">// s:4:&quot;pass&quot;;s:6:&quot;hacker&quot;;&#125; 传入的 payload 就会被执行</span></span><br><span class="line"><span class="comment">// 后面的 &quot;;&#125; 被忽略不被执行</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="四、Phar-反序列化"><a href="#四、Phar-反序列化" class="headerlink" title="四、Phar 反序列化"></a>四、Phar 反序列化</h4><br>
+
+<h4 id="五、Session反序列化"><a href="#五、Session反序列化" class="headerlink" title="五、Session反序列化"></a>五、Session反序列化</h4><br>
+
+
+
+<h4 id="六、Yii-反序列化"><a href="#六、Yii-反序列化" class="headerlink" title="六、Yii 反序列化"></a>六、Yii 反序列化</h4>
+    </div>
+
+    
+    
+    
+	
+        <div class="reward-container">
+  <div>原创技术分享，您的支持将鼓励我继续创作</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="HVVL404 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="HVVL404 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>HVVL404
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/05/08/Web%E6%BC%8F%E6%B4%9E/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" title="PHP反序列化">http://example.com/2023/05/08/Web漏洞/PHP反序列化/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/05/07/C/2_C%E8%BF%90%E7%AE%97%E7%AC%A6/" rel="prev" title="C语言运算符">
+      <i class="fa fa-chevron-left"></i> C语言运算符
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%B8%B8%E8%A7%84%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">一、常规反序列化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%8E%9F%E7%94%9F%E7%B1%BB%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">二、原生类反序列化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%80%83%E9%80%B8"><span class="nav-number">3.</span> <span class="nav-text">三、字符串逃逸</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%81%E6%89%A9%E5%BC%A0"><span class="nav-number">3.1.</span> <span class="nav-text">1、扩张</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E3%80%81%E6%94%B6%E7%BC%A9"><span class="nav-number">3.2.</span> <span class="nav-text">2、收缩</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B%E3%80%81Phar-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">4.</span> <span class="nav-text">四、Phar 反序列化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%94%E3%80%81Session%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">5.</span> <span class="nav-text">五、Session反序列化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%AD%E3%80%81Yii-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">6.</span> <span class="nav-text">六、Yii 反序列化</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="HVVL404"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">HVVL404</p>
+  <div class="site-description" itemprop="description">欢迎来到我的博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HVVL404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HVVL404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2023-04 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HVVL404</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共60.5k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
