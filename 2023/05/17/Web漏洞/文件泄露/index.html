@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="信息泄露">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件泄露">
+<meta property="og:url" content="http://example.com/2023/05/17/Web%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2/index.html">
+<meta property="og:site_name" content="HVVL404">
+<meta property="og:description" content="信息泄露">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-17T10:08:14.108Z">
+<meta property="article:modified_time" content="2023-05-17T15:26:52.000Z">
+<meta property="article:author" content="HVVL404">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/05/17/Web%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>文件泄露 | HVVL404</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">HVVL404</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="house fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="categories fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/17/Web%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="HVVL404">
+      <meta itemprop="description" content="欢迎来到我的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HVVL404">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          文件泄露
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-05-17 18:08:14 / 修改时间：23:26:52" itemprop="dateCreated datePublished" datetime="2023-05-17T18:08:14+08:00">2023-05-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web%E6%BC%8F%E6%B4%9E/" itemprop="url" rel="index"><span itemprop="name">Web漏洞</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>信息泄露</p>
+<span id="more"></span>
+
+<p>文件泄露介绍</p>
+<p>提到信息泄露大家应该都不陌生了，现在有太多的信息泄露，可能在某些人眼里这已经不算什么了。但是信息泄露确是很严重的问题，这可不只泄露你一个人的信息那么简单，可能表面上只泄露你一个人的信息，实际上你全家人的信息都被扒出来了，而且泄露的信息包括你的身份证、家庭住址等敏感信息。</p>
+<p>但是接下来会介绍的不是关于人的敏感信息，而是网站的敏感信息，就是一些重要文件泄露、源码泄露等。</p>
+<h4 id="一、版本管理软件造成的泄露"><a href="#一、版本管理软件造成的泄露" class="headerlink" title="一、版本管理软件造成的泄露"></a>一、版本管理软件造成的泄露</h4><h5 id="1、git-泄露"><a href="#1、git-泄露" class="headerlink" title="1、git 泄露"></a>1、git 泄露</h5><p>（1）漏洞产生</p>
+<p>Git 是一个开源的分布式版本控制系统，在执行 git init 初始化目录的时候，会在当前目录下自动创建一个 .git 目录，用来记录代码的变更记录等。发布代码的时候，如果没有把 .git 这个目录删除，就直接发布到了服务器上，攻击者就可以通过它来恢复源代码。</p>
+<p>（2）漏洞危害（泄露内容）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、所有该项目的源代码</span><br><span class="line">2、私有仓库的地址</span><br><span class="line">3、私密的配置信息</span><br><span class="line">4、所有commiter的邮箱帐号信息</span><br><span class="line">5、（可能）内部的帐号和密码</span><br></pre></td></tr></table></figure>
+
+<p>（3）漏洞利用</p>
+<p>常规的利用方法就是下载整个目录, 然后用git命令回滚整个项目</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、wget -r --no-parent --mirror http://www.example.com/.git</span><br><span class="line">2、cd www.example.com &amp;&amp; git reset --hard</span><br></pre></td></tr></table></figure>
+
+<p>（4）漏洞利用工具：GitHack、dvcs-ripper、scrabble</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1、GitHack</span><br><span class="line">	github项目地址：https://github.com/lijiejie/GitHack</span><br><span class="line"></span><br><span class="line">2、dvcs-ripper：基于perl的工具，除了git还支持很多版本管理系统</span><br><span class="line">	github项目地址：https://github.com/kost/dvcs-ripper</span><br><span class="line"></span><br><span class="line">3、scrabble</span><br><span class="line">	github项目地址：</span><br></pre></td></tr></table></figure>
+
+<p>（5）漏洞案例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、UC某业务导致敏感内部邮件信息泄露：https://wy.zone.ci/bug_detail.php?wybug_id=wooyun-2015-091525</span><br><span class="line">2、高德软件多个信息泄露，影响公司安全：https://wy.zone.ci/bug_detail.php?wybug_id=wooyun-2015-094921</span><br><span class="line">3、陌陌某重要应用源码泄露：https://wy.zone.ci/bug_detail.php?wybug_id=wooyun-2014-086227</span><br></pre></td></tr></table></figure>
+
+<p>（6）漏洞修复</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、删除.git目录。</span><br><span class="line">2、修改中间件配置进行对.git隐藏文件夹的访问。</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="2、svn-源码泄露"><a href="#2、svn-源码泄露" class="headerlink" title="2、svn 源码泄露"></a>2、svn 源码泄露</h5><p>（1）漏洞产生</p>
+<p>svn 是一个开放源代码的版本控制系统。在使用 SVN 管理本地代码过程中，会自动生成一个名为 .svn 的隐藏文件夹，其中包含重要的源代码信息。网站管理员在发布代码时，没有使用 “导出” 功能，而是直接复制代码文件夹到 WEB 服务器上，这就使 .svn 隐藏文件夹被暴露于外网环境，可以利用 <code>.svn/entries</code> 文件，获取到服务器源码。</p>
+<p>（2）漏洞危害（泄露内容）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">（1）所有该项目的源代码</span><br><span class="line">（2）svn仓库的地址</span><br><span class="line">（3）svn仓库所属用户的用户名</span><br></pre></td></tr></table></figure>
+
+<p>（3）漏洞利用</p>
+<p>同样是先下载目录, 然后回滚</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">（1）wget -r --no-parent --mirror http://www.example.com/.svn</span><br><span class="line">（2）cd www.example.com &amp;&amp; svn revert --recursive</span><br></pre></td></tr></table></figure>
+
+<p>（4）漏洞利用工具：Seay-SVN、dvcs-ripper</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">（1）dvcs-ripper: 支持旧版和新版的svn</span><br><span class="line">	github项目地址：https://github.com/kost/dvcs-ripper</span><br><span class="line"> </span><br><span class="line">（2）Seay-Svn: 法师的工具，基于Windows平台</span><br><span class="line">	下载地址：https://www.vuln.cn/2225</span><br></pre></td></tr></table></figure>
+
+<p>（5）漏洞案例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">（1）淘宝网某应用svn信息导致代码泄露：https://wy.zone.ci/bug_detail.php?wybug_id=wooyun-2012-012665</span><br><span class="line">（2）新浪某服务器svn源码泄露可SQL影响海量用户数据：https://wy.zone.ci/bug_detail.php?wybug_id=wooyun-2016-0199607</span><br><span class="line">（3）中国联通整站配置不当导致SVN源码泄露：https://wy.zone.ci/bug_detail.php?wybug_id=wooyun-2016-0169147</span><br></pre></td></tr></table></figure>
+
+<p>（6）漏洞修复</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">（1）删除web目录中所有.svn隐藏文件夹。</span><br><span class="line">（2）开发人员在使用SVN时，严格使用导出功能，禁止直接复制代码。</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="3、hg-源码泄露"><a href="#3、hg-源码泄露" class="headerlink" title="3、hg 源码泄露"></a>3、hg 源码泄露</h5><p>（1）漏洞产生</p>
+<p>Mercurial 是一种轻量级分布式版本控制系统，使用 hg init 的时候会生成 .hg 。</p>
+<p>（2）漏洞危害（泄露内容）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">（1）项目源代码</span><br><span class="line">（2）项目仓库地址</span><br><span class="line">（3）（可能）仓库的用户名</span><br></pre></td></tr></table></figure>
+
+<p>（3）漏洞利用</p>
+<p>手动利用，下载+回滚：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">（1）wget -r --no-parent --mirror http://www.example.com/.hg</span><br><span class="line">（2）cd www.example.com &amp;&amp; hg revert</span><br></pre></td></tr></table></figure>
+
+<p>（4）漏洞利用工具：dvcs-ripper</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">（1）dvcs-ripper</span><br><span class="line">	github项目地址：https://github.com/kost/dvcs-ripper</span><br></pre></td></tr></table></figure>
+
+<p>（5）漏洞修复</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">删除.hg文件。</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="4、cvs-泄露"><a href="#4、cvs-泄露" class="headerlink" title="4、cvs 泄露"></a>4、cvs 泄露</h5><p>（1）漏洞产生</p>
+<p>CVS 是一个 C&#x2F;S 系统，多个开发人员通过一个中心版本控制系统来记录文件版本，从而达到保证文件同步的目的。主要是针对 CVS&#x2F;Root 以及 CVS&#x2F;Entries 目录，直接就可以看到泄露的信息。</p>
+<p>（2）漏洞危害（泄露内容）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">因为是纯客户端的工具，所以只会泄露源代码</span><br></pre></td></tr></table></figure>
+
+<p>（3）漏洞利用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">下载CVS文件夹然后通过cvs命令获取源码信息，不过似乎没有直接的回滚操作，需要做点额外的处理。</span><br><span class="line">（1）wget -r --no-parent --mirror http://www.example.com/CVS</span><br><span class="line">（2）cd www.example.com &amp;&amp; cvs diff \*</span><br></pre></td></tr></table></figure>
+
+<p>（4）漏洞利用工具：dvcs-ripper</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">（1）dvcs-ripper</span><br><span class="line">	github项目地址：https://github.com/kost/dvcs-ripper.git</span><br></pre></td></tr></table></figure>
+
+<p>（5）漏洞案例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">（1）华为某系统CVS信息泄漏：https://wy.zone.ci/bug_detail.php?wybug_id=wooyun-2014-081481</span><br><span class="line">（2）国泰君安某重要分站CVS信息泄露：https://wy.zone.ci/bug_detail.php?wybug_id=wooyun-2015-0136373</span><br><span class="line">（3）易宝支付某站多处CVS信息泄露：https://wy.zone.ci/bug_detail.php?wybug_id=wooyun-2015-0109755</span><br></pre></td></tr></table></figure>
+
+<p>（6）漏洞修复</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">删除cvs文件。</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="5、Bazaar-x2F-bzr泄露"><a href="#5、Bazaar-x2F-bzr泄露" class="headerlink" title="5、Bazaar&#x2F;bzr泄露"></a>5、Bazaar&#x2F;bzr泄露</h5><p>（1）漏洞产生</p>
+<p>bzr也是个版本控制工具，虽然不是很热门，但它也是多平台支持，并且有不错的图形界面，bzr在初始化项目时(bzr init&#x2F;init-repo)，会在项目根目录产生名为.bzr的隐藏目录，同样暴露了源代码和用户信息。</p>
+<p>（2）漏洞危害（泄露内容）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">（1）源代码</span><br><span class="line">（2）仓库地址</span><br><span class="line">（3）开发者的信息</span><br></pre></td></tr></table></figure>
+
+<p>（3）漏洞利用</p>
+<p>没用过bzr工具, 不过查询文档得知可用bzr revert命令来进行回滚</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">（1）wget -r --no-parent --mirror http://www.example.com/.bzr</span><br><span class="line">（2）cd www.example.com &amp;&amp; bzr revert</span><br></pre></td></tr></table></figure>
+
+<p>（4）漏洞利用工具：dvcs-ripper</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">（1）dvcs-ripper</span><br><span class="line">	github项目地址：https://github.com/kost/dvcs-ripper.git</span><br></pre></td></tr></table></figure>
+
+<p>（5）漏洞修复</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">同git。</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="6、github-源码泄漏"><a href="#6、github-源码泄漏" class="headerlink" title="6、github 源码泄漏"></a>6、github 源码泄漏</h5><p>（1）漏洞产生</p>
+<p>GitHub 是一个面向开源及私有软件项目的托管平台。很多人喜欢把自己的代码上传到平台托管，通过关键词进行搜索，可以找到关于目标站点的敏感信息，甚至可以下载网站源码。类似的代码托管平台还有很多，人才是最大的漏洞。</p>
+<p>（2）漏洞利用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/search?q=smtp+user+&lt;span&gt;@qq.com&lt;/span&gt;&amp;type=code</span><br></pre></td></tr></table></figure>
+
+<p>（3）漏洞案例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">（1）咕咚网github信息泄露：https://wy.zone.ci/bug_detail.php?wybug_id=wooyun-2016-0177720</span><br><span class="line">（2）一个github引发的畅捷通渗透测试：https://wy.zone.ci/bug_detail.php?wybug_id=wooyun-2015-0164337</span><br><span class="line">（3）Github Hack之环球运费网代码泄露（审计发现安全漏洞）：https://wy.zone.ci/bug_detail.php?wybug_id=wooyun-2015-0152208</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="7、前端泄露"><a href="#7、前端泄露" class="headerlink" title="7、前端泄露"></a>7、前端泄露</h5><p>源代码泄露，在 ctf 中常见于签到题，一般叫你右键查看源代码就可以看到 flag 了，有时候他不让你右键，那么就按 F12 来查看，那万一 F12 也不让呢？那就在地址前加一个 <code>view-source:</code> 即可，或者是 <code>ctrl+s</code> 保存网页的前端代码到本地以文本形式打开查看。</p>
+<p>（1）漏洞产生</p>
+<p>由于程序员的失误导致在前端的注释没有删除，会显示在页面上。</p>
+<p>（2）漏洞利用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、右键源代码查看</span><br><span class="line">2、F12 查看</span><br><span class="line">3、地址前加 view-source:</span><br><span class="line">4、ctrl+s 文本打开查看</span><br></pre></td></tr></table></figure>
+
+<p>（3）漏洞修复</p>
+<p>删除注释。</p>
+<br>
+
+<h4 id="二、文件包含导致的泄露"><a href="#二、文件包含导致的泄露" class="headerlink" title="二、文件包含导致的泄露"></a>二、文件包含导致的泄露</h4><h5 id="1、网站备份压缩文件"><a href="#1、网站备份压缩文件" class="headerlink" title="1、网站备份压缩文件"></a>1、网站备份压缩文件</h5><p>（1）漏洞产生</p>
+<p>备份文件泄露又分为两种情况, 一种是运维人员偷懒地直接在网站根目录用类似 tar -czvf bakup.tgz 的命令将网站进行备份, 这样整站的源代码都能直接被用户打包下载了； 另一种是开发或者运维人员使用的编辑器修改文件时自动备份了所编辑的网页内容,  如 vim 的 .swp , 从而泄露了该网页的源代码。</p>
+<p>（2）漏洞利用</p>
+<p>对于打包文件而言，渗透测试人员可以用{常用文件名}+{常用压缩包后缀}的方式扫描网站，说不定会有意外惊喜。对于网页的临时备份文件，可以扫描对应页面的 .swp 或者 .bak 等后缀，说不定也能找到有用的信息。</p>
+<p>（3）漏洞工具：御剑、dirsearch</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">（1）dirsearch</span><br><span class="line">	github项目地址：https://github.com/maurosoria/dirsearch</span><br><span class="line">	</span><br><span class="line">（2）御剑</span><br><span class="line">	下载地址：https://pan.baidu.com/share/init?surl=Bn7GtWb7AStcjzVahFOjSQ?passwd=zkaq</span><br></pre></td></tr></table></figure>
+
+<p>（4）漏洞案例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">（1）广州医科大学某分站备份文件泄露：https://wy.zone.ci/bug_detail.php?wybug_id=wooyun-2016-0225610</span><br><span class="line">（2）起点中文网某分站备份文件泄露：https://wy.zone.ci/bug_detail.php?wybug_id=wooyun-2016-0170753</span><br><span class="line">（3）奥凯航空任意用户登陆/敏感信息泄露/内部文件泄露：https://wy.zone.ci/bug_detail.php?wybug_id=wooyun-2015-0158981</span><br></pre></td></tr></table></figure>
+
+<p>（5）漏洞修复</p>
+<p>做好版本管理，并利用版本管理工具过滤掉这些类型的文件，同时不要直接在生产环境中修改或者添加文件。</p>
+<p>（6）常见的压缩文件及备份文件后缀名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">压缩文件：</span><br><span class="line">www.zip</span><br><span class="line">www.rar</span><br><span class="line">www.tar.gz</span><br><span class="line"></span><br><span class="line">备份文件后缀名：</span><br><span class="line">.git</span><br><span class="line">.svn</span><br><span class="line">.swp</span><br><span class="line">.swo</span><br><span class="line">.~</span><br><span class="line">.bak</span><br><span class="line">.bash_history</span><br><span class="line">.bkf</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="2、WEB-INF-x2F-web-xml-泄露"><a href="#2、WEB-INF-x2F-web-xml-泄露" class="headerlink" title="2、WEB-INF&#x2F;web.xml 泄露"></a>2、WEB-INF&#x2F;web.xml 泄露</h5><p>（2）漏洞产生</p>
+<p>&lt;1&gt; 在 Java 的 Servlet 文档中，说到 WEB-INF 目录“包含了所有 web 应用会用到但是不处于 web 路径中的资源”，也就是说，WEB-INF 目录下的内容是不属于公开页面的。web 应用可以通过 getResource 等 API 在 servlet 的上下文中访问到这些资源。</p>
+<p>&lt;2&gt; 通常开发者会把许多 JSP 文件，Jar 包，Java 的类文件放在该目录下。一般目录的内容都是可以预测的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、WEB-INF/web.xml : Web应用程序配置文件, 描述了servlet和其他的应用组件配置及命名规则.</span><br><span class="line">2、WEB-INF/database.properties : 数据库配置文件</span><br><span class="line">3、WEB-INF/classes/ : 一般用来存放Java类文件(.class)</span><br><span class="line">4、WEB-INF/lib/ : 用来存放打包好的库(.jar)</span><br><span class="line">5、WEB-INF/src/ : 用来放源代码(.asp和.php等)</span><br></pre></td></tr></table></figure>
+
+<p>（2）漏洞利用</p>
+<p>通过 web.xml 文件推测应用组件相关类的名字，然后在 src 目录下查找代码，如果没有源代码可以直接下载 class 文件反编译即可。</p>
+<p>（3）漏洞案例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">（1）傲世堂官网WEB-INF目录文件导致信息泄露：https://wy.zone.ci/bug_detail.php?wybug_id=wooyun-2013-029022</span><br><span class="line">（2）华为官网WEB-INF目录配置文件导致信息泄露：https://wy.zone.ci/bug_detail.php?wybug_id=wooyun-2013-022906</span><br><span class="line">（3）某政府网站WEB-INF目录读取到Getshell：https://wy.zone.ci/bug_detail.php?wybug_id=wooyun-2014-068399</span><br></pre></td></tr></table></figure>
+
+<p>（4）漏洞修复</p>
+<p>发布前确认WEB-INF目录是禁止访问的, 或者在server设置好对于的过滤规则。</p>
+<h5 id="3、DS-Store-文件泄露"><a href="#3、DS-Store-文件泄露" class="headerlink" title="3、DS_Store 文件泄露"></a>3、DS_Store 文件泄露</h5><p>（1）漏洞产生</p>
+<p>.DS_Store 是 Mac 下 Finder 用来保存如何展示 文件&#x2F;文件夹 的数据文件，每个文件夹下对应一个。如果将 .DS_Store 上传部署到服务器，可能造成文件目录结构泄漏，特别是备份文件、源代码文件。</p>
+<p>（2）漏洞利用</p>
+<p>.DS_Store 的格式为二进制，内部数据结构为Proprietary格式，可以自行解析并递归下载所有文件，参考 lijiejie 的 ds_store_exp 。</p>
+<p>（3）漏洞利用工具：ds_store_exp</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">（1）ds_store_exp</span><br><span class="line">	github项目地址：https://github.com/lijiejie/ds_store_exp</span><br></pre></td></tr></table></figure>
+
+<p>（4）漏洞案例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">（1）西北大学SQL注入+DS_Store信息泄露+git信息泄露+HP打印机未授权访问：https://wy.zone.ci/bug_detail.php?wybug_id=wooyun-2016-0167033</span><br><span class="line">（2）Camera360多各分站服务器配置不当导致未授权访问（DS_Store泄密）：https://wy.zone.ci/bug_detail.php?wybug_id=wooyun-2015-095996</span><br><span class="line">（3）TCL某网站DS_Store文件泄露敏感信息（谨慎使用Mac系统）：https://wy.zone.ci/bug_detail.php?wybug_id=wooyun-2015-091869</span><br></pre></td></tr></table></figure>
+
+<p>（5）漏洞修复</p>
+<p>使用 macOS 开发的同学，可以把 .DS_Store 加入忽略列表中(如 .gitignore )，但本质上其只是泄露目录结构，就算删掉 .DS_Store ，文件也依然存在于 web 服务器可以访问得到的地方，所以治本的方法还是不要将敏感信息放在 web 路径中。</p>
+<h5 id="4、Vim-文件泄露"><a href="#4、Vim-文件泄露" class="headerlink" title="4、Vim 文件泄露"></a>4、Vim 文件泄露</h5><p>（1）漏洞产生</p>
+<p>swp 即 swap 文件，在用 vim 编辑文件时产生的临时文件，它是隐藏文件，如果程序正常退出，临时文件自动删除，如果第一次意外退出就会保留，文件名为 .filename.swp；第二次意外退出就会生成文件名为 .filename.swo 的文件。</p>
+<p>（2）漏洞利用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、直接访问 .swp 文件，下载回来后删掉末尾的.swp，获得源码文件。</span><br><span class="line"></span><br><span class="line">2、直接访问 .swo 文件，下载回来后删掉末尾的.swo，获得源码文件。</span><br></pre></td></tr></table></figure>
+
+<p>（3）漏洞修复</p>
+<p>删除 .swp 或者是 .swo 文件。</p>
+<br>
+
+<h4 id="三、配置文件的泄露"><a href="#三、配置文件的泄露" class="headerlink" title="三、配置文件的泄露"></a>三、配置文件的泄露</h4><h5 id="1、配置文件泄露"><a href="#1、配置文件泄露" class="headerlink" title="1、配置文件泄露"></a>1、配置文件泄露</h5><p>（1）漏洞产生</p>
+<p>现代WEB开发往往不会重新造轮子，而是基于成熟的框架进行配置，如果渗透测试人员知道该网站是基于什么类型的框架，就可能通过该框架的文档获得重要配置文件的路径，如果是开源框架，同时也能获得源代码，因此配置文件泄露的严重性也是不言而喻的。</p>
+<p>（2）漏洞利用</p>
+<p>通过识别网站指纹得知其框架类型，然后手工测试重要的配置文件是否可以获取。如果是批量测试，则可以事先准备好常见的配置文件路径，如 wordpress 的 <code>/wp-config.php</code> 等，组织成字典然后用脚本进行批量测试。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">可以参考猪猪侠的字典：https://github.com/ring04h/weakfilescan/blob/b1a3066e3fdcd60b8ecf635526f49cb5ad603064/dict/configfile.lst</span><br></pre></td></tr></table></figure>
+
+<p>（3）漏洞修复</p>
+<p>修改配置文件的默认路径，同时在服务器端阻止对这些路径的访问。</p>
+<h5 id="2、配置错误导致的泄露"><a href="#2、配置错误导致的泄露" class="headerlink" title="2、配置错误导致的泄露"></a>2、配置错误导致的泄露</h5><p>（1）Windows IIS&#x2F;Apache 目录穿越</p>
+<p>&lt;1&gt; 漏洞原理：目录穿越漏洞原理比较简单，程序在实现上没有充分过滤用户输入的 <code>../</code> 之类的目录跳转符，导致恶意用户可以访问web根目录的上级从而遍历服务器上的任意文件。虽然 web 服务器本身会禁止访问 web 文件夹以外的地方，但如果是智障开发引入的动态页面，又没有过滤好用户输入，就可能会出现穿越甚至目录遍历。甚至 web 服务器本身也曾经有类似的漏洞，比如 Apache Tomcat 的 UTF-8 解析漏洞，具体利用和绕过可以参考其他网上的文章，这里限于篇幅就不展开了。<br>&lt;2&gt; 文章地址：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/21516413">https://zhuanlan.zhihu.com/p/21516413</a></p>
+<p>（2）Nginx配置安全</p>
+<p>&lt;1&gt; 漏洞原理：Nginx 的配置选项之多，并不是所有人都能熟悉，但不表示随便百度一下复制粘贴就配置了，最好还是先看下官方文档对应选项的作用和用法，可以避免许多致命的错误。例如 Nginx 在代理静态文件时，如果不小心在配置文件中写错了一个字符：location &#x2F;static {alias  &#x2F;home&#x2F;web&#x2F;static&#x2F;;}，就会导致访问 <code>http://example.com/static../</code> 时可以访问上级目录，从而访问到敏感的信息。关于 nginx 配置安全，离别歌的这篇文章其实写得很不错，值得每个开发和运维人员仔细了解。<br>&lt;2&gt; 文章地址：<a target="_blank" rel="noopener" href="https://www.leavesongs.com/PENETRATION/nginx-insecure-configuration.html">https://www.leavesongs.com/PENETRATION/nginx-insecure-configuration.html</a></p>
+<br>
+
+<h4 id="四、默认文件泄露"><a href="#四、默认文件泄露" class="headerlink" title="四、默认文件泄露"></a>四、默认文件泄露</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">robots.txt</span><br><span class="line">README.md</span><br><span class="line">phpinfo.php</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+	
+        <div class="reward-container">
+  <div>原创技术分享，您的支持将鼓励我继续创作</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="HVVL404 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="HVVL404 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>HVVL404
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/05/17/Web%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2/" title="文件泄露">http://example.com/2023/05/17/Web漏洞/文件泄露/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/05/12/Web%E6%BC%8F%E6%B4%9E/CRLF%E6%B3%A8%E5%85%A5/" rel="prev" title="CRLF注入">
+      <i class="fa fa-chevron-left"></i> CRLF注入
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E8%BD%AF%E4%BB%B6%E9%80%A0%E6%88%90%E7%9A%84%E6%B3%84%E9%9C%B2"><span class="nav-number">1.</span> <span class="nav-text">一、版本管理软件造成的泄露</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%81git-%E6%B3%84%E9%9C%B2"><span class="nav-number">1.1.</span> <span class="nav-text">1、git 泄露</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E3%80%81svn-%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2"><span class="nav-number">1.2.</span> <span class="nav-text">2、svn 源码泄露</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3%E3%80%81hg-%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2"><span class="nav-number">1.3.</span> <span class="nav-text">3、hg 源码泄露</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4%E3%80%81cvs-%E6%B3%84%E9%9C%B2"><span class="nav-number">1.4.</span> <span class="nav-text">4、cvs 泄露</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5%E3%80%81Bazaar-x2F-bzr%E6%B3%84%E9%9C%B2"><span class="nav-number">1.5.</span> <span class="nav-text">5、Bazaar&#x2F;bzr泄露</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6%E3%80%81github-%E6%BA%90%E7%A0%81%E6%B3%84%E6%BC%8F"><span class="nav-number">1.6.</span> <span class="nav-text">6、github 源码泄漏</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7%E3%80%81%E5%89%8D%E7%AB%AF%E6%B3%84%E9%9C%B2"><span class="nav-number">1.7.</span> <span class="nav-text">7、前端泄露</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AF%BC%E8%87%B4%E7%9A%84%E6%B3%84%E9%9C%B2"><span class="nav-number">2.</span> <span class="nav-text">二、文件包含导致的泄露</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%81%E7%BD%91%E7%AB%99%E5%A4%87%E4%BB%BD%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">1、网站备份压缩文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E3%80%81WEB-INF-x2F-web-xml-%E6%B3%84%E9%9C%B2"><span class="nav-number">2.2.</span> <span class="nav-text">2、WEB-INF&#x2F;web.xml 泄露</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3%E3%80%81DS-Store-%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2"><span class="nav-number">2.3.</span> <span class="nav-text">3、DS_Store 文件泄露</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4%E3%80%81Vim-%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2"><span class="nav-number">2.4.</span> <span class="nav-text">4、Vim 文件泄露</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B3%84%E9%9C%B2"><span class="nav-number">3.</span> <span class="nav-text">三、配置文件的泄露</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2"><span class="nav-number">3.1.</span> <span class="nav-text">1、配置文件泄露</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E3%80%81%E9%85%8D%E7%BD%AE%E9%94%99%E8%AF%AF%E5%AF%BC%E8%87%B4%E7%9A%84%E6%B3%84%E9%9C%B2"><span class="nav-number">3.2.</span> <span class="nav-text">2、配置错误导致的泄露</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%BB%98%E8%AE%A4%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2"><span class="nav-number">4.</span> <span class="nav-text">四、默认文件泄露</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="HVVL404"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">HVVL404</p>
+  <div class="site-description" itemprop="description">欢迎来到我的博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HVVL404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HVVL404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2023-04 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HVVL404</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共79.8k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
