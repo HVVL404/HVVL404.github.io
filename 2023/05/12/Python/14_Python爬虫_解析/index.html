@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="解析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python爬虫-解析">
+<meta property="og:url" content="http://example.com/2023/05/12/Python/14_Python%E7%88%AC%E8%99%AB_%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:site_name" content="HVVL404">
+<meta property="og:description" content="解析">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-12T13:03:55.780Z">
+<meta property="article:modified_time" content="2023-05-12T13:11:37.281Z">
+<meta property="article:author" content="HVVL404">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/05/12/Python/14_Python%E7%88%AC%E8%99%AB_%E8%A7%A3%E6%9E%90/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Python爬虫-解析 | HVVL404</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">HVVL404</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="house fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="categories fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/12/Python/14_Python%E7%88%AC%E8%99%AB_%E8%A7%A3%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="HVVL404">
+      <meta itemprop="description" content="欢迎来到我的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HVVL404">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python爬虫-解析
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-05-12 21:03:55 / 修改时间：21:11:37" itemprop="dateCreated datePublished" datetime="2023-05-12T21:03:55+08:00">2023-05-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>解析</p>
+<span id="more"></span>
+
+<h4 id="一、xpath"><a href="#一、xpath" class="headerlink" title="一、xpath"></a>一、xpath</h4><h5 id="1、xpath的基本使用"><a href="#1、xpath的基本使用" class="headerlink" title="1、xpath的基本使用"></a>1、xpath的基本使用</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;l1&quot;</span> <span class="attr">class</span>=<span class="string">&quot;a1&quot;</span>&gt;</span>厦门<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;l2&quot;</span>&gt;</span>福州<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;l3&quot;</span>&gt;</span>泉州<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;c1&quot;</span>&gt;</span>漳州<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;c2&quot;</span>&gt;</span>南平<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;c3&quot;</span>&gt;</span>龙岩<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line">tree = etree.parse(<span class="string">&#x27;01_解析_xpath的基本使用.html&#x27;</span>)</span><br><span class="line">li_list = tree.xpath(<span class="string">&#x27;//ul/li/text()&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;厦门&#x27;, &#x27;福州&#x27;, &#x27;泉州&#x27;, &#x27;漳州&#x27;, &#x27;南平&#x27;, &#x27;龙岩&#x27;]</span></span><br><span class="line"><span class="comment"># 6</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># li_list = tree.xpath(&#x27;//ul/li[@id=&quot;l1&quot;]/text()&#x27;)</span></span><br><span class="line"><span class="comment"># # [&#x27;厦门&#x27;]</span></span><br><span class="line"><span class="comment"># 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># li_list = tree.xpath(&#x27;//ul/li[@id=&quot;l1&quot;]/@class&#x27;)</span></span><br><span class="line"><span class="comment"># [&#x27;a1&#x27;]</span></span><br><span class="line"><span class="comment"># 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询包含 “字符串” 的数据</span></span><br><span class="line"><span class="comment"># li_list = tree.xpath(&#x27;//ul/li[contains(@id,&quot;l&quot;)]/text()&#x27;)</span></span><br><span class="line"><span class="comment"># [&#x27;厦门&#x27;, &#x27;福州&#x27;, &#x27;泉州&#x27;]</span></span><br><span class="line"><span class="comment"># 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询以 “字符串” 开头的数据</span></span><br><span class="line"><span class="comment"># li_list = tree.xpath(&#x27;//ul/li[starts-with(@id,&quot;c&quot;)]/text()&#x27;)</span></span><br><span class="line"><span class="comment"># [&#x27;漳州&#x27;, &#x27;南平&#x27;, &#x27;龙岩&#x27;]</span></span><br><span class="line"><span class="comment"># 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 与语句 查询id为l1 和 class为a1的数据</span></span><br><span class="line"><span class="comment"># li_list = tree.xpath(&#x27;//ul/li[@id=&quot;l1&quot; and @class=&quot;a1&quot;]/text()&#x27;)</span></span><br><span class="line"><span class="comment"># [&#x27;厦门&#x27;]</span></span><br><span class="line"><span class="comment"># 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 或语句 查询id为l1 和 id为l2的数据</span></span><br><span class="line"><span class="comment"># li_list = tree.xpath(&#x27;//ul/li[@id=&quot;l1&quot;]/text() | //ul/li[@id=&quot;l2&quot;]/text()&#x27;)</span></span><br><span class="line"><span class="comment"># [&#x27;厦门&#x27;, &#x27;福州&#x27;]</span></span><br><span class="line"><span class="comment"># 2</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(li_list)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(li_list))</span><br></pre></td></tr></table></figure>
+
+<h5 id="2、xpath-获取百度-百度一下"><a href="#2、xpath-获取百度-百度一下" class="headerlink" title="2、xpath 获取百度-百度一下"></a>2、xpath 获取百度-百度一下</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"></span><br><span class="line">url = <span class="string">&#x27;https://www.baidu.com/&#x27;</span></span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">request = urllib.request.Request(url = url,headers = headers)</span><br><span class="line"></span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line"></span><br><span class="line">content = response.read().decode(<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line"></span><br><span class="line">tree = etree.HTML(content)</span><br><span class="line"></span><br><span class="line">result = tree.xpath(<span class="string">&#x27;//input[@type=&quot;submit&quot;]/@value&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
+
+<h5 id="3、xpath-站长素材"><a href="#3、xpath-站长素材" class="headerlink" title="3、xpath 站长素材"></a>3、xpath 站长素材</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"><span class="keyword">import</span> jsonpath</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_request</span>(<span class="params">page</span>):</span><br><span class="line">    <span class="keyword">if</span>(page == <span class="number">1</span>):</span><br><span class="line">        url = <span class="string">&#x27;https://sc.chinaz.com/tupian/QiCheTuPian.html&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        url = <span class="string">&#x27;https://sc.chinaz.com/tupian/QiCheTuPian_&#x27;</span> + <span class="built_in">str</span>(page) + <span class="string">&#x27;.html&#x27;</span></span><br><span class="line"></span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    request = urllib.request.Request(url = url,headers = headers)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> request</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_content</span>(<span class="params">request</span>):</span><br><span class="line">    response = urllib.request.urlopen(request)</span><br><span class="line"></span><br><span class="line">    content = response.read().decode(<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> content</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">down_loads</span>(<span class="params">content</span>):</span><br><span class="line">    tree = etree.HTML(content)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 注意：xpath方法返回的值是列表类型</span></span><br><span class="line">    name_list = tree.xpath(<span class="string">&#x27;//div[@class=&quot;container&quot;]//img/@alt&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    src_list = tree.xpath(<span class="string">&#x27;//div[@class=&quot;container&quot;]//img/@data-original&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(name_list)):</span><br><span class="line">        name = name_list[i]</span><br><span class="line">        src = src_list[i]</span><br><span class="line">        url =<span class="string">&#x27;https:&#x27;</span> + src</span><br><span class="line">        <span class="built_in">print</span>(name,src)</span><br><span class="line">        result = urllib.request.urlretrieve(url = url,filename =<span class="string">&#x27;./QiCheImage/&#x27;</span> + name + <span class="string">&#x27;.jpg&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    start_page = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&#x27;请输入起始页码：&#x27;</span>))</span><br><span class="line">    end_page = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&#x27;请输入结束页码：&#x27;</span>))</span><br><span class="line">    <span class="keyword">for</span> page <span class="keyword">in</span> <span class="built_in">range</span>(start_page,end_page+<span class="number">1</span>):</span><br><span class="line">        <span class="comment"># （1）请求对象的定制</span></span><br><span class="line">        request = create_request(page)</span><br><span class="line">        <span class="comment"># （2）获取请求的数据</span></span><br><span class="line">        content = get_content(request)</span><br><span class="line">        <span class="comment"># （3）下载数据</span></span><br><span class="line">        down_loads(content)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="二、jsonpath"><a href="#二、jsonpath" class="headerlink" title="二、jsonpath"></a>二、jsonpath</h4><h5 id="1、jsonpath-的基本使用"><a href="#1、jsonpath-的基本使用" class="headerlink" title="1、jsonpath 的基本使用"></a>1、jsonpath 的基本使用</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&#123; &quot;store&quot;: &#123;</span><br><span class="line">    &quot;book&quot;: [</span><br><span class="line">      &#123; &quot;category&quot;: &quot;reference&quot;,</span><br><span class="line">        &quot;author&quot;: &quot;Nigel Rees&quot;,</span><br><span class="line">        &quot;title&quot;: &quot;Sayings of the Century&quot;,</span><br><span class="line">        &quot;price&quot;: 8.95</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123; &quot;category&quot;: &quot;fiction&quot;,</span><br><span class="line">        &quot;author&quot;: &quot;Evelyn Waugh&quot;,</span><br><span class="line">        &quot;title&quot;: &quot;Sword of Honour&quot;,</span><br><span class="line">        &quot;price&quot;: 12.99</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123; &quot;category&quot;: &quot;fiction&quot;,</span><br><span class="line">        &quot;author&quot;: &quot;Herman Melville&quot;,</span><br><span class="line">        &quot;title&quot;: &quot;Moby Dick&quot;,</span><br><span class="line">        &quot;isbn&quot;: &quot;0-553-21311-3&quot;,</span><br><span class="line">        &quot;price&quot;: 8.99</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123; &quot;category&quot;: &quot;fiction&quot;,</span><br><span class="line">        &quot;author&quot;: &quot;J. R. R. Tolkien&quot;,</span><br><span class="line">        &quot;title&quot;: &quot;The Lord of the Rings&quot;,</span><br><span class="line">        &quot;isbn&quot;: &quot;0-395-19395-8&quot;,</span><br><span class="line">        &quot;price&quot;: 22.99</span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;bicycle&quot;: &#123;</span><br><span class="line">      &quot;color&quot;: &quot;red&quot;,</span><br><span class="line">      &quot;price&quot;: 19.95</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> jsonpath</span><br><span class="line"></span><br><span class="line">obj = json.load(<span class="built_in">open</span>(<span class="string">&#x27;04_解析_jsonpath之基本使用.json&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf8&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 书的所有作者</span></span><br><span class="line"><span class="comment"># author_list = jsonpath.jsonpath(obj,&#x27;$.store.book[*].author&#x27;)</span></span><br><span class="line"><span class="comment"># print(author_list)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 所有作者（除了书之外的作者）</span></span><br><span class="line"><span class="comment"># author_list = jsonpath.jsonpath(obj,&#x27;$..author&#x27;)</span></span><br><span class="line"><span class="comment"># print(author_list)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 商店以下的信息</span></span><br><span class="line"><span class="comment"># tag_list = jsonpath.jsonpath(obj,&#x27;$.store.*&#x27;)</span></span><br><span class="line"><span class="comment"># print(tag_list)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 商店下面的price信息</span></span><br><span class="line"><span class="comment"># book_list = jsonpath.jsonpath(obj,&#x27;$.store..price&#x27;)</span></span><br><span class="line"><span class="comment"># print(book_list)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 第三本书</span></span><br><span class="line"><span class="comment"># book_list = jsonpath.jsonpath(obj,&#x27;$..book[2]&#x27;)</span></span><br><span class="line"><span class="comment"># print(book_list)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 最后一本书</span></span><br><span class="line"><span class="comment"># book_list = jsonpath.jsonpath(obj,&#x27;$..book[(@.length-1)]&#x27;)</span></span><br><span class="line"><span class="comment"># print(book_list)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 前两本书</span></span><br><span class="line"><span class="comment"># (1) book_list = jsonpath.jsonpath(obj,&#x27;$..book[0,1]&#x27;)</span></span><br><span class="line"><span class="comment"># (2) book_list = jsonpath.jsonpath(obj,&#x27;$..book[:2]&#x27;)</span></span><br><span class="line"><span class="comment"># print(book_list)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 含有 isbn 的书 条件判断要用? 在()前加?</span></span><br><span class="line"><span class="comment"># book_list = jsonpath.jsonpath(obj,&#x27;$..book[?(@.isbn)]&#x27;)</span></span><br><span class="line"><span class="comment"># print(book_list)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># price 大于10 的书</span></span><br><span class="line"><span class="comment"># book_list = jsonpath.jsonpath(obj,&#x27;$..book[?(@.price&gt;10)]&#x27;)</span></span><br><span class="line"><span class="comment"># print(book_list)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示全部信息</span></span><br><span class="line">book_list = jsonpath.jsonpath(obj,<span class="string">&#x27;$..*&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(book_list)</span><br></pre></td></tr></table></figure>
+
+<h5 id="2、jsonpath-淘票票"><a href="#2、jsonpath-淘票票" class="headerlink" title="2、jsonpath 淘票票"></a>2、jsonpath 淘票票</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"></span><br><span class="line">url = <span class="string">&#x27;https://dianying.taobao.com/cityAction.json?activityId&amp;_ksTS=1660476866218_108&amp;jsoncallback=jsonp109&amp;action=cityAction&amp;n_s=new&amp;event_submit_doGetAllRegion=true&#x27;</span></span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="comment"># &#x27;:authority&#x27;: &#x27;dianying.taobao.com&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;:method&#x27;: &#x27;GET&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;:path&#x27;: &#x27;/cityAction.json?activityId&amp;_ksTS=1660476866218_108&amp;jsoncallback=jsonp109&amp;action=cityAction&amp;n_s=new&amp;event_submit_doGetAllRegion=true&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;:scheme&#x27;: &#x27;https&#x27;,</span></span><br><span class="line">    <span class="string">&#x27;accept&#x27;</span>: <span class="string">&#x27;text/javascript, application/javascript, application/ecmascript, application/x-ecmascript, */*; q=0.01&#x27;</span>,</span><br><span class="line">    <span class="comment"># &#x27;accept-encoding&#x27;: &#x27;gzip, deflate, br&#x27;,</span></span><br><span class="line">    <span class="string">&#x27;accept-language&#x27;</span>: <span class="string">&#x27;zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;bx-v&#x27;</span>: <span class="string">&#x27;2.2.2&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;cookie&#x27;</span>: <span class="string">&#x27;cna=/2aWGsWi/loCAXAx9pQ8UTSC; miid=684269234985765900; enc=9HDdNFs5gyOQuzdApfEJPk50Cwf%2FlLh9K%2Fiabx9RI%2BBmo2QtS59XpwW8aETF8t%2B%2B6MYMx88YU%2BS8L4go%2BGzwGGiL83ltVyw%2BBnInqwnsUeKKaZ8gFHx9AjTGjM%2BRdo7e; thw=cn; _m_h5_tk=ec3acd5ea85c2c22f19dfdd9c5e72e6a_1660287437842; _m_h5_tk_enc=a68b03acb80f902b4d2403082acdfcac; t=fc3a35a1949a5061d43a8ad7a0aa32e6; cookie2=1b381909a7657c7e522221e067a1186f; v=0; _tb_token_=e7e0101153be8; xlly_s=1; l=eBxmMRGgLLqMpU8MBOfanurza77O8IRYmuPzaNbMiOCPO55H5AxcW6YtVWYMCnGVh6PeR3k0hW66BeYBqC2sjqj2nAHOr3Dmn; tfstk=croRBJ_31IAugGz_RYL08pVLpjvGZF68tTNdvD7Lz7senRsdiAniXYuwPJPawKC..; isg=BLa23tHByPmhSbxqKPOUAR5xB-y41_oRIlkEAyCf8hk0Y1b9iGaOIVUdez8PT_Ip&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;referer&#x27;</span>: <span class="string">&#x27;https://dianying.taobao.com/index.htm?n_s=new&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;sec-ch-ua&#x27;</span>: <span class="string">&#x27;&quot;Chromium&quot;;v=&quot;104&quot;, &quot; Not A;Brand&quot;;v=&quot;99&quot;, &quot;Microsoft Edge&quot;;v=&quot;104&quot;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;sec-ch-ua-mobile&#x27;</span>: <span class="string">&#x27;?0&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;sec-ch-ua-platform&#x27;</span>: <span class="string">&#x27;&quot;Windows&quot;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;sec-fetch-dest&#x27;</span>: <span class="string">&#x27;empty&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;sec-fetch-mode&#x27;</span>: <span class="string">&#x27;cors&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;sec-fetch-site&#x27;</span>: <span class="string">&#x27;same-origin&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;user-agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36 Edg/104.0.1293.54&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;x-requested-with&#x27;</span>: <span class="string">&#x27;XMLHttpRequest&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">request = urllib.request.Request(url = url,headers = headers)</span><br><span class="line"></span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line"></span><br><span class="line">content = response.read().decode(<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line"></span><br><span class="line">content = content.split(<span class="string">&#x27;(&#x27;</span>)[<span class="number">1</span>].split(<span class="string">&#x27;)&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;taopp.json&#x27;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf8&#x27;</span>)<span class="keyword">as</span> fp:</span><br><span class="line">    fp.write(content)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> jsonpath</span><br><span class="line"></span><br><span class="line">obj = json.load(<span class="built_in">open</span>(<span class="string">&#x27;taopp.json&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf8&#x27;</span>))</span><br><span class="line"></span><br><span class="line">city_list = jsonpath.jsonpath(obj,<span class="string">&#x27;$..regionName&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(city_list)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="三、bs4"><a href="#三、bs4" class="headerlink" title="三、bs4"></a>三、bs4</h4><h5 id="1、bs4-基本使用"><a href="#1、bs4-基本使用" class="headerlink" title="1、bs4 基本使用"></a>1、bs4 基本使用</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;b1&quot;</span> <span class="attr">title</span>=<span class="string">&quot;a1&quot;</span> <span class="attr">class</span>=<span class="string">&quot;l1&quot;</span>&gt;</span>张三<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>李四<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>王五<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>赵六<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>钱七<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>哈哈哈<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span>&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line">soup = BeautifulSoup(<span class="built_in">open</span>(<span class="string">&#x27;06_解析_bs4之基本使用.html&#x27;</span>,encoding=<span class="string">&#x27;utf8&#x27;</span>),<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># print(soup)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># bs4 的一些函数</span></span><br><span class="line"><span class="comment"># (1)find</span></span><br><span class="line"><span class="comment"># 返回的是第一个符合条件的数据</span></span><br><span class="line"><span class="comment"># print(soup.find(&#x27;div&#x27;))</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据标签的值来找对应的标签对象</span></span><br><span class="line"><span class="comment"># print(soup.find(&#x27;li&#x27;,title=&#x27;a1&#x27;))</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据class标签来找到对应的标签对象</span></span><br><span class="line"><span class="comment"># class 不能直接用,要用 class_</span></span><br><span class="line"><span class="comment"># print(soup.find(&#x27;li&#x27;,class_=&#x27;l1&#x27;))</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># (2)find_all</span></span><br><span class="line"><span class="comment"># 找到所有标签的数据 返回的值是列表类型</span></span><br><span class="line"><span class="comment"># print(soup.find_all(&#x27;li&#x27;))</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 多个标签查询要加中括号[]</span></span><br><span class="line"><span class="comment"># print(soup.find_all([&#x27;li&#x27;,&#x27;span&#x27;]))</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># limit 的作用是查找前几个</span></span><br><span class="line"><span class="comment"># print(soup.find_all(&#x27;li&#x27;,limit=2))</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># (3)select</span></span><br><span class="line"><span class="comment"># 返回多个数据 返回的是列表类型</span></span><br><span class="line"><span class="comment"># print(soup.select(&#x27;li&#x27;))</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以通过 . 表示class 这种操作称为类选择器</span></span><br><span class="line"><span class="comment"># print(soup.select(&#x27;.l1&#x27;))</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以通过 # 代表id</span></span><br><span class="line"><span class="comment"># print(soup.select(&#x27;#b1&#x27;))</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 属性选择器</span></span><br><span class="line"><span class="comment"># 查找li标签中含有id的标签</span></span><br><span class="line"><span class="comment"># print(soup.select(&#x27;li[id]&#x27;))</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查找指定id标签</span></span><br><span class="line"><span class="comment"># print(soup.select(&#x27;li[id=&quot;b1&quot;]&#x27;))</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 层级选择器</span></span><br><span class="line"><span class="comment"># 后代选择器</span></span><br><span class="line"><span class="comment"># print(soup.select(&#x27;div li&#x27;))</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 子代选择器</span></span><br><span class="line"><span class="comment"># print(soup.select(&#x27;div &gt; ul &gt;li&#x27;))</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询多个标签数据</span></span><br><span class="line"><span class="comment"># print(soup.select(&#x27;li,span&#x27;))</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 节点信息</span></span><br><span class="line"><span class="comment"># obj = soup.select(&#x27;#b1&#x27;)[0]</span></span><br><span class="line"><span class="comment"># print(obj.string)</span></span><br><span class="line"><span class="comment"># print(obj.get_text())</span></span><br><span class="line"><span class="comment"># 如果标签对象中 只有内容 那么string和get_text()都可以使用</span></span><br><span class="line"><span class="comment"># 如果标签对象中 除了内容还有标签 那么string就获取不到数据 而get_text()是可以获取数据的</span></span><br><span class="line"><span class="comment"># 一般情况下 推荐使用get_text()</span></span><br><span class="line"><span class="comment"># obj = soup.select(&#x27;div&#x27;)[0]</span></span><br><span class="line"><span class="comment"># print(obj.string)</span></span><br><span class="line"><span class="comment"># print(obj.get_text())</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 节点的属性</span></span><br><span class="line"><span class="comment"># name是标签的名字</span></span><br><span class="line"><span class="comment"># obj = soup.select(&#x27;#b1&#x27;)[0]</span></span><br><span class="line"><span class="comment"># print(obj.name)</span></span><br><span class="line"><span class="comment"># 将属性值作为一个字典返回</span></span><br><span class="line"><span class="comment"># print(obj.attrs)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取节点的属性</span></span><br><span class="line"><span class="comment"># print(obj.attrs.get(&#x27;class&#x27;))</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="2、bs4-星巴克菜单"><a href="#2、bs4-星巴克菜单" class="headerlink" title="2、bs4 星巴克菜单"></a>2、bs4 星巴克菜单</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"></span><br><span class="line">url = <span class="string">&#x27;https://www.starbucks.com.cn/menu/&#x27;</span></span><br><span class="line"></span><br><span class="line">response = urllib.request.urlopen(url)</span><br><span class="line"></span><br><span class="line">content = response.read().decode(<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line">soup = BeautifulSoup(content,<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># //ul[@class=&quot;grid padded-3 product&quot;]//strong</span></span><br><span class="line">name_list = soup.select(<span class="string">&#x27;ul[class=&quot;grid padded-3 product&quot;] strong&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> name <span class="keyword">in</span> name_list:</span><br><span class="line">    <span class="built_in">print</span>(name.get_text())</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+	
+        <div class="reward-container">
+  <div>原创技术分享，您的支持将鼓励我继续创作</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="HVVL404 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="HVVL404 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>HVVL404
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/05/12/Python/14_Python%E7%88%AC%E8%99%AB_%E8%A7%A3%E6%9E%90/" title="Python爬虫-解析">http://example.com/2023/05/12/Python/14_Python爬虫_解析/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/05/12/Web%E6%BC%8F%E6%B4%9E/Java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/05/12/Web%E6%BC%8F%E6%B4%9E/CRLF%E6%B3%A8%E5%85%A5/" rel="next" title="CRLF注入">
+      CRLF注入 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E3%80%81xpath"><span class="nav-number">1.</span> <span class="nav-text">一、xpath</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%81xpath%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text">1、xpath的基本使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E3%80%81xpath-%E8%8E%B7%E5%8F%96%E7%99%BE%E5%BA%A6-%E7%99%BE%E5%BA%A6%E4%B8%80%E4%B8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">2、xpath 获取百度-百度一下</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3%E3%80%81xpath-%E7%AB%99%E9%95%BF%E7%B4%A0%E6%9D%90"><span class="nav-number">1.3.</span> <span class="nav-text">3、xpath 站长素材</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E3%80%81jsonpath"><span class="nav-number">2.</span> <span class="nav-text">二、jsonpath</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%81jsonpath-%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">2.1.</span> <span class="nav-text">1、jsonpath 的基本使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E3%80%81jsonpath-%E6%B7%98%E7%A5%A8%E7%A5%A8"><span class="nav-number">2.2.</span> <span class="nav-text">2、jsonpath 淘票票</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E3%80%81bs4"><span class="nav-number">3.</span> <span class="nav-text">三、bs4</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%81bs4-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">3.1.</span> <span class="nav-text">1、bs4 基本使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E3%80%81bs4-%E6%98%9F%E5%B7%B4%E5%85%8B%E8%8F%9C%E5%8D%95"><span class="nav-number">3.2.</span> <span class="nav-text">2、bs4 星巴克菜单</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="HVVL404"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">HVVL404</p>
+  <div class="site-description" itemprop="description">欢迎来到我的博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HVVL404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HVVL404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2023-04 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HVVL404</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共76.1k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

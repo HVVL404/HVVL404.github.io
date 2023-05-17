@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="urllib 库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python爬虫-urllib">
+<meta property="og:url" content="http://example.com/2023/05/07/Python/14_Python%E7%88%AC%E8%99%AB_urllib/index.html">
+<meta property="og:site_name" content="HVVL404">
+<meta property="og:description" content="urllib 库">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-07T13:26:23.945Z">
+<meta property="article:modified_time" content="2023-05-12T13:12:18.175Z">
+<meta property="article:author" content="HVVL404">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/05/07/Python/14_Python%E7%88%AC%E8%99%AB_urllib/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Python爬虫-urllib | HVVL404</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">HVVL404</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="house fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="categories fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/07/Python/14_Python%E7%88%AC%E8%99%AB_urllib/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="HVVL404">
+      <meta itemprop="description" content="欢迎来到我的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HVVL404">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python爬虫-urllib
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-05-07 21:26:23" itemprop="dateCreated datePublished" datetime="2023-05-07T21:26:23+08:00">2023-05-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-05-12 21:12:18" itemprop="dateModified" datetime="2023-05-12T21:12:18+08:00">2023-05-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>urllib 库</p>
+<span id="more"></span>
+
+<h4 id="一、基本使用"><a href="#一、基本使用" class="headerlink" title="一、基本使用"></a>一、基本使用</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入 urllib 库</span></span><br><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接收 url</span></span><br><span class="line">url = <span class="string">&#x27;http://www.baidu.com/&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 模拟浏览器向服务器发送请求</span></span><br><span class="line">response = urllib.request.urlopen(url)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取 response 中的内容</span></span><br><span class="line"><span class="comment"># read() 方法返回的是字节形式的二进制数据</span></span><br><span class="line"><span class="comment"># 利用 decode() 方法将二进制转换为字符串</span></span><br><span class="line">content = response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印输出  </span></span><br><span class="line"><span class="built_in">print</span>(content)</span><br></pre></td></tr></table></figure>
+
+<h4 id="一个类型6个方法"><a href="#一个类型6个方法" class="headerlink" title="一个类型6个方法"></a>一个类型6个方法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line">url = <span class="string">&#x27;http://www.baidu.com/&#x27;</span></span><br><span class="line">response = urllib.request.urlopen(url)</span><br><span class="line"></span><br><span class="line"><span class="comment"># print(response)</span></span><br><span class="line"><span class="comment"># 一个类型 response 是 HTTPResponse 类型</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># read() 方法</span></span><br><span class="line"><span class="comment"># content = response.read()</span></span><br><span class="line"><span class="comment"># print(content)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># readline() 方法，只会打印一行</span></span><br><span class="line"><span class="comment"># content = response.readline()</span></span><br><span class="line"><span class="comment"># print(content)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># readlines() 方法，全部打印</span></span><br><span class="line"><span class="comment"># content = response.readlines()</span></span><br><span class="line"><span class="comment"># print(content)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># getcode() 方法，返回状态码</span></span><br><span class="line"><span class="comment"># print(response.getcode())</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># geturl() 方法，返回url地址</span></span><br><span class="line"><span class="comment"># print(response.geturl())</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># getheaders() 方法，返回状态信息</span></span><br><span class="line"><span class="comment"># print(response.getheaders())</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 一个类型：HTTPResponse</span></span><br><span class="line"><span class="comment"># 六个方法：read readline readlines getcode geturl getheaders</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="二、下载"><a href="#二、下载" class="headerlink" title="二、下载"></a>二、下载</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载网页 html</span></span><br><span class="line">url_page = <span class="string">&#x27;http://www.baidu.com/&#x27;</span></span><br><span class="line">urllib.request.urlretrieve(url_page,<span class="string">&#x27;百度&#x27;</span>)</span><br><span class="line"><span class="comment"># urllib.request.urlretrieve(url=url_page,filename=&#x27;百度&#x27;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载图片，后缀为 jpg</span></span><br><span class="line">url_img = <span class="string">&#x27;https://ts1.cn.mm.bing.net/th/id/R-C.428a765f045e8b033e0bfabc8a3805bf?rik=mhBn9wIprl%2bKgQ&amp;riu=http%3a%2f%2fup.bizhizu.com%2fpic_source%2f30%2fa5%2fba%2f30a5ba8b56a8acd0f6b9a39908ab21b0.jpg&amp;ehk=ghliV0Yjr6tgc%2bshfOpBVfCorq%2fS%2fi8GfhtRmxqQ4Xg%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0&#x27;</span></span><br><span class="line">urllib.request.urlretrieve(url_img,<span class="string">&#x27;lisa.jpg&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载视频，后缀为 mp4</span></span><br><span class="line">url_video = <span class="string">&#x27;https://v.qq.com/x/page/h3278nolz2i.html&#x27;</span></span><br><span class="line">urllib.request.urlretrieve(url_video,<span class="string">&#x27;shipin.mp4&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="三、请求对象的定制"><a href="#三、请求对象的定制" class="headerlink" title="三、请求对象的定制"></a>三、请求对象的定制</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line">url = <span class="string">&#x27;https://www.baidu.com/&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 请求对象的定制的第一种手段</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36 Edg/104.0.1293.47&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 因为 urlopen 方法中不能存储字典 所以 headers 不能传递进去</span></span><br><span class="line">request = urllib.request.Request(url=url,headers=headers)</span><br><span class="line"><span class="comment"># 以下是错误的传参 因为参数顺序的原因 不能直接写 url 和 headers</span></span><br><span class="line"><span class="comment"># request = urllib.request.Request(url,headers)</span></span><br><span class="line"></span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line">content = response.read().decode(<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(content)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="四、get-请求方式的-quote-方法"><a href="#四、get-请求方式的-quote-方法" class="headerlink" title="四、get 请求方式的 quote 方法"></a>四、get 请求方式的 quote 方法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"><span class="keyword">import</span> urllib.parse</span><br><span class="line"></span><br><span class="line"><span class="comment"># https://www.baidu.com/s?wd=%E5%91%A8%E6%9D%B0%E4%BC%A6</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 请求对象的定制为了解决反爬的第一种手段</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36 Edg/104.0.1293.47&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">url = <span class="string">&#x27;https://www.baidu.com/s?wd=&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 “周杰伦” 转换为 unicode 编码</span></span><br><span class="line">name = urllib.parse.quote(<span class="string">&#x27;周杰伦&#x27;</span>)</span><br><span class="line"></span><br><span class="line">url = url + name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 请求对象的定制</span></span><br><span class="line">request = urllib.request.Request(url=url,headers=headers)</span><br><span class="line"></span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line"></span><br><span class="line">content = response.read().decode(<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(content)</span><br></pre></td></tr></table></figure>
+
+<h4 id="get-请求方式的-urlencode-方法"><a href="#get-请求方式的-urlencode-方法" class="headerlink" title="get 请求方式的 urlencode 方法"></a>get 请求方式的 urlencode 方法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"><span class="keyword">import</span> urllib.parse</span><br><span class="line"></span><br><span class="line">old_url = <span class="string">&#x27;https://www.baidu.com/s?&#x27;</span></span><br><span class="line"></span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">&#x27;wd&#x27;</span>:<span class="string">&#x27;周杰伦&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;sex&#x27;</span>:<span class="string">&#x27;男&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;location&#x27;</span>:<span class="string">&#x27;中国台湾省&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 拼接url参数，用&amp;连接</span></span><br><span class="line">new_url = urllib.parse.urlencode(data)</span><br><span class="line">url = old_url + new_url</span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36 Edg/104.0.1293.47&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">request = urllib.request.Request(url=url,headers=headers)</span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line">content = response.read().decode(<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(content)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="五、post-请求百度翻译"><a href="#五、post-请求百度翻译" class="headerlink" title="五、post 请求百度翻译"></a>五、post 请求百度翻译</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"><span class="keyword">import</span> urllib.parse</span><br><span class="line"></span><br><span class="line"><span class="comment"># 翻译的东西地址</span></span><br><span class="line">url = <span class="string">&#x27;https://fanyi.baidu.com/sug/&#x27;</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36 Edg/104.0.1293.47&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">&#x27;kw&#x27;</span>:<span class="string">&#x27;spider&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># encode方法转换编码，post请求必须进行编码</span></span><br><span class="line">data = urllib.parse.urlencode(data).encode(<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># post请求的参数，是不会拼接在url后面的，而是需要放在请求对象定制的参数中</span></span><br><span class="line">request = urllib.request.Request(url=url,data=data,headers=headers)</span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line">content = response.read().decode(<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 字符串--&gt;json对象</span></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line">obj = json.loads(content)</span><br><span class="line"><span class="built_in">print</span>(obj)</span><br></pre></td></tr></table></figure>
+
+<h4 id="post-请求百度翻译-详细翻译"><a href="#post-请求百度翻译-详细翻译" class="headerlink" title="post 请求百度翻译-详细翻译"></a>post 请求百度翻译-详细翻译</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"><span class="keyword">import</span> urllib.parse</span><br><span class="line"></span><br><span class="line"><span class="comment"># https://fanyi.baidu.com/v2transapi?from=en&amp;to=zh 这个网址</span></span><br><span class="line">url = <span class="string">&#x27;https://fanyi.baidu.com/v2transapi?from=en&amp;to=zh&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># cookie 即可，请求头</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="comment"># &#x27;Accept&#x27;: &#x27;*/*&#x27;,</span></span><br><span class="line">    <span class="comment"># # &#x27;Accept-Encoding&#x27;: &#x27;gzip, deflate, br&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;Accept-Language&#x27;: &#x27;zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;Acs-Token&#x27;: &#x27;1660114809305_1660134275561_sjTlMNyNFU5hHwXYbzd3Lv/Mt6C1uSry/btimUMwyBos/FrrtcyG8meqU69sanFWnP/GlGickH4F0Yh6i2n5irnox+W3ceJoj98/RNqABpZrgjX1v5b42FfbPfpKYSkoXHqGkheNeL6DvLcaOUJyN5j0+dzYshavgfXHjuZMgC0aPiNUMQK91+O+2EZpgyvltPQ902gKFSQ1lzmTWpp3FyuVOwwiXtJoo/Up1GOJMPsJiUiV4dSHUjq/glhC4bjZI0sGysqFjEM3WylMYV30dMgh6IHc/vBwm+bIHHe1PhS5M/MLdMJXhhnvpEU3GVurz5Gja6HOSBzXsCSGCe8w4A==&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;Connection&#x27;: &#x27;keep-alive&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;Content-Length&#x27;: &#x27;135&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;Content-Type&#x27;: &#x27;application/x-www-form-urlencoded; charset=UTF-8&#x27;,</span></span><br><span class="line">    <span class="string">&#x27;Cookie&#x27;</span>: <span class="string">&#x27;__yjs_duid=1_cc0220fdd0d34447b3e4952a884c40631645500097884; BIDUPSID=06C7D1126B66B4E279D1191F1A5D7E9F; PSTM=1646534105; BAIDUID=06C7D1126B66B4E231DFE94E3AAD6FC0:FG=1; BDUSS=jR4eFlDZk9uUU9PSGdDaExxdm5ZfkhqY0h5MDJtM3VkZVNtWTNieW5TWDRITFJpRVFBQUFBJCQAAAAAAQAAAAEAAACIynFOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPiPjGL4j4xic; BDUSS_BFESS=jR4eFlDZk9uUU9PSGdDaExxdm5ZfkhqY0h5MDJtM3VkZVNtWTNieW5TWDRITFJpRVFBQUFBJCQAAAAAAQAAAAEAAACIynFOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPiPjGL4j4xic; BAIDUID_BFESS=06C7D1126B66B4E231DFE94E3AAD6FC0:FG=1; ZFY=7Eh2k:BmvpyIGMESqi6q3DmTWY6RqpyXsk1ahDF9LlYA:C; newlogin=1; BA_HECTOR=2l0k8k21a1ag0lagag2k4buc1hf5vpj16; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; APPGUIDE_10_0_2=1; REALTIME_TRANS_SWITCH=1; FANYI_WORD_SWITCH=1; HISTORY_SWITCH=1; SOUND_SPD_SWITCH=1; SOUND_PREFER_SWITCH=1; Hm_lvt_64ecd82404c51e03dc91cb9e8c025574=1660108075,1660134146; Hm_lpvt_64ecd82404c51e03dc91cb9e8c025574=1660134270; ab_sr=1.0.1_NGQwYmVhZDc1MmI5ZjA1ZmUwN2I4YjdhNDcxYzc2ODc5MGMxOGEwMjg5ODI1M2JlNzUwNDg3YzAyMDY5MTJhYTBkMzRmNzUzNTc2ODc0M2NlZDgzNTM2OTQ2MmI4N2Q3YWRiYjE0NmMxMTE3NjZhYTE2ZTg4Y2IyODM1MDVkMWU1OTc1YzE3Mzk5ZWEwM2QxNjUxNGRkYmQ2ZjRhNzYxYzI0YzRhNTEwMjA1NjJlODEzYTgxNmRkOTljNDA1Yzgx&#x27;</span>,</span><br><span class="line">    <span class="comment"># &#x27;Host&#x27;: &#x27;fanyi.baidu.com&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;Origin&#x27;: &#x27;https://fanyi.baidu.com&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;Referer&#x27;: &#x27;https://fanyi.baidu.com/&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;sec-ch-ua&#x27;: &#x27;&quot;Chromium&quot;;v=&quot;104&quot;, &quot; Not A;Brand&quot;;v=&quot;99&quot;, &quot;Microsoft Edge&quot;;v=&quot;104&quot;&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;sec-ch-ua-mobile&#x27;: &#x27;?0&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;sec-ch-ua-platform&#x27;: &#x27;Windows&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;Sec-Fetch-Dest&#x27;: &#x27;empty&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;Sec-Fetch-Mode&#x27;: &#x27;cors&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;Sec-Fetch-Site&#x27;: &#x27;same-origin&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;User-Agent&#x27;: &#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36 Edg/104.0.1293.47&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;X-Requested-With&#x27;: &#x27;XMLHttpRequest&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># data 为 form data数据</span></span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">&#x27;from&#x27;</span>:<span class="string">&#x27;en&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;to&#x27;</span>:<span class="string">&#x27;zh&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;query&#x27;</span>:<span class="string">&#x27;love&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;transtype&#x27;</span>:<span class="string">&#x27;realtime&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;simple_means_flag&#x27;</span>:<span class="string">&#x27;3&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;sign&#x27;</span>:<span class="string">&#x27;198772.518981&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;token&#x27;</span>:<span class="string">&#x27;db1025a1c0ce90ecc5db8e43b1bc6559&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;domain&#x27;</span>:<span class="string">&#x27;common&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># post 请求必须要编码</span></span><br><span class="line">data = urllib.parse.urlencode(data).encode(<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line">request = urllib.request.Request(url = url,data = data,headers = headers)</span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line">content = response.read().decode(<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line">obj = json.loads(content)</span><br><span class="line"><span class="built_in">print</span>(obj)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="六、ajax-的-get-请求之豆瓣第一页"><a href="#六、ajax-的-get-请求之豆瓣第一页" class="headerlink" title="六、ajax 的 get 请求之豆瓣第一页"></a>六、ajax 的 get 请求之豆瓣第一页</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line">url = <span class="string">&#x27;https://movie.douban.com/j/chart/top_list?type=5&amp;interval_id=100%3A90&amp;action=&amp;start=0&amp;limit=20&#x27;</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36 Edg/104.0.1293.47&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">request = urllib.request.Request(url = url,headers = headers)</span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line">content = response.read().decode(<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line"><span class="comment"># print(content)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载数据</span></span><br><span class="line">fp = <span class="built_in">open</span>(<span class="string">&#x27;豆瓣第一页.json&#x27;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line">fp.write(content)</span><br></pre></td></tr></table></figure>
+
+<h4 id="ajax-的-get-请求之豆瓣前十页"><a href="#ajax-的-get-请求之豆瓣前十页" class="headerlink" title="ajax 的 get 请求之豆瓣前十页"></a>ajax 的 get 请求之豆瓣前十页</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># https://movie.douban.com/j/chart/top_list?type=24&amp;interval_id=100%3A90&amp;action=</span></span><br><span class="line"><span class="comment"># start=20&amp;limit=20</span></span><br><span class="line"><span class="comment"># https://movie.douban.com/j/chart/top_list?type=24&amp;interval_id=100%3A90&amp;action=</span></span><br><span class="line"><span class="comment"># start=40&amp;limit=20</span></span><br><span class="line"><span class="comment"># https://movie.douban.com/j/chart/top_list?type=24&amp;interval_id=100%3A90&amp;action=</span></span><br><span class="line"><span class="comment"># start=60&amp;limit=20</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># start = page * 20</span></span><br><span class="line"><span class="comment"># limit = 20</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"><span class="keyword">import</span> urllib.parse</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_request</span>(<span class="params">page</span>):</span><br><span class="line">    base_url = <span class="string">&#x27;https://movie.douban.com/j/chart/top_list?type=24&amp;interval_id=100%3A90&amp;action=&#x27;</span></span><br><span class="line">    data = &#123;</span><br><span class="line">        <span class="string">&#x27;start&#x27;</span>: (page - <span class="number">1</span>) * <span class="number">20</span>,</span><br><span class="line">        <span class="string">&#x27;limit&#x27;</span>: <span class="number">20</span></span><br><span class="line">    &#125;</span><br><span class="line">    new_data = urllib.parse.urlencode(data)</span><br><span class="line">    url = base_url + new_data</span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36 Edg/104.0.1293.47&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    request = urllib.request.Request(url = url,headers = headers)</span><br><span class="line">    <span class="keyword">return</span> request</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_content</span>(<span class="params">request</span>):</span><br><span class="line">    response = urllib.request.urlopen(request)</span><br><span class="line">    content = response.read().decode(<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> content</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">down_load</span>(<span class="params">page,content</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;豆瓣_&#x27;</span> + <span class="built_in">str</span>(page) + <span class="string">&#x27;.json&#x27;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf8&#x27;</span>)<span class="keyword">as</span> fp:</span><br><span class="line">        fp.write(content)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    start_page = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&#x27;请输入起始页码：&#x27;</span>))</span><br><span class="line">    end_page = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&#x27;请输入结束页码：&#x27;</span>))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> page <span class="keyword">in</span> <span class="built_in">range</span>(start_page,end_page+<span class="number">1</span>):</span><br><span class="line">        request = create_request(page)</span><br><span class="line">        content = get_content(request)</span><br><span class="line">        down_load(page,content)</span><br></pre></td></tr></table></figure>
+
+<h4 id="ajax-的-post-请求之麦当劳官网"><a href="#ajax-的-post-请求之麦当劳官网" class="headerlink" title="ajax 的 post 请求之麦当劳官网"></a>ajax 的 post 请求之麦当劳官网</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"><span class="keyword">import</span> urllib.parse</span><br><span class="line"></span><br><span class="line">url = <span class="string">&#x27;https://www.mcdonalds.com.cn/ajaxs/search_by_point&#x27;</span></span><br><span class="line"></span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">&#x27;point&#x27;</span>: <span class="string">&#x27;39.90374,116.397827&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="comment"># &#x27;Accept&#x27;: &#x27;text/html, */*; q=0.01&#x27;,</span></span><br><span class="line">    <span class="comment"># # &#x27;Accept-Encoding&#x27;: &#x27;gzip, deflate, br&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;Accept-Language&#x27;: &#x27;zh-CN,zh;q=0.9&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;Connection&#x27;: &#x27;keep-alive&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;Content-Length&#x27;: &#x27;33&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;Content-Type&#x27;: &#x27;application/x-www-form-urlencoded; charset=UTF-8&#x27;,</span></span><br><span class="line">    <span class="string">&#x27;Cookie&#x27;</span>: <span class="string">&#x27;ARRAffinity=9064559410291944da0bf95dd7831a12db0c7ef484c027639ce0ecdcaa2d0750; ARRAffinitySameSite=9064559410291944da0bf95dd7831a12db0c7ef484c027639ce0ecdcaa2d0750; _ga=GA1.3.413296056.1660189591; _gid=GA1.3.926482487.1660189591; sajssdk_2015_cross_new_user=1; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%221828b02c935227-0265fbe4985b6b-16303676-1327104-1828b02c936d01%22%2C%22%24device_id%22%3A%221828b02c935227-0265fbe4985b6b-16303676-1327104-1828b02c936d01%22%2C%22props%22%3A%7B%22%24latest_referrer%22%3A%22https%3A%2F%2Fwww.baidu.com%2Flink%22%2C%22%24latest_referrer_host%22%3A%22www.baidu.com%22%2C%22%24latest_traffic_source_type%22%3A%22%E8%87%AA%E7%84%B6%E6%90%9C%E7%B4%A2%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC%22%7D%7D; Adshow=1; _gat=1; _gat_realTime=1; _gat_UA-49420844-1=1&#x27;</span>,</span><br><span class="line">    <span class="comment"># &#x27;Host&#x27;: &#x27;www.mcdonalds.com.cn&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;Origin&#x27;: &#x27;https://www.mcdonalds.com.cn&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;Referer&#x27;: &#x27;https://www.mcdonalds.com.cn/top/map&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;sec-ch-ua&#x27;: &#x27;&quot;Chromium&quot;;v=&quot;104&quot;, &quot; Not A;Brand&quot;;v=&quot;99&quot;, &quot;Google Chrome&quot;;v=&quot;104&quot;&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;sec-ch-ua-mobile&#x27;: &#x27;?0&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;sec-ch-ua-platform&#x27;: &#x27;&quot;Windows&quot;&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;Sec-Fetch-Dest&#x27;: &#x27;empty&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;Sec-Fetch-Mode&#x27;: &#x27;cors&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;Sec-Fetch-Site&#x27;: &#x27;same-origin&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;User-Agent&#x27;: &#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36&#x27;,</span></span><br><span class="line">    <span class="comment"># &#x27;X-Requested-With&#x27;: &#x27;XMLHttpRequest&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">data = urllib.parse.urlencode(data).encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"></span><br><span class="line">request = urllib.request.Request(url = url,data = data,headers = headers)</span><br><span class="line"></span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line"></span><br><span class="line">content = response.read().decode(<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line">obj = json.loads(content)</span><br><span class="line"><span class="built_in">print</span>(obj)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="七、异常"><a href="#七、异常" class="headerlink" title="七、异常"></a>七、异常</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"><span class="keyword">import</span> urllib.error</span><br><span class="line"></span><br><span class="line"><span class="comment"># url = &#x27;https://blog.csdn.net/yuan2019035055/article/details/1260879170?spm=1001.2100.3001.7377&amp;utm_medium=distribute.pc_feed_blog_category.none-task-blog-classify_tag-1-126087917-null-null.nonecase&amp;depth_1-utm_source=distribute.pc_feed_blog_category.none-task-blog-classify_tag-1-126087917-null-null.nonecase&#x27;</span></span><br><span class="line"><span class="comment"># url = &#x27;https://blog1.csdn.net/yuan2019035055/article/details/126087917?spm=1001.2100.3001.7377&amp;utm_medium=distribute.pc_feed_blog_category.none-task-blog-classify_tag-1-126087917-null-null.nonecase&amp;depth_1-utm_source=distribute.pc_feed_blog_category.none-task-blog-classify_tag-1-126087917-null-null.nonecase&#x27;</span></span><br><span class="line">url = <span class="string">&#x27;https://blog.csdn.net/yuan2019035055/article/details/126087917?spm=1001.2100.3001.7377&amp;utm_medium=distribute.pc_feed_blog_category.none-task-blog-classify_tag-1-126087917-null-null.nonecase&amp;depth_1-utm_source=distribute.pc_feed_blog_category.none-task-blog-classify_tag-1-126087917-null-null.nonecase&#x27;</span></span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36 Edg/104.0.1293.47&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    request = urllib.request.Request(url = url,headers = headers)</span><br><span class="line">    response = urllib.request.urlopen(request)</span><br><span class="line">    content = response.read().decode(<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 路径错误</span></span><br><span class="line"><span class="keyword">except</span> urllib.error.HTTPError:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;系统正在升级。。。&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># url 错误</span></span><br><span class="line"><span class="keyword">except</span> urllib.error.URLError:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;系统仍在升级。。。&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(content)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="八、绕过微博登录进入主页"><a href="#八、绕过微博登录进入主页" class="headerlink" title="八、绕过微博登录进入主页"></a>八、绕过微博登录进入主页</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"></span><br><span class="line">url = <span class="string">&#x27;https://weibo.com/u/5709601629&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 只要有 cookie 就可以进入用户主页</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&#x27;cookie&#x27;</span>: <span class="string">&#x27;SINAGLOBAL=9950696140907.14.1645181197087; UOR=,,www.bilibili.com; PC_TOKEN=65b897c9b5; login_sid_t=18c7964d313aef6771abfe9e3c5e84ff; cross_origin_proto=SSL; WBStorage=4d96c54e|undefined; _s_tentry=passport.weibo.com; Apache=9404896640002.129.1660285089591; ULV=1660285089592:3:1:1:9404896640002.129.1660285089591:1655000548298; wb_view_log=1536*8641.25; WBtopGlobal_register_version=2022081214; crossidccode=CODE-tc-1OmnZQ-13VseP-3KneuIU6xVsIjrXfb12c6; SSOLoginState=1660285097; SUB=_2A25P8YD5DeRhGeNJ61sX8C_KyTWIHXVtHSCxrDV8PUJbkNB-LUbRkW1NS-ieoypFkNoxRzKjbYNUtubReQ7_4f0x; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WWbjqxsi0dsBPzNS83JpOr_5NHD95QfS054So5pSoz4Ws4DqcjIqJLrqJ8V9EXLxK-LBonL1-BLxKML12-L12zt; XSRF-TOKEN=A5U3SEGThx4CBz28JB46Ap6C; WBPSESS=YQJ6M5fZQ5knFEPKZ83-ch7eKbDjpWvT9v6IfngKLRaqGYpAqlhn2NJaDErvhcV-inumnvOT2lDwYFhJ2fVtqYcdpVDyn3EH057oRUqITB0PAw6kHA6BM2LHEy9PkL_rhfmlIvMHIgPuVG7BsyPS_w==&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">request = urllib.request.Request(url = url,headers = headers)</span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line">content = response.read().decode(<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;weibo.html&#x27;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf8&#x27;</span>)<span class="keyword">as</span> fp:</span><br><span class="line">    fp.write(content)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="九、handler-处理器"><a href="#九、handler-处理器" class="headerlink" title="九、handler 处理器"></a>九、handler 处理器</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line">url = <span class="string">&#x27;http://www.baidu.com&#x27;</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36 Edg/104.0.1293.47&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">request = urllib.request.Request(url=url,headers=headers)</span><br><span class="line"></span><br><span class="line"><span class="comment"># headler 处理器：可以定制更高级的请求头（随着业务逻辑的复杂，请求对象的定制已经满足不了我们的需求（动态cookie和代理不能使用请求对象的定制））</span></span><br><span class="line"><span class="comment"># （1）获取 handler 对象</span></span><br><span class="line">handler = urllib.request.HTTPHandler()</span><br><span class="line"></span><br><span class="line"><span class="comment"># （2）获取 opener 对象</span></span><br><span class="line">opener = urllib.request.build_opener(handler)</span><br><span class="line"></span><br><span class="line"><span class="comment"># （3）调用 open 方法</span></span><br><span class="line">response = opener.<span class="built_in">open</span>(request)</span><br><span class="line">content = response.read().decode(<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(content)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="十、代理"><a href="#十、代理" class="headerlink" title="十、代理"></a>十、代理</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"></span><br><span class="line">url = <span class="string">&#x27;http://www.baidu.com/s?wd=ip&#x27;</span></span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="comment"># &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36 Edg/104.0.1293.47&quot;</span></span><br><span class="line">    <span class="string">&#x27;Cookie&#x27;</span>:<span class="string">&#x27; __yjs_duid=1_cc0220fdd0d34447b3e4952a884c40631645500097884; BIDUPSID=06C7D1126B66B4E279D1191F1A5D7E9F; PSTM=1646534105; BAIDUID=06C7D1126B66B4E231DFE94E3AAD6FC0:FG=1; BDUSS=jR4eFlDZk9uUU9PSGdDaExxdm5ZfkhqY0h5MDJtM3VkZVNtWTNieW5TWDRITFJpRVFBQUFBJCQAAAAAAQAAAAEAAACIynFOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPiPjGL4j4xic; BDUSS_BFESS=jR4eFlDZk9uUU9PSGdDaExxdm5ZfkhqY0h5MDJtM3VkZVNtWTNieW5TWDRITFJpRVFBQUFBJCQAAAAAAQAAAAEAAACIynFOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPiPjGL4j4xic; newlogin=1; BD_UPN=12314753; ab_sr=1.0.1_NzgzMzNlNjMxMzZlYmZjYmQ2ZTZlOWEzYWJkNDFkYTE1YjZlNjA1NWZkOTM5MGM5MzJiYzMxNjA1ZWZmZmU2NzcwMjg4Y2FjMjhiYjk2Yjg4ZGViZmEwZWRjY2ZlMDM2OGVhNzU0NzU0ODg1MWI3YTczMzYwMTA2MzFhM2NiOTllMWNlNmY5NmZiODUxYTVhYjEzMGRmYjljMDkzZmQ4YmI1N2I0NWM0OGYyODkwNDdkZmIwODcxODFhZmRlYmQ1; H_PS_PSSID=37153_36549_36459_36641_37114_37108_36413_36955_36947_36918_36919_37122_37134_26350_36862_22159; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; H_PS_645EC=77817tm16BmgyyskffZDCHEUX%2Bpbe0x%2BiBoZNHkDenaf9WiPJgSq2%2BsorUAtHcxctXnE; BAIDUID_BFESS=06C7D1126B66B4E231DFE94E3AAD6FC0:FG=1; baikeVisitId=b4cd21ef-159c-4644-8838-f9806d94be04&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">request = urllib.request.Request(url = url,headers = headers)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 代理 IP</span></span><br><span class="line">proxies = &#123;</span><br><span class="line">    <span class="string">&#x27;http&#x27;</span>:<span class="string">&#x27;112.192.234.123:8088&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">handler = urllib.request.ProxyHandler(proxies=proxies)</span><br><span class="line">opener = urllib.request.build_opener(handler)</span><br><span class="line">response = opener.<span class="built_in">open</span>(request)</span><br><span class="line"></span><br><span class="line"><span class="comment"># response = urllib.request.urlopen(request)</span></span><br><span class="line">content = response.read().decode(<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;daili.html&#x27;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf8&#x27;</span>)<span class="keyword">as</span> fp:</span><br><span class="line">    fp.write(content)</span><br></pre></td></tr></table></figure>
+
+<h4 id="代理池"><a href="#代理池" class="headerlink" title="代理池"></a>代理池</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">proxies_pool = [</span><br><span class="line">    &#123;<span class="string">&#x27;http&#x27;</span>:<span class="string">&#x27;127.0.0.1&#x27;</span>&#125;,</span><br><span class="line">    &#123;<span class="string">&#x27;http&#x27;</span>:<span class="string">&#x27;127.0.0.1&#x27;</span>&#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">proxies = random.choice(proxies_pool)</span><br><span class="line"></span><br><span class="line">url = <span class="string">&#x27;http://www.baidu.com/s?wd=ip&#x27;</span></span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="comment"># &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36 Edg/104.0.1293.47&quot;</span></span><br><span class="line">    <span class="string">&#x27;Cookie&#x27;</span>:<span class="string">&#x27; __yjs_duid=1_cc0220fdd0d34447b3e4952a884c40631645500097884; BIDUPSID=06C7D1126B66B4E279D1191F1A5D7E9F; PSTM=1646534105; BAIDUID=06C7D1126B66B4E231DFE94E3AAD6FC0:FG=1; BDUSS=jR4eFlDZk9uUU9PSGdDaExxdm5ZfkhqY0h5MDJtM3VkZVNtWTNieW5TWDRITFJpRVFBQUFBJCQAAAAAAQAAAAEAAACIynFOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPiPjGL4j4xic; BDUSS_BFESS=jR4eFlDZk9uUU9PSGdDaExxdm5ZfkhqY0h5MDJtM3VkZVNtWTNieW5TWDRITFJpRVFBQUFBJCQAAAAAAQAAAAEAAACIynFOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPiPjGL4j4xic; newlogin=1; BD_UPN=12314753; ab_sr=1.0.1_NzgzMzNlNjMxMzZlYmZjYmQ2ZTZlOWEzYWJkNDFkYTE1YjZlNjA1NWZkOTM5MGM5MzJiYzMxNjA1ZWZmZmU2NzcwMjg4Y2FjMjhiYjk2Yjg4ZGViZmEwZWRjY2ZlMDM2OGVhNzU0NzU0ODg1MWI3YTczMzYwMTA2MzFhM2NiOTllMWNlNmY5NmZiODUxYTVhYjEzMGRmYjljMDkzZmQ4YmI1N2I0NWM0OGYyODkwNDdkZmIwODcxODFhZmRlYmQ1; H_PS_PSSID=37153_36549_36459_36641_37114_37108_36413_36955_36947_36918_36919_37122_37134_26350_36862_22159; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; H_PS_645EC=77817tm16BmgyyskffZDCHEUX%2Bpbe0x%2BiBoZNHkDenaf9WiPJgSq2%2BsorUAtHcxctXnE; BAIDUID_BFESS=06C7D1126B66B4E231DFE94E3AAD6FC0:FG=1; baikeVisitId=b4cd21ef-159c-4644-8838-f9806d94be04&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">request = urllib.request.Request(url = url,headers = headers)</span><br><span class="line">handler = urllib.request.ProxyHandler(proxies=proxies)</span><br><span class="line">opener = urllib.request.build_opener(handler)</span><br><span class="line">response = opener.<span class="built_in">open</span>(request)</span><br><span class="line">content = response.read().decode(<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;daili.html&#x27;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf8&#x27;</span>)<span class="keyword">as</span> fp:</span><br><span class="line">    fp.write(content)</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+	
+        <div class="reward-container">
+  <div>原创技术分享，您的支持将鼓励我继续创作</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="HVVL404 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="HVVL404 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>HVVL404
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/05/07/Python/14_Python%E7%88%AC%E8%99%AB_urllib/" title="Python爬虫-urllib">http://example.com/2023/05/07/Python/14_Python爬虫_urllib/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/05/07/Python/13_Python%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="prev" title="Python数据库">
+      <i class="fa fa-chevron-left"></i> Python数据库
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/05/07/C/1_C%E5%9F%BA%E7%A1%80/" rel="next" title="C语言基础">
+      C语言基础 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">一、基本使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E7%B1%BB%E5%9E%8B6%E4%B8%AA%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">一个类型6个方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%B8%8B%E8%BD%BD"><span class="nav-number">3.</span> <span class="nav-text">二、下载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%AF%B7%E6%B1%82%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%AE%9A%E5%88%B6"><span class="nav-number">4.</span> <span class="nav-text">三、请求对象的定制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B%E3%80%81get-%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F%E7%9A%84-quote-%E6%96%B9%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">四、get 请求方式的 quote 方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#get-%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F%E7%9A%84-urlencode-%E6%96%B9%E6%B3%95"><span class="nav-number">6.</span> <span class="nav-text">get 请求方式的 urlencode 方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%94%E3%80%81post-%E8%AF%B7%E6%B1%82%E7%99%BE%E5%BA%A6%E7%BF%BB%E8%AF%91"><span class="nav-number">7.</span> <span class="nav-text">五、post 请求百度翻译</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#post-%E8%AF%B7%E6%B1%82%E7%99%BE%E5%BA%A6%E7%BF%BB%E8%AF%91-%E8%AF%A6%E7%BB%86%E7%BF%BB%E8%AF%91"><span class="nav-number">8.</span> <span class="nav-text">post 请求百度翻译-详细翻译</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%AD%E3%80%81ajax-%E7%9A%84-get-%E8%AF%B7%E6%B1%82%E4%B9%8B%E8%B1%86%E7%93%A3%E7%AC%AC%E4%B8%80%E9%A1%B5"><span class="nav-number">9.</span> <span class="nav-text">六、ajax 的 get 请求之豆瓣第一页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ajax-%E7%9A%84-get-%E8%AF%B7%E6%B1%82%E4%B9%8B%E8%B1%86%E7%93%A3%E5%89%8D%E5%8D%81%E9%A1%B5"><span class="nav-number">10.</span> <span class="nav-text">ajax 的 get 请求之豆瓣前十页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ajax-%E7%9A%84-post-%E8%AF%B7%E6%B1%82%E4%B9%8B%E9%BA%A6%E5%BD%93%E5%8A%B3%E5%AE%98%E7%BD%91"><span class="nav-number">11.</span> <span class="nav-text">ajax 的 post 请求之麦当劳官网</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%BC%82%E5%B8%B8"><span class="nav-number">12.</span> <span class="nav-text">七、异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E7%BB%95%E8%BF%87%E5%BE%AE%E5%8D%9A%E7%99%BB%E5%BD%95%E8%BF%9B%E5%85%A5%E4%B8%BB%E9%A1%B5"><span class="nav-number">13.</span> <span class="nav-text">八、绕过微博登录进入主页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B9%9D%E3%80%81handler-%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-number">14.</span> <span class="nav-text">九、handler 处理器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E4%BB%A3%E7%90%86"><span class="nav-number">15.</span> <span class="nav-text">十、代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E6%B1%A0"><span class="nav-number">16.</span> <span class="nav-text">代理池</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="HVVL404"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">HVVL404</p>
+  <div class="site-description" itemprop="description">欢迎来到我的博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HVVL404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HVVL404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2023-04 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HVVL404</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共76.1k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
