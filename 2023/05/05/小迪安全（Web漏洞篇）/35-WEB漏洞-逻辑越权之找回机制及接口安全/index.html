@@ -1,32 +1,246 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>35-WEB漏洞-逻辑越权之找回机制及接口安全 | HVVL404</title><meta name="author" content="HVVL404"><meta name="copyright" content="HVVL404"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="35-WEB漏洞-逻辑越权之找回机制及接口安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="35-WEB漏洞-逻辑越权之找回机制及接口安全">
+<meta property="og:url" content="http://example.com/2023/05/05/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88Web%E6%BC%8F%E6%B4%9E%E7%AF%87%EF%BC%89/35-WEB%E6%BC%8F%E6%B4%9E-%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83%E4%B9%8B%E6%89%BE%E5%9B%9E%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%8E%A5%E5%8F%A3%E5%AE%89%E5%85%A8/index.html">
+<meta property="og:site_name" content="HVVL404">
+<meta property="og:description" content="35-WEB漏洞-逻辑越权之找回机制及接口安全">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/avatar.png">
+<meta property="article:published_time" content="2023-05-05T12:01:36.837Z">
+<meta property="article:modified_time" content="2023-05-09T10:43:40.058Z">
+<meta property="article:author" content="HVVL404">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/avatar.png"><link rel="shortcut icon" href="/images/hacker.png"><link rel="canonical" href="http://example.com/2023/05/05/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88Web%E6%BC%8F%E6%B4%9E%E7%AF%87%EF%BC%89/35-WEB%E6%BC%8F%E6%B4%9E-%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83%E4%B9%8B%E6%89%BE%E5%9B%9E%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%8E%A5%E5%8F%A3%E5%AE%89%E5%85%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '35-WEB漏洞-逻辑越权之找回机制及接口安全',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-05-09 18:43:40'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-block content
-  #post
-    if top_img === false
-      include includes/header/post-info.pug
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-    article#article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      include includes/third-party/share/index.pug
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-    if theme.reward.enable && theme.reward.QR_code
-      !=partial('includes/post/reward', {}, {cache: true})
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="HVVL404" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/bg.png')"><nav id="nav"><span id="blog-info"><a href="/" title="HVVL404"><span class="site-name">HVVL404</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">35-WEB漏洞-逻辑越权之找回机制及接口安全</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-05T12:01:36.837Z" title="发表于 2023-05-05 20:01:36">2023-05-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-09T10:43:40.058Z" title="更新于 2023-05-09 18:43:40">2023-05-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88Web%E6%BC%8F%E6%B4%9E%E7%AF%87%EF%BC%89/">小迪安全（Web漏洞篇）</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="35-WEB漏洞-逻辑越权之找回机制及接口安全"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>35-WEB漏洞-逻辑越权之找回机制及接口安全</p>
+<span id="more"></span>
 
-    //- ad
-    if theme.ad && theme.ad.post
-      .ads-wrap!=theme.ad.post
-
-    if theme.post_pagination
-      include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
-
-    if page.comments !== false && theme.comments && theme.comments.use
-      - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache: true})
-      
+<p><strong>知识点</strong></p>
+<p>找回重置机制</p>
+<ul>
+<li>客户端回显：验证码在客户端浏览器或数据包中回显</li>
+<li>Response状态值：单独请求回复状态值判断验证码是否正确</li>
+<li>验证码爆破：验证码纯数字过于简单</li>
+<li>找回流程绕过：跳过中间验证步骤，直接抓包最后一步</li>
+</ul>
+<p>接口调用乱用</p>
+<ul>
+<li>短信轰炸，来电轰炸等</li>
+</ul>
+<p><strong>本课重点：</strong></p>
+<ul>
+<li>案例1：找回密码验证码逻辑-爆破测试-实例</li>
+<li>案例2：墨者靶场密码重置-验证码套用-靶场</li>
+<li>案例3：手机邮箱验证码逻辑-客户端回显-实例</li>
+<li>案例4：绑定手机验证码逻辑-Rep状态值篡改-实例</li>
+<li>案例5：某APP短信轰炸接口乱用-实例接口调用发包</li>
+</ul>
+<p><strong>案例1：找回密码验证码逻辑-爆破测试-实例</strong></p>
+<p>PHP云人才系统(Phpyun) V3.2下载：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://downcode.com/downcode/j_16621.shtml">http://downcode.com/downcode/j_16621.shtml</a></li>
+<li><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1P73QFmEhY6f350CvmnOJNg">https://pan.baidu.com/s/1P73QFmEhY6f350CvmnOJNg</a> 提取码：xiao</li>
+</ul>
+<p>该系统有绑定手机号功能，绑定时，需要验证码，可以配合bp的Intruder模块对验证码进行暴力破解</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202112/1375459-20211207152645413-80359737.png" alt="img"></p>
+<p>暴力破解时需要考虑</p>
+<ul>
+<li>验证码的复杂度：验证码越复杂，成功率越低</li>
+<li>验证码的时效性：验证码一般都有有效时间，比如1分钟&#x2F;5分钟，想想你能不能在验证码有效时间内将验证码爆破出来</li>
+<li>绑定失败锁定策略：有的系统可能会有限制，比如绑定3次失败则不能再绑定</li>
+<li>如果有图片验证码，考虑是否可以使用工具识别</li>
+</ul>
+<p><strong>案例2：墨者靶场密码重置-验证码套用-靶场</strong></p>
+<p>靶场地址：<a target="_blank" rel="noopener" href="https://www.mozhe.cn/bug/detail/66">https://www.mozhe.cn/bug/detail/66</a></p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202112/1375459-20211207143102251-1207549316.png" alt="img"></p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202112/1375459-20211207144446872-1067069765.png" alt="img"></p>
+<p>绕过思路：攻击者先用手机号A发送一条正确的验证码，然后将手机号改为B，实现用A的验证码重置B账户密码。</p>
+<p>绕过原理：服务器只查询输入的短信验证码与服务器发送过的，不会把短信验证码和手机号绑在一起。</p>
+<p>过程：</p>
+<p>&lt;1&gt;打开页面，输入18868345809，向服务器请求短信验证码。</p>
+<p>&lt;2&gt;新开页面输入17101304128，向服务器请求短信验证码。</p>
+<p>&lt;3&gt;将18868345809的短信验证码输入到17101304128的短信验证码处。</p>
+<p>&lt;4&gt;将17101304128原本的图片验证码输入。</p>
+<p>&lt;5&gt;点击重置，获取key。</p>
+<p><strong>案例3：手机邮箱验证码逻辑-客户端回显-实例</strong></p>
+<p>案例演示1：真实案例</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202112/1375459-20211207144957437-1684522703.png" alt="img"></p>
+<p>该网站邮箱验证处，密码在客户端回显</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202112/1375459-20211207145354068-1013861197.png" alt="img"></p>
+<p>案例演示2：PHP云系统</p>
+<p>该系统有绑定手机号功能</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202112/1375459-20211207145537362-944056080.png" alt="img"></p>
+<p>发送验证码时抓包，发现验证码在cookie中回显</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202112/1375459-20211207150030412-1185584831.png" alt="img"></p>
+<p><strong>案例4：绑定手机验证码逻辑-Rep状态值篡改-实例</strong></p>
+<p>&lt;1&gt;某真实案例 </p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202112/1375459-20211207151219317-336468731.png" alt="img"></p>
+<p>&lt;2&gt;该APP有修改密码功能</p>
+<p> <img src="https://img2020.cnblogs.com/blog/1375459/202112/1375459-20211207151507311-1369620275.png" alt="img"></p>
+<p>&lt;3&gt;输入正确的手机号，错误的验证码，点击下一步，截断响应</p>
+<p> <img src="https://img2020.cnblogs.com/blog/1375459/202112/1375459-20211207151554300-1921700137.png" alt="img"></p>
+<p>&lt;4&gt;将响应修改为验证码正确时的响应（前期测试获取）</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202112/1375459-20211207151657403-1454559085.png" alt="img"></p>
+<p>&lt;5&gt;直接进入下一步重置密码</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202112/1375459-20211207151829109-613771687.png" alt="img"></p>
+<p>&lt;6&gt;输入新密码，点击确定，密码重置成功</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202112/1375459-20211207152035873-1318066221.png" alt="img"></p>
+<p>&lt;7&gt;使用新密码，成功登录系统。</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202112/1375459-20211207152138338-936253778.png" alt="img"></p>
+<p>绕过原理：该APP重置密码功能分为2个页面，第一个页面，输入手机号、验证码，第二个页面，重置密码，我们可以通过修改第一个页面的响应数据来绕过验证码验证，直接进入下一个页面重置密码。</p>
+<p><strong>案例5：某APP短信轰炸接口乱用-实例接口调用发包</strong></p>
+<p>某系统注册账号功能处存在短信轰炸漏洞</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202112/1375459-20211207153329318-685734205.png" alt="img"></p>
+<p>抓取发送短信的数据包，重放N次，可以对该手机号发送N条验证码。 </p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202112/1375459-20211207153311984-97960977.png" alt="img"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">HVVL404</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/05/05/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88Web%E6%BC%8F%E6%B4%9E%E7%AF%87%EF%BC%89/35-WEB%E6%BC%8F%E6%B4%9E-%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83%E4%B9%8B%E6%89%BE%E5%9B%9E%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%8E%A5%E5%8F%A3%E5%AE%89%E5%85%A8/">http://example.com/2023/05/05/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88Web%E6%BC%8F%E6%B4%9E%E7%AF%87%EF%BC%89/35-WEB%E6%BC%8F%E6%B4%9E-%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83%E4%B9%8B%E6%89%BE%E5%9B%9E%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%8E%A5%E5%8F%A3%E5%AE%89%E5%85%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">HVVL404</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/images/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/05/05/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88Web%E6%BC%8F%E6%B4%9E%E7%AF%87%EF%BC%89/36-WEB%E6%BC%8F%E6%B4%9E-%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83%E4%B9%8B%E9%AA%8C%E8%AF%81%E7%A0%81%E4%B8%8EToken%E5%8F%8A%E6%8E%A5%E5%8F%A3/" title="36-WEB漏洞-逻辑越权之验证码与Token及接口"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">36-WEB漏洞-逻辑越权之验证码与Token及接口</div></div></a></div><div class="next-post pull-right"><a href="/2023/05/05/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88Web%E6%BC%8F%E6%B4%9E%E7%AF%87%EF%BC%89/34-WEB%E6%BC%8F%E6%B4%9E-%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83%E4%B9%8B%E7%99%BB%E5%BD%95%E8%84%86%E5%BC%B1%E5%8F%8A%E6%94%AF%E4%BB%98%E7%AF%A1%E6%94%B9/" title="34-WEB漏洞-逻辑越权之登录脆弱及支付篡改"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">34-WEB漏洞-逻辑越权之登录脆弱及支付篡改</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">HVVL404</div><div class="author-info__description">欢迎来到我的博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/17/Web%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2/" title="文件泄露">文件泄露</a><time datetime="2023-05-17T10:08:14.108Z" title="发表于 2023-05-17 18:08:14">2023-05-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/12/Web%E6%BC%8F%E6%B4%9E/CRLF%E6%B3%A8%E5%85%A5/" title="CRLF注入">CRLF注入</a><time datetime="2023-05-12T14:23:23.978Z" title="发表于 2023-05-12 22:23:23">2023-05-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/12/Python/14_Python%E7%88%AC%E8%99%AB_%E8%A7%A3%E6%9E%90/" title="Python爬虫-解析">Python爬虫-解析</a><time datetime="2023-05-12T13:03:55.780Z" title="发表于 2023-05-12 21:03:55">2023-05-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/12/Web%E6%BC%8F%E6%B4%9E/Java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" title="无题">无题</a><time datetime="2023-05-12T12:29:54.596Z" title="发表于 2023-05-12 20:29:54">2023-05-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/12/Web%E6%BC%8F%E6%B4%9E/%E7%88%86%E7%A0%B4/" title="无题">无题</a><time datetime="2023-05-12T12:29:41.413Z" title="发表于 2023-05-12 20:29:41">2023-05-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023.4.27 - 2023 By HVVL404</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="http://blog.hvvl404.fun">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

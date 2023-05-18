@@ -1,7 +1,283 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HVVL404</title><meta name="author" content="HVVL404"><meta name="copyright" content="HVVL404"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="欢迎来到我的博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HVVL404">
+<meta property="og:url" content="http://example.com/page/4/index.html">
+<meta property="og:site_name" content="HVVL404">
+<meta property="og:description" content="欢迎来到我的博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/avatar.png">
+<meta property="article:author" content="HVVL404">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/avatar.png"><link rel="shortcut icon" href="/images/hacker.png"><link rel="canonical" href="http://example.com/page/4/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HVVL404',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-05-18 18:36:35'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-block content
-  include ./includes/mixins/post-ui.pug
-  #recent-posts.recent-posts
-    +postUI
-    include includes/pagination.pug
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="HVVL404" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/images/bg.png')"><nav id="nav"><span id="blog-info"><a href="/" title="HVVL404"><span class="site-name">HVVL404</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">HVVL404</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/05/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88Web%E6%BC%8F%E6%B4%9E%E7%AF%87%EF%BC%89/35-WEB%E6%BC%8F%E6%B4%9E-%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83%E4%B9%8B%E6%89%BE%E5%9B%9E%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%8E%A5%E5%8F%A3%E5%AE%89%E5%85%A8/" title="35-WEB漏洞-逻辑越权之找回机制及接口安全">35-WEB漏洞-逻辑越权之找回机制及接口安全</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-05T12:01:36.837Z" title="发表于 2023-05-05 20:01:36">2023-05-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88Web%E6%BC%8F%E6%B4%9E%E7%AF%87%EF%BC%89/">小迪安全（Web漏洞篇）</a></span></div><div class="content">35-WEB漏洞-逻辑越权之找回机制及接口安全
+
+
+知识点
+找回重置机制
+
+客户端回显：验证码在客户端浏览器或数据包中回显
+Response状态值：单独请求回复状态值判断验证码是否正确
+验证码爆破：验证码纯数字过于简单
+找回流程绕过：跳过中间验证步骤，直接抓包最后一步
+
+接口调用乱用
+
+短信轰炸，来电轰炸等
+
+本课重点：
+
+案例1：找回密码验证码逻辑-爆破测试-实例
+案例2：墨者靶场密码重置-验证码套用-靶场
+案例3：手机邮箱验证码逻辑-客户端回显-实例
+案例4：绑定手机验证码逻辑-Rep状态值篡改-实例
+案例5：某APP短信轰炸接口乱用-实例接口调用发包
+
+案例1：找回密码验证码逻辑-爆破测试-实例
+PHP云人才系统(Phpyun) V3.2下载：
+
+http://downcode.com/downcode/j_16621.shtml
+https://pan.baidu.com/s/1P73QFmEhY6f350CvmnOJNg 提取码：xiao
+
+该系统有绑定手机号功能，绑定时，需要验证码，可以配合bp的Intruder模块对验证码进行暴力破解
+
+暴力破解时需要考虑
+
+验证码的复杂 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/05/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88Web%E6%BC%8F%E6%B4%9E%E7%AF%87%EF%BC%89/34-WEB%E6%BC%8F%E6%B4%9E-%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83%E4%B9%8B%E7%99%BB%E5%BD%95%E8%84%86%E5%BC%B1%E5%8F%8A%E6%94%AF%E4%BB%98%E7%AF%A1%E6%94%B9/" title="34-WEB漏洞-逻辑越权之登录脆弱及支付篡改">34-WEB漏洞-逻辑越权之登录脆弱及支付篡改</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-05T12:00:11.102Z" title="发表于 2023-05-05 20:00:11">2023-05-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88Web%E6%BC%8F%E6%B4%9E%E7%AF%87%EF%BC%89/">小迪安全（Web漏洞篇）</a></span></div><div class="content">34-WEB漏洞-逻辑越权之登录脆弱及支付篡改
+
+
+知识点
+1登录应用功能点安全问题``检测功能点，检测，危害，修复方案等` `1``.登录点暴力破解``2``.HTTP/HTTPS传输``3``.Cookie脆弱点验证``4``.session固定点测试``5``.验证密文比对安全测试` `数据篡改安全问题``原理，检测，危害，修复等``参考：https:``//www.secpulse.com/archives/67080.html` `商品购买流程：``选择商品和数量-选择支付及配送方式-生成订单编号-订单支付选择-完成支付` `常见篡改参数：``商品编号ID，购买价格，购买数量，支付方式，订单号，支付状态等` `常见修改方法：``替换支付，重复支付，最小额支付，负数支付，溢出支付，优惠券支付等` `以下案例涉及资源：``https:``//www.zblogcn.com/zblogphp/``各个逻辑漏洞环境：https:``//pan.baidu.com/s/1fJaW23UdcXcSFigX0-Duwg 提取码：xiao``密码爆破字典：https:``//github.c ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/04/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88Web%E6%BC%8F%E6%B4%9E%E7%AF%87%EF%BC%89/33-%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83%E4%B9%8B%E6%B0%B4%E5%B9%B3%E8%B6%8A%E6%9D%83/" title="33-WEB漏洞-逻辑越权之水平垂直越权全解">33-WEB漏洞-逻辑越权之水平垂直越权全解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-04T13:27:16.773Z" title="发表于 2023-05-04 21:27:16">2023-05-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88Web%E6%BC%8F%E6%B4%9E%E7%AF%87%EF%BC%89/">小迪安全（Web漏洞篇）</a></span></div><div class="content">33-WEB漏洞-逻辑越权之水平垂直越权全解
+   
+
+思维导图
+
+ 知识点
+1234567891011121314151617181920212223242526水平越权，垂直越权，未授权访问    解释，原理，检测，利用，防御等 水平越权：通过更换的某个ID之类的身份标识，从而使得A账号获取（修改，删除等）B账号的数据。垂直越权：通过低权限身份的账号，发送高权限账号才能有的请求，获得其高权限的操作。未授权访问：通过删除请求中的认证信息后重放该请求，依旧可以访问或者完成操作。 原理1.前端安全造成：界面判断用户等级后，代码界面部分进行可选显示 2.后端安全造成：数据库user表（管理员和普通用户同表）id,username,password,usertype1,admin,123456,12,xiaodi,111111,0登录用户admin或xiaodi是，代码是如何验证级别？（usertype判断）如果在访问网站数据包中有传输用户的编号、用户组编号或类型编号的时候，那么尝试对这个值进行修改，就是测试越权漏洞的基本。 修复防御方案1.前后端同时对用户输入信息进行校验，双重验证机制2. ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/07/C/2_C%E8%BF%90%E7%AE%97%E7%AC%A6/" title="C语言运算符">C语言运算符</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-07T13:40:47.647Z" title="发表于 2023-05-07 21:40:47">2023-05-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C%E8%AF%AD%E8%A8%80/">C语言</a></span></div><div class="content">C语言运算符
+
+
+四个重要的运算符一、除法的注意事项1234567891011121314/*时间：2021年9月18号 目的：除法的注意事项 */ # include &lt;stdio.h&gt;int main(void)&#123;	printf(&quot;%d\n&quot;,16/5);    //结果是3，输入的值是整型，输出的值也是整数 	printf(&quot;%f&quot;,16/5.0);   //结果是3.200000，输入的值中有小数，输出的值也有小数 	return 0;&#125;/*需要注意的是%d，%lf，%f不要输错了 */ 
+
+二、取余的注意事项12345678910111213/*时间：2021年9月19日目的：取余的注意事项 */ # include &lt;stdio.h&gt;int main(void)&#123;	printf(&quot;%d\n&quot;,3%3);      //结果为0 	printf(&quot;%d\n&quot;,13%-3);    //结果为1，说明余数符号跟除数无关 	printf(&quot ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/07/C/1_C%E5%9F%BA%E7%A1%80/" title="C语言基础">C语言基础</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-07T13:35:04.267Z" title="发表于 2023-05-07 21:35:04">2023-05-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C%E8%AF%AD%E8%A8%80/">C语言</a></span></div><div class="content">C语言基础
+
+
+一、第一个程序12345# include &lt;stdio.h&gt;int main(void)&#123;    printf(&quot;hello world&quot;);    return 0;&#125;
+
+
+
+二、ASCII 的运用12345678910111213141516171819/*时间：2021年9月21日 目的：字母大小写之间的转换（ASCII码的运用） */#include&lt;stdio.h&gt;int main(void)&#123;	char c1;	char c2;	scanf(&quot;%c %c&quot;,&amp;c1,&amp;c2);	printf(&quot;%c,%c&quot;,c1=c1+32,c2=c2-32);	return 0;&#125;/*总结： ASCII不是一个值，而是一种规定，       ASCII规定了不同的字符是使用哪个整数值去表示       详见请看图表 */ 
+
+
+
+三、转义字符1234567891011121314151617/*时间：2021年9月23日 目的：转义字 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/07/Python/12_Python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" title="Python文件操作">Python文件操作</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-07T13:20:40.939Z" title="发表于 2023-05-07 21:20:40">2023-05-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Python/">Python</a></span></div><div class="content">Python文件操作
+
+
+一、读取文件12345678910# 1、打开文件text = open(&quot;READ.txt&quot;)# 2、读取文件# read()方法默认读取全部内容txt = text.read()print(txt)# 3、退出文件text.close()
+
+
+
+二、读取文件后文件指针会改变123456789text = open(&quot;READ.txt&quot;)# 文件指针在执行完read()方法后移到close()方法上txt = text.read()print(txt)print(&quot;-&quot; * 50)text.close()
+
+
+
+三、写入文件12345678910file = open(&quot;READ1.txt&quot;, &quot;w&quot;)file.write(&quot;hello python&quot;)file.close()&quot;&quot;&quot;    &quot;r&quot;只读，默认是只读    &quot;w&quot;只写，覆盖原有的数据，写入新的数据    &q ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/07/Python/11_Python%E6%A8%A1%E5%9D%97/" title="Python模块">Python模块</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-07T11:06:06.807Z" title="发表于 2023-05-07 19:06:06">2023-05-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Python/">Python</a></span></div><div class="content">Python模块
+
+
+测试模块1（a_测试模块1）12345def say_hello():    print(&quot;我是 模块1&quot;)class Dog(object):    pass
+
+测试模块2（b_测试模块2）12345def say_hello():    print(&quot;我是 模块2&quot;)class Cat(object):    pass
+
+
+
+一、模块导入1234567891011import a_测试模块1import b_测试模块2a_测试模块1.say_hello()b_测试模块2.say_hello()dog = a_测试模块1.Dog()print(dog)cat = b_测试模块2.Cat()print(cat)
+
+
+
+二、导入指定模块起别名1234567891011import a_测试模块1 as DogModuleimport b_测试模块2 as CatModuleDogModule.say_hello()CatModule.say_hello()dog = DogModule.Dog()print(dog)cat = ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/07/Python/10_Python%E5%BC%82%E5%B8%B8/" title="Python异常">Python异常</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-07T11:02:34.945Z" title="发表于 2023-05-07 19:02:34">2023-05-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Python/">Python</a></span></div><div class="content"> Python异常
+
+
+一、简单的异常捕获123456try:    # 不能判断正确的代码    num = int(input(&quot;请输入数字：&quot;))except:    # 错误处理的代码    print(&quot;请输入正确的整数&quot;)
+
+
+
+二、捕获错误类型12345678910111213try:    # 不能判断正确的代码    num = int(input(&quot;请输入数字：&quot;))    result = 8 / num    print(result)# 错误类型except ZeroDivisionError:    print(&quot;除0错误&quot;)except ValueError:    # 错误处理的代码    print(&quot;请输入正确的整数&quot;)
+
+
+
+三、捕获未知错误123456789101112131415try:    # 不能判断正确的代码    num = int(input(&quot;请输入数字：&quot;))    result = 8 / num    pr ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/07/Python/9_Python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%89%B9%E6%80%A7/" title="Python面向对象特性">Python面向对象特性</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-07T10:47:23.201Z" title="发表于 2023-05-07 18:47:23">2023-05-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Python/">Python</a></span></div><div class="content">Python面向对象特性
+
+
+一、继承基础123456789101112131415161718192021222324252627282930class Animal:    def eat(self):        print(&quot;吃---&quot;)    def drink(self):        print(&quot;喝---&quot;)    def run(self):        print(&quot;跑---&quot;)    def sleep(self):        print(&quot;睡---&quot;)class dog(Animal):    # 子类拥有父类的所有方法和属性    # def eat(self):    #     print(&quot;吃&quot;)    # def drink(self):    #     print(&quot;喝&quot;)    # def run(self):    #     print(&quot;跑&quot;)    # def sleep(self):    ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/06/Python/1_Python%E5%9F%BA%E7%A1%80/" title="Python基础">Python基础</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-06T14:22:13.392Z" title="发表于 2023-05-06 22:22:13">2023-05-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Python/">Python</a></span></div><div class="content">Python基础
+
+
+一、第一个程序12print(&quot;hello python&quot;)print(&quot;你好世界&quot;)
+
+
+
+二、注释123456789# 这是第一个注释print(&quot;hello hello&quot;)&quot;&quot;&quot;这是一个多行注释注释结束了&quot;&quot;&quot;# 这是第二个注释print(&quot;hello world&quot;)  # 输出欢迎信息
+
+
+
+三、QQ号码123456789101112# 1. 定义一个变量记录 QQ 号码qq_number = &quot;1234567&quot;# 2. 定义一个变量记录 QQ 密码qq_password = &quot;123&quot;# 注意：在使用解释器执行 python 程序的时候，不能直接使用变量名# 在控制台输出变量的信息# 如果希望通过解释器的方式，输出变量的内容，需要使用 print 函数print(qq_number)print(qq_password)
+
+
+
+四、超市买苹果12345678910111213#  ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/3/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/#content-inner">5</a><a class="extend next" rel="next" href="/page/5/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">HVVL404</div><div class="author-info__description">欢迎来到我的博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/17/Web%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2/" title="文件泄露">文件泄露</a><time datetime="2023-05-17T10:08:14.108Z" title="发表于 2023-05-17 18:08:14">2023-05-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/12/Web%E6%BC%8F%E6%B4%9E/CRLF%E6%B3%A8%E5%85%A5/" title="CRLF注入">CRLF注入</a><time datetime="2023-05-12T14:23:23.978Z" title="发表于 2023-05-12 22:23:23">2023-05-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/12/Python/14_Python%E7%88%AC%E8%99%AB_%E8%A7%A3%E6%9E%90/" title="Python爬虫-解析">Python爬虫-解析</a><time datetime="2023-05-12T13:03:55.780Z" title="发表于 2023-05-12 21:03:55">2023-05-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/12/Web%E6%BC%8F%E6%B4%9E/Java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" title="无题">无题</a><time datetime="2023-05-12T12:29:54.596Z" title="发表于 2023-05-12 20:29:54">2023-05-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/12/Web%E6%BC%8F%E6%B4%9E/%E7%88%86%E7%A0%B4/" title="无题">无题</a><time datetime="2023-05-12T12:29:41.413Z" title="发表于 2023-05-12 20:29:41">2023-05-12</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/C%E8%AF%AD%E8%A8%80/"><span class="card-category-list-name">C语言</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Java/"><span class="card-category-list-name">Java</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Python/"><span class="card-category-list-name">Python</span><span class="card-category-list-count">9</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Web%E6%BC%8F%E6%B4%9E/"><span class="card-category-list-name">Web漏洞</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/ctfshow/"><span class="card-category-list-name">ctfshow</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%86%99%E5%8D%9A%E5%AE%A2%E6%8A%80%E5%B7%A7/"><span class="card-category-list-name">写博客技巧</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88Web%E6%BC%8F%E6%B4%9E%E7%AF%87%EF%BC%89/"><span class="card-category-list-name">小迪安全（Web漏洞篇）</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/"><span class="card-category-list-name">小迪安全（内网篇）</span><span class="card-category-list-count">7</span></a></li>
+            </ul></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/05/"><span class="card-archive-list-date">五月 2023</span><span class="card-archive-list-count">40</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">四月 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">44</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-05-18T10:36:35.521Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023.4.27 - 2023 By HVVL404</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="http://blog.hvvl404.fun">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

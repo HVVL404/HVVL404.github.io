@@ -1,7 +1,321 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HVVL404</title><meta name="author" content="HVVL404"><meta name="copyright" content="HVVL404"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="欢迎来到我的博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HVVL404">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="HVVL404">
+<meta property="og:description" content="欢迎来到我的博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/avatar.png">
+<meta property="article:author" content="HVVL404">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/avatar.png"><link rel="shortcut icon" href="/images/hacker.png"><link rel="canonical" href="http://example.com/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HVVL404',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-05-18 18:36:35'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-block content
-  include ./includes/mixins/post-ui.pug
-  #recent-posts.recent-posts
-    +postUI
-    include includes/pagination.pug
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="HVVL404" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/images/bg.png')"><nav id="nav"><span id="blog-info"><a href="/" title="HVVL404"><span class="site-name">HVVL404</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">HVVL404</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/04/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/72-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91CS&amp;MSF%E8%81%94%E5%8A%A8%E5%8F%8A%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%88%9D%E8%AF%86/" title="72-内网安全-域横向CS&amp;MSF联动">72-内网安全-域横向CS&amp;MSF联动</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta-separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-04T11:26:38.170Z" title="发表于 2023-05-04 19:26:38">2023-05-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/">小迪安全（内网篇）</a></span></div><div class="content">72-内网安全-域横向CS&amp;MSF联动
+
+
+思维导图1-权限维持
+
+时间原因，权限维持内容本课不再讲解，后期有时间的话会补充。而且权限维持属于渗透后期的知识，关键还是前面的内容，多实践，多总结。
+
+
+思维导图2-应急响应
+
+本课重点：
+
+案例1：MSF&amp;CobaltStrike联动Shell
+案例2：WEB攻击应急响应朔源-后门,日志
+案例3：WIN系统攻击应急响应朔源-后门,日志,流量
+
+案例1：MSF&amp;CobaltStrike联动Shell
+为什么要进行联动？因为cs和msf经常相互调用，有一些功能cs强一点，有一些可能msf强一点，所以在渗透测试的时候经常要切换！所以我们需要学习如何在cs、msf、powershell之间进行会话委派。powershell本身用处少，而且很多正式环境上的powershell默认执行策略是关闭的，总的来说有的鸡肋，所以这里就不再讲了。
+12345CS-&gt;MSF创建Foreign监听器-&gt;MSF监听模块设置对应地址端口-&gt;CS执行Spawn选择监听器MSF-&gt;CSCS创建监听器-&gt;MSF载入新模块 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/04/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/71-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91%E7%BD%91%E7%BB%9C&amp;%E4%BC%A0%E8%BE%93&amp;%E5%BA%94%E7%94%A8%E5%B1%82%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/" title="71-内网安全-域横向网络&amp;传输&amp;应用层隧道技术">71-内网安全-域横向网络&amp;传输&amp;应用层隧道技术</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta-separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-04T11:21:33.863Z" title="发表于 2023-05-04 19:21:33">2023-05-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/">小迪安全（内网篇）</a></span></div><div class="content">71-内网安全-域横向网络&amp;传输&amp;应用层隧道技术 
+
+
+思维导图
+
+必备知识点：
+1.代理和隧道技术区别?
+
+代理只是为了解决网络通信问题，有些内网访问不到，可以用代理实现
+隧道不仅是解决网络的通信问题，更大的作用是绕过过滤，突破防火墙&#x2F;入侵检测系统。
+
+2.隧道技术为了解决什么?
+
+防火墙过滤问题、网络连接通信问题、数据回链封装问题
+在数据通信被拦截的情况下，可以利用隧道技术封装改变通信协议进行绕过拦截。比如CS、MSF无法上线，数据传输不稳定无回显，出口数据被监控，网络通信存在问题等问题，都可以通过隧道技术解决。
+
+3.隧道技术前期的必备条件？
+
+在用隧道之前要先探测对应隧道协议是否支持，如果不支持，用这个隧道也没有任何意义！
+
+隧道原理
+
+在实际的网络中，通常会通过各种边界设备、软&#x2F;硬件防火墙甚至入侵检测系统来检查对外连接情况，如果发现异样，就会对通信进行阻断。那么什么是隧道呢？这里的隧道，就是一种绕过端口屏蔽的通信方式。防火墙两端的数据包通过防火墙所允许的数据包类型或端口进行封装，然后穿过防火墙，与对方进行通信。当封装的数据包到达目的地时，将 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/28/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8Socks%E4%BB%A3%E7%90%86%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/" title="70-内网安全-域横向内网漫游Socks代理隧道技术">70-内网安全-域横向内网漫游Socks代理隧道技术</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta-separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-04-28T07:42:59.868Z" title="发表于 2023-04-28 15:42:59">2023-04-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/">小迪安全（内网篇）</a></span></div><div class="content">70-内网安全-域横向内网漫游Socks代理隧道技术
+
+
+必要基础知识点：
+1.内外网简单知识
+
+内网ip地址是私有ip地址（10&#x2F;8, 172.16&#x2F;12 , 192.168&#x2F;16），除此之外就是外网ip。
+
+2.内网1和内网2通信问题
+
+两个不同的内网的主机想要通过CS或者MSF等工具实现控制或者通讯是不可能的，必须要借助代理。
+
+3.正反向协议通信连接问题
+
+正向：控制端主动去连接被控端
+反向：被控端主动去连接控制端
+为什么要区分正向和反向？–因为如果控制端是外网主机，被控端是内网主机，就相当于控制端有一个唯一的IP地址（比如103.12.4.11），通过这个IP地址就可以找到控制端，而在内网的被控端（比如192.168.23.36），你通过控制端主动去找是找不到的，因为这个内网IP地址并不是唯一的，可能很多内网都用了这个IP地址，你根本没法找。此时就需要反向连接了，让内网的被控端主动去找外网的控制端。
+
+4.内网穿透代理隧道技术说明
+
+隧道主要解决流量分析工具、流量监控工具、防火墙等相关工具的过滤问题
+代理主要解决网络的连通性问题
+
+本课主要讲解内 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/04/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/69-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91CobaltStrike&amp;SPN&amp;RDP/" title="69-内网安全-域横向CobaltStrike&amp;SPN&amp;RDP">69-内网安全-域横向CobaltStrike&amp;SPN&amp;RDP</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta-separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-04T11:19:02.933Z" title="发表于 2023-05-04 19:19:02">2023-05-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/">小迪安全（内网篇）</a></span></div><div class="content">69-内网安全-域横向CobaltStrike&amp;SPN&amp;RDP     
+
+
+思维导图
+
+本课重点：
+
+案例1：域横向移动RDP传递-Mimikatz
+案例2：域横向移动SPN服务-探针,请求,导出,破解,重写
+案例3：域横向移动测试流程一把梭哈-CobaltStrike初体验
+
+案例1-域横向移动RDP传递-Mimikatz
+除了上述讲到的IPC，WMI，SMB等协议的链接外，获取到的明文密码或HASH密文也可以通过RDP协议进行链接操作。
+RDP协议连接：判断对方远程桌面服务是否开启（默认：3389），端口扫描判断
+1234567891011121314151617RDP明文密码链接windows: mstscmstsc.exe /console /v:192.168.3.21 /adminlinux: rdesktop 192.168.3.21:3389 RDP密文HASH链接windows Server需要开启 Restricted Admin mode，在Windows 8.1和Windows Server 2012 R2中默认开启，同时如果Win 7 和Wi ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/04/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/68-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91PTH&amp;PTK&amp;PTT%E5%93%88%E5%B8%8C%E7%A5%A8%E6%8D%AE%E4%BC%A0%E9%80%92/" title="68-内网安全-域横向PTH&amp;PTK&amp;PTT哈希票据传递">68-内网安全-域横向PTH&amp;PTK&amp;PTT哈希票据传递</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta-separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-04T10:50:01.778Z" title="发表于 2023-05-04 18:50:01">2023-05-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/">小迪安全（内网篇）</a></span></div><div class="content">68-内网安全-域横向PTH&amp;PTK&amp;PTT哈希票据传递
+
+
+思维导图
+
+知识点：
+
+PTH （pass the hash） 利用lm或者ntlm的值进行的渗透测试
+PTT （pass the ticket） 利用的票据凭证TGT进行的渗透测试
+PTK （pass the key） 利用的ekeys aes256进行的渗透测试
+
+PTH在内网渗透中是一种很经典的攻击方式，原理就是攻击者可以直接通过LM Hash和NTLM Hash远程访问主机或者服务，而不提供明文密码。
+如果禁用了ntlm认证，PsExec工具无法利用获得的ntlm hash进行远程连接，但是使用mimikatz工具还是可以攻击成功。
+对于8.1&#x2F;2012r2，安装补丁kb2871997的Win 7&#x2F;2008r2&#x2F;8&#x2F;2012等，可以使用AES keys代替NT hash来实现ptk攻击。
+总结：KB2871997补丁后的影响
+
+pth：没打补丁用户都可以连接，打了补丁只能administrator连接
+ptk：打了补丁才能用户都可以连接，采用aes256连接
+h ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/04/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/67-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91smb&amp;wmi%E6%98%8E%E6%96%87%E6%88%96hash%E4%BC%A0%E9%80%92/" title="67-内网安全-域横向smb&amp;wmi明文或hash传递">67-内网安全-域横向smb&amp;wmi明文或hash传递</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta-separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-04T10:42:01.996Z" title="发表于 2023-05-04 18:42:01">2023-05-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/">小迪安全（内网篇）</a></span></div><div class="content">67-内网安全-域横向smb&amp;wmi明文或hash传递
+
+
+思维导图
+
+1234567891011121314151617181920212223知识点1：Windows2012以上版本默认关闭wdigest,攻击者无法从内存中获取明文密码Windows2012以下版本如安装KB2871997补丁，同样也会导致无法获取明文密码 针对以上情况，我们提供了4种方式解决此类问题    1.利用哈希hash传递(pth，ptk等)进行移动    2.利用其它服务协议(SMB,WMI等)进行哈希移动    3.利用注册表操作开启Wdigest Auth值进行获取    4.利用工具或第三方平台(Hachcat)进行破解获取 #注册表操作开启Wdigest Auth值reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 1 /f 知识点2：Windows系统LM Hash及NTLM Hash加密算法，个人系统在Windows  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/04/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/66-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91%E6%89%B9%E9%87%8Fat&amp;schtasks&amp;impacket/" title="66-内网安全-域横向批量at&amp;schtasks&amp;impacket">66-内网安全-域横向批量at&amp;schtasks&amp;impacket</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta-separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-04T09:44:20.007Z" title="发表于 2023-05-04 17:44:20">2023-05-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/">小迪安全（内网篇）</a></span></div><div class="content">66-内网安全-域横向批量at&amp;schtasks&amp;impacket
+
+
+思维导图
+
+本课重点
+
+案例1：横向渗透明文传递
+案例2：横向渗透明文HASH传递atexec-impacket
+案例3：横向渗透明文HASH传递批量利用-综合
+案例4：横向渗透明文HASH传递批量利用-升级版
+
+环境准备
+
+123456789101112131415161718192021222008 r2 webserver 域内web服务器本地管理员账号密码: .\administraotr:admin!@#45当前机器域用户密码: god\webadmin:admin!@#45 2003 x86 fileserver 域内文件服务器本地管理员账号密码：administrator:admin当前机器域用户密码: god\fileadmin:Admin12345 2008 r2 x64 dc god.org 主域控机器域管账号密码: God\administrator:Admin12345 2012 sqlserver 域内数据库服务器本地管理员账号密码：.\administrator:admi ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/12/Web%E6%BC%8F%E6%B4%9E/SQL%E6%B3%A8%E5%85%A5/" title="SQL注入">SQL注入</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-12T12:24:50.319Z" title="发表于 2023-05-12 20:24:50">2023-05-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Web%E6%BC%8F%E6%B4%9E/">Web漏洞</a></span></div><div class="content">SQL注入
+
+
+什么是 SQL 注入？
+SQL注入（SQL Injectioin）漏洞是注入漏洞中危害性最高的漏洞之一。形成的原因主要是在数据交互过程中，前端的数据传入后端时，没有作严格的验证过滤导致传入的“数据”拼接到了 SQL 语句中。被数据库当作 SQL 语句的一部分执行，从而使得数据面临被脱库、恶意破坏篡改甚至造成整个系统权限沦陷等一系列危害。
+注入攻击的本质是把用户输入的数据当作代码执行。造成注入攻击有两个关键条件：
+1、用户能够控制数据输入
+2、原本程序要执行的代码，拼接了用户输入的数据。
+对SQL注入漏洞的挖掘虽然多数时候以工具为主，手工为辅助，但切忌上来就一把梭。
+数据库自行配置
+1234数据库名：learn表名：user列名：id，username，password// 可以自行加一个 flag。
+
+
+
+一、SQL 联合注入测试代码：
+12345678910111213141516171819202122232425262728293031323334&lt;?phpecho &quot;SQL常规回显注入环境&quot;.&quot;&lt;hr&gt;&quot; ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/17/Web%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2/" title="文件泄露">文件泄露</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-17T10:08:14.108Z" title="发表于 2023-05-17 18:08:14">2023-05-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Web%E6%BC%8F%E6%B4%9E/">Web漏洞</a></span></div><div class="content">信息泄露
+
+
+文件泄露介绍
+提到信息泄露大家应该都不陌生了，现在有太多的信息泄露，可能在某些人眼里这已经不算什么了。但是信息泄露确是很严重的问题，这可不只泄露你一个人的信息那么简单，可能表面上只泄露你一个人的信息，实际上你全家人的信息都被扒出来了，而且泄露的信息包括你的身份证、家庭住址等敏感信息。
+但是接下来会介绍的不是关于人的敏感信息，而是网站的敏感信息，就是一些重要文件泄露、源码泄露等。
+一、版本管理软件造成的泄露1、git 泄露（1）漏洞产生
+Git 是一个开源的分布式版本控制系统，在执行 git init 初始化目录的时候，会在当前目录下自动创建一个 .git 目录，用来记录代码的变更记录等。发布代码的时候，如果没有把 .git 这个目录删除，就直接发布到了服务器上，攻击者就可以通过它来恢复源代码。
+（2）漏洞危害（泄露内容）
+123451、所有该项目的源代码2、私有仓库的地址3、私密的配置信息4、所有commiter的邮箱帐号信息5、（可能）内部的帐号和密码
+
+（3）漏洞利用
+常规的利用方法就是下载整个目录, 然后用git命令回滚整个项目
+121、wget -r --no-p ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/12/Web%E6%BC%8F%E6%B4%9E/CRLF%E6%B3%A8%E5%85%A5/" title="CRLF注入">CRLF注入</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-12T14:23:23.978Z" title="发表于 2023-05-12 22:23:23">2023-05-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Web%E6%BC%8F%E6%B4%9E/">Web漏洞</a></span></div><div class="content">CRLF 注入
+
+
+一、什么是 CRLF？CRLF 指的是回车符(CR，ASCII 13，\r，%0d) 和换行符(LF，ASCII 10，\n，%0a)，操作系统就是根据这个标识来进行换行的，你在键盘输入回车键就是输出这个字符，只不过win和linux系统采用的标识不一样而已。
+在 HTTP 当中 HTTP 的 Header 和 Body 之间就是用两个 crlf 进行分隔的，如果能控制 HTTP 消息头中的字符，注入一些恶意的换行，这样就能注入一些会话cookie和html代码，所以CRLF injection 又叫做 HTTP response Splitting，简称 HRS。CRLF 漏洞可以造成 Cookie会话固定 和 反射型XSS(可过waf) 的危害，注入XSS的利用方式：连续使用两次%0d%oa就会造成header和body之间的分离，就可以在其中插入xss代码形成反射型xss漏洞。
+
+
+二、原理分析HRS漏洞存在的前提是 ：url 当中输入的字符会影响到文件，比如在重定位当中可以尝试使用 %0d%0a 作为 CRLF。
+一般网站会在HTTP头中加上 Locatio ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#content-inner">5</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">HVVL404</div><div class="author-info__description">欢迎来到我的博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/17/Web%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2/" title="文件泄露">文件泄露</a><time datetime="2023-05-17T10:08:14.108Z" title="发表于 2023-05-17 18:08:14">2023-05-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/12/Web%E6%BC%8F%E6%B4%9E/CRLF%E6%B3%A8%E5%85%A5/" title="CRLF注入">CRLF注入</a><time datetime="2023-05-12T14:23:23.978Z" title="发表于 2023-05-12 22:23:23">2023-05-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/12/Python/14_Python%E7%88%AC%E8%99%AB_%E8%A7%A3%E6%9E%90/" title="Python爬虫-解析">Python爬虫-解析</a><time datetime="2023-05-12T13:03:55.780Z" title="发表于 2023-05-12 21:03:55">2023-05-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/12/Web%E6%BC%8F%E6%B4%9E/Java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" title="无题">无题</a><time datetime="2023-05-12T12:29:54.596Z" title="发表于 2023-05-12 20:29:54">2023-05-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/12/Web%E6%BC%8F%E6%B4%9E/%E7%88%86%E7%A0%B4/" title="无题">无题</a><time datetime="2023-05-12T12:29:41.413Z" title="发表于 2023-05-12 20:29:41">2023-05-12</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/C%E8%AF%AD%E8%A8%80/"><span class="card-category-list-name">C语言</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Java/"><span class="card-category-list-name">Java</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Python/"><span class="card-category-list-name">Python</span><span class="card-category-list-count">9</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Web%E6%BC%8F%E6%B4%9E/"><span class="card-category-list-name">Web漏洞</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/ctfshow/"><span class="card-category-list-name">ctfshow</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%86%99%E5%8D%9A%E5%AE%A2%E6%8A%80%E5%B7%A7/"><span class="card-category-list-name">写博客技巧</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88Web%E6%BC%8F%E6%B4%9E%E7%AF%87%EF%BC%89/"><span class="card-category-list-name">小迪安全（Web漏洞篇）</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/"><span class="card-category-list-name">小迪安全（内网篇）</span><span class="card-category-list-count">7</span></a></li>
+            </ul></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/05/"><span class="card-archive-list-date">五月 2023</span><span class="card-archive-list-count">40</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">四月 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">44</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-05-18T10:36:35.521Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023.4.27 - 2023 By HVVL404</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="http://blog.hvvl404.fun">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
