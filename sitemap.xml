@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.hvvl404.fun/2023/05/12/Web%E6%BC%8F%E6%B4%9E/XSS%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB/</loc>
+    
+    <lastmod>2023-05-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.hvvl404.fun/2023/05/12/Web%E6%BC%8F%E6%B4%9E/SQL%E6%B3%A8%E5%85%A5/</loc>
+    
+    <lastmod>2023-05-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.hvvl404.fun/2023/05/17/Web%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2/</loc>
     
     <lastmod>2023-05-18</lastmod>
@@ -30,24 +48,6 @@
   
   <url>
     <loc>http://blog.hvvl404.fun/2023/05/12/Web%E6%BC%8F%E6%B4%9E/XXE%E5%86%85%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5/</loc>
-    
-    <lastmod>2023-05-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.hvvl404.fun/2023/05/12/Web%E6%BC%8F%E6%B4%9E/SQL%E6%B3%A8%E5%85%A5/</loc>
-    
-    <lastmod>2023-05-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.hvvl404.fun/2023/05/12/Web%E6%BC%8F%E6%B4%9E/XSS%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB/</loc>
     
     <lastmod>2023-05-18</lastmod>
     
@@ -427,7 +427,7 @@
 
   <url>
     <loc>http://blog.hvvl404.fun/</loc>
-    <lastmod>2023-05-18</lastmod>
+    <lastmod>2023-05-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -436,64 +436,64 @@
 
   
   <url>
-    <loc>http://blog.hvvl404.fun/categories/Java/</loc>
-    <lastmod>2023-05-18</lastmod>
+    <loc>http://blog.hvvl404.fun/categories/C%E8%AF%AD%E8%A8%80/</loc>
+    <lastmod>2023-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://blog.hvvl404.fun/categories/C%E8%AF%AD%E8%A8%80/</loc>
-    <lastmod>2023-05-18</lastmod>
+    <loc>http://blog.hvvl404.fun/categories/Java/</loc>
+    <lastmod>2023-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://blog.hvvl404.fun/categories/Python/</loc>
-    <lastmod>2023-05-18</lastmod>
+    <lastmod>2023-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://blog.hvvl404.fun/categories/ctfshow/</loc>
-    <lastmod>2023-05-18</lastmod>
+    <lastmod>2023-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://blog.hvvl404.fun/categories/Web%E6%BC%8F%E6%B4%9E/</loc>
-    <lastmod>2023-05-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.hvvl404.fun/categories/%E5%86%99%E5%8D%9A%E5%AE%A2%E6%8A%80%E5%B7%A7/</loc>
-    <lastmod>2023-05-18</lastmod>
+    <lastmod>2023-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://blog.hvvl404.fun/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88Web%E6%BC%8F%E6%B4%9E%E7%AF%87%EF%BC%89/</loc>
-    <lastmod>2023-05-18</lastmod>
+    <lastmod>2023-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://blog.hvvl404.fun/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/</loc>
-    <lastmod>2023-05-18</lastmod>
+    <lastmod>2023-05-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.hvvl404.fun/categories/%E5%86%99%E5%8D%9A%E5%AE%A2%E6%8A%80%E5%B7%A7/</loc>
+    <lastmod>2023-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://blog.hvvl404.fun/categories/%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2023-05-18</lastmod>
+    <lastmod>2023-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
