@@ -1,0 +1,327 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>82-红蓝对抗-蓝队att&amp;ck&amp;IDS&amp;蜜罐&amp;威胁情报 | HVVL404</title><meta name="author" content="HVVL404"><meta name="copyright" content="HVVL404"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="82-红蓝对抗-蓝队att&amp;ck&amp;IDS&amp;蜜罐&amp;威胁情报 图片 图片 图片 必备知识点： 在每年的安全活动中，红蓝队的职责，其中大部分强调学习红队技术，那么蓝队技术又有哪些呢？简要来说蓝队就是防守，涉及到应急、溯源、反制、情报等综合性认知和操作能力知识点。掌握红队攻击技术的前提下，蓝队技术能提升一个档次哦。 本课知识点：  认识ATT&amp;CK框架技术 认识对抗">
+<meta property="og:type" content="article">
+<meta property="og:title" content="82-红蓝对抗-蓝队att&amp;ck&amp;IDS&amp;蜜罐&amp;威胁情报">
+<meta property="og:url" content="http://blog.hvvl404.fun/2023/05/23/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88AWD%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%EF%BC%89/82%EF%BC%9A%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-%E8%93%9D%E9%98%9Fatt&ck&IDS&%E8%9C%9C%E7%BD%90&%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5/index.html">
+<meta property="og:site_name" content="HVVL404">
+<meta property="og:description" content="82-红蓝对抗-蓝队att&amp;ck&amp;IDS&amp;蜜罐&amp;威胁情报 图片 图片 图片 必备知识点： 在每年的安全活动中，红蓝队的职责，其中大部分强调学习红队技术，那么蓝队技术又有哪些呢？简要来说蓝队就是防守，涉及到应急、溯源、反制、情报等综合性认知和操作能力知识点。掌握红队攻击技术的前提下，蓝队技术能提升一个档次哦。 本课知识点：  认识ATT&amp;CK框架技术 认识对抗">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.hvvl404.fun/images/avatar.png">
+<meta property="article:published_time" content="2023-05-23T15:15:21.170Z">
+<meta property="article:modified_time" content="2023-05-23T15:17:00.521Z">
+<meta property="article:author" content="HVVL404">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.hvvl404.fun/images/avatar.png"><link rel="shortcut icon" href="/images/hacker.png"><link rel="canonical" href="http://blog.hvvl404.fun/2023/05/23/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88AWD%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%EF%BC%89/82%EF%BC%9A%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-%E8%93%9D%E9%98%9Fatt&amp;ck&amp;IDS&amp;%E8%9C%9C%E7%BD%90&amp;%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '82-红蓝对抗-蓝队att&ck&IDS&蜜罐&威胁情报',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-05-23 23:17:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="HVVL404" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">49</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 站点</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/bg.png')"><nav id="nav"><span id="blog-info"><a href="/" title="HVVL404"><span class="site-name">HVVL404</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 站点</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">82-红蓝对抗-蓝队att&amp;ck&amp;IDS&amp;蜜罐&amp;威胁情报</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-23T15:15:21.170Z" title="发表于 2023-05-23 23:15:21">2023-05-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-23T15:17:00.521Z" title="更新于 2023-05-23 23:17:00">2023-05-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88AWD%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%EF%BC%89/">小迪安全（AWD红蓝对抗）</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="82-红蓝对抗-蓝队att&amp;ck&amp;IDS&amp;蜜罐&amp;威胁情报"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>82-红蓝对抗-蓝队att&amp;ck&amp;IDS&amp;蜜罐&amp;威胁情报</p>
+<p>图片</p>
+<p>图片</p>
+<p>图片</p>
+<p>必备知识点：</p>
+<p>在每年的安全活动中，红蓝队的职责，其中大部分强调学习红队技术，那么蓝队技术又有哪些呢？简要来说蓝队就是防守，涉及到应急、溯源、反制、情报等综合性认知和操作能力知识点。掌握红队攻击技术的前提下，蓝队技术能提升一个档次哦。</p>
+<p>本课知识点：</p>
+<ol>
+<li>认识ATT&amp;CK框架技术</li>
+<li>认识对抗的蜜罐技术的本质</li>
+<li>掌握WAF安全产品部署及应用</li>
+<li>掌握IDS在对抗中的部署使用</li>
+<li>掌握威胁情报平台对应报告分析</li>
+<li>作为一名干饭人要掌握的报告书写专业性</li>
+</ol>
+<p>本课重点：</p>
+<ul>
+<li>案例1：专业用语-ATT&amp;CK技术简要介绍-报告书写</li>
+<li>案例2：掌握了解-安全攻防蜜罐技术的利用-配合威胁</li>
+<li>案例3：攻击拦截-WAF安全产品部署及反制-多种中间件</li>
+<li>案例4：追踪反制-HIDS入侵检测系统部署测试-爆破|提权|规则</li>
+<li>案例5：应急溯源-威胁情报平台对于溯源分析意义-CS后门溯源</li>
+</ul>
+<p><strong>案例1：专业用语-ATT&amp;CK技术简要介绍-报告书写</strong></p>
+<p>原版：<a target="_blank" rel="noopener" href="https://attack.mitre.org/matrices/enterprise">https://attack.mitre.org/matrices/enterprise</a></p>
+<p>国内有ATT&amp;CT参考手册，可以下载参考学习。</p>
+<p><strong>案例2：掌握了解-安全攻防蜜罐技术的利用-配合威胁</strong></p>
+<p>Hfish部署配合在线威胁平台实现自动分析，记录攻击者攻击手法及攻击过程，攻击IP等信息可作为黑名单。</p>
+<p><a target="_blank" rel="noopener" href="https://hfish.io/index.html">https://hfish.io/index.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/hacklcx/HFish">https://github.com/hacklcx/HFish</a></p>
+<p>图片</p>
+<p><strong>案例3：攻击拦截-WAF安全产品部署及反制-多种中间件</strong></p>
+<p>Openrasp-PHP,Java网站应用防护，多种中间件</p>
+<p><a target="_blank" rel="noopener" href="https://rasp.baidu.com/doc/">https://rasp.baidu.com/doc/</a></p>
+<p>安全狗支持的中间件比较少，推荐使用Openrasp。</p>
+<p>图片</p>
+<p>部署OpenRasp之后，网站数据包会携带请求头X-Protected-By:OpenRasp，我们测试的时候可以留意一下。</p>
+<p>还有默安和长亭蜜罐。</p>
+<p><strong>案例4：追踪反制-HIDS入侵检测系统部署测试-爆破|提权|规则</strong></p>
+<p>NIDS&amp;HIDS</p>
+<ul>
+<li>NIDS：网络入侵检测系统</li>
+<li>HIDS：主机入侵检测系统</li>
+</ul>
+<p>这里介绍两款HIDS：yulong-hids（国产）、wazuh（国外，推荐）</p>
+<ul>
+<li><p>yulong-hids：优点：中文规则说明等-规则</p>
+</li>
+<li><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/ysrc/yulong-hids">https://github.com/ysrc/yulong-hids</a></li>
+</ul>
+</li>
+<li><p>wazuh：ELK日志，攻击行为分析等-爆破|提权</p>
+</li>
+<li><ul>
+<li>实现入侵行为分析，日志实时监控，规则触发拦截等功能</li>
+<li><a target="_blank" rel="noopener" href="https://documentation.wazuh.com/4.0/index.html">https://documentation.wazuh.com/4.0/index.html</a></li>
+</ul>
+</li>
+</ul>
+<p>驭龙HIDS规则引擎（可自己添加规则）</p>
+<p>图片</p>
+<p><strong>案例5：应急溯源-威胁情报平台对于溯源分析意义-CS后门溯源</strong></p>
+<p>参考：值得推荐的威胁情报平台–2020.10更新 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_29277155/article/details/79830927">https://blog.csdn.net/qq_29277155/article/details/79830927</a></p>
+<p>威胁情报是指：基于一定知识的证据，已经存在或正在形成的潜在威胁，比如，上下文、机制、指标、意义以及可实施的建议，利用这些，可以帮助当事人形成应对这些危险的决策。</p>
+<p>预测（基于数据）将要来临的的攻击。威胁情报利用公开的可用资源，预测潜在的威胁。网络威胁情报可以帮助你在防御方面做出更好的决策，可以得到以下好处。</p>
+<ul>
+<li>组建一个安全预警机制，在攻击发起之前知道它</li>
+<li>对安全事件提出更好的解决方案</li>
+<li>网络威胁情报为你提供最新的安全技术信息，帮助封锁出现的威胁</li>
+<li>对相关的危险进行调查，开展利益分析</li>
+<li>要寻找什么：恶意IP地址、域名&#x2F;网站、文件哈希（恶意软件分析）、受害领域&#x2F;国家</li>
+</ul>
+<p>威胁情报平台</p>
+<ul>
+<li><p>微步威胁平台：<a target="_blank" rel="noopener" href="https://x.threatbook.cn/">https://x.threatbook.cn/</a></p>
+</li>
+<li><ul>
+<li>中国首家专业的威胁情报公司。它是国内第一个综合性的威胁分析平台，秉承公开、免费、自由注册的原则，为全球的安全分析人员提供了一个便利的一站式威胁分析平台，用来进行事件响应过程的工作，包括：事件确认、危险程度和影响分析、关联及溯源分析等。</li>
+<li>主要特征如下：自由公开的服务、多引擎文件检测、行为沙箱、集成互联网基础数据、集成开源情报信息、关联分析、机器学习、可视化分析</li>
+</ul>
+</li>
+<li><p>奇安信威胁情报中心：<a target="_blank" rel="noopener" href="https://ti.qianxin.com/">https://ti.qianxin.com/</a></p>
+</li>
+<li><ul>
+<li>360 Alpha威胁分析平台，是360企业安全为安全分析师提供一站式分析工具（云端SaaS平台），具备完备的威胁情报和互联网基础数据，在数据覆盖度、信息种类、数据的时间&#x2F;空间跨度都具备较大优势。</li>
+<li>在功能方面，Alpha平台包括有4大模块：威胁研判模块可以直接判定报警真实性、了解攻击团伙&#x2F;软件的意图和能力，进而快速筛选出真实、重要的报警；威胁关联分析模块，针对无法直接判定的分析对象，可一键自动化分析域名、IP、注册信息和样本间的关联信息，同时还可以生成攻击者画像信息；文件深度分析模块，用于了解恶意软件的详细的静态、动态行为，并提取IOC形成自己的威胁情报；分析任务管理模块可以将一次攻击事件所涉及到的域名、IP、样本等信息进行整合并统一管理，后续还可以依照标准威胁情报格式STIX，进行威胁情报分享。</li>
+</ul>
+</li>
+<li><p>360威胁情报中心 <a target="_blank" rel="noopener" href="https://ti.360.cn/#/homepage">https://ti.360.cn/#/homepage</a></p>
+</li>
+<li><ul>
+<li>360旗下的威胁情报中心，可以根据IP、Domain、 HASH(MD5,SHA1,SHA256)、CA(MD5,SHA1,SHA256,SKID)查询威胁情报。</li>
+</ul>
+</li>
+<li><p>绿盟 威胁情报中心：<a target="_blank" rel="noopener" href="https://nti.nsfocus.com/">https://nti.nsfocus.com/</a></p>
+</li>
+<li><ul>
+<li>绿盟科技旗下的威胁情报中心，支持中文搜索，但是需要注册登录查看更多的信息</li>
+<li>主要特征如下：输入客户名称、安全事件名称、攻击组织名称、攻击工具名称、IPv4、IPv6、域名、漏洞名称&#x2F;编号、文件Hash（MD5&#x2F;SHA256） 或任意关键字</li>
+</ul>
+</li>
+<li><p>VenusEye威胁情报中心：<a target="_blank" rel="noopener" href="https://www.venuseye.com.cn/">https://www.venuseye.com.cn/</a></p>
+</li>
+<li><ul>
+<li>VenusEye威胁情报中心是由启明星辰集团倾力打造的集威胁情报收集、分析、处理、发布和应用为一体的威胁情报云服务平台，提供威胁情报数据、系统、技术和专业能力的输出。</li>
+<li>主要特征如下：IP、域名、文件HASH(MD5&#x2F;SHA1&#x2F;SHA256)、邮箱、证书指纹（SHA1）</li>
+</ul>
+</li>
+<li><p>安恒威胁情报中心 ：<a target="_blank" rel="noopener" href="https://ti.dbappsecurity.com.cn/">https://ti.dbappsecurity.com.cn/</a></p>
+</li>
+<li><ul>
+<li>提供海量内外部威胁情报数据、恶意样本行为数据、黑客组织画像信息等查询服务， 帮助安全运营者对攻击报警进行研判，通过多源情报关联信息， 挖掘攻击事件背后的动机</li>
+<li>主要特征如下：域名、IP、邮箱、文件Hash、字符串</li>
+</ul>
+</li>
+<li><p>360网络安全研究：<a target="_blank" rel="noopener" href="http://netlab.360.com/">http://netlab.360.com/</a></p>
+</li>
+<li><ul>
+<li>360旗下的安全实验室，擅长从全球流量动态分析漏洞蠕虫木马等恶意攻击行为，并且联合历史流量、情报信息进行综合分析。</li>
+<li>主要特征如下：被动DNS检测（<a target="_blank" rel="noopener" href="https://passivedns.cn/%EF%BC%89%E3%80%81DDOS%E6%81%B6%E6%84%8F%E6%94%BB%E5%87%BB%E7%BA%AA%E5%BD%95%EF%BC%88https://ddosmon.net/%EF%BC%89%E3%80%81%E7%BD%91%E7%BB%9C%E6%89%AB%E6%8F%8F%E8%A1%8C%E4%B8%BA%E7%9B%91%E6%8E%A7%EF%BC%88https://scan.netlab.360.com/%EF%BC%89%E3%80%81%E5%BC%80%E6%BA%90%E6%83%85%E6%8A%A5%E4%BF%A1%E6%81%AF%EF%BC%88EK">https://passivedns.cn/）、DDOS恶意攻击纪录（https://ddosmon.net/）、网络扫描行为监控（https://scan.netlab.360.com/）、开源情报信息（EK</a>, DNS DGA, MalConn(sample network behaviour), Mirai scanner, Mirai C2 and DRDoS Reflector）（<a target="_blank" rel="noopener" href="https://scan.netlab.360.com/%EF%BC%89">https://scan.netlab.360.com/）</a></li>
+</ul>
+</li>
+<li><p>AlienVault : <a target="_blank" rel="noopener" href="https://otx.alienvault.com/">https://otx.alienvault.com/</a></p>
+</li>
+<li><ul>
+<li>可以访问威胁研究专家和安全专家全球社区。它递送社区产生的威胁数据，能够协作各个来源的威胁数据，自动更新你的安全基础设施。其收购了threatcrowd，拥有IP、域名、文件、邮件等情报</li>
+<li>主要特征如下：垃圾和钓鱼页面、恶意软件和间谍软件、匿名代理攻击和P2P网络、暗网IP地址（使用TOR）、管理僵尸网络的C&amp;C服务器、域名、IP地址、邮件地址、文件哈希、杀软检测（<a target="_blank" rel="noopener" href="https://www.threatcrowd.org/%EF%BC%89">https://www.threatcrowd.org/）</a></li>
+</ul>
+</li>
+<li><p>ISC SANS威胁检测： <a target="_blank" rel="noopener" href="https://isc.sans.edu/">https://isc.sans.edu/</a></p>
+</li>
+<li><ul>
+<li>在成功检测，分析和发布Li0n蠕虫警告后，ISC于2001年创建， 今天，ISC为成千上万的互联网用户和组织提供免费的分析和警告服务，并且正在积极与互联网服务提供商合作，以打击最恶意的攻击者。</li>
+<li>主要特征如下：关键词、IP、域名、页头</li>
+</ul>
+</li>
+<li><p>RedQueen安全智能服务平台：<a target="_blank" rel="noopener" href="https://redqueen.tj-un.com/IntelHome.html">https://redqueen.tj-un.com/IntelHome.html</a></p>
+</li>
+<li><ul>
+<li>天际友盟的情报应用解决方案已在国内多家政府机构，以及金融、互联网、通信、能源等行业的多家龙头企业得到实践，通过综合应用多项业内领先的情报应用技术，为服务的客户切实解决了多项重点、难点安全问题，辅助企业持续完善安全体系，提升安全能力，彰显安全价值。</li>
+<li>未来，天际友盟还将继续秉承“应用安全情报，解决实际问题”的品牌理念，从客户的实际问题出发，深耕安全情报技术的实践应用，与客户及众多合作伙伴一道，为打造更安全的未来而努力。</li>
+<li>主要特征如下：安全情报、漏洞情报、最新资讯、威胁溯源、自由公开的服务、集成互联网基础数据、集成开源情报信息、关联分析、机器学习、可视化分析</li>
+</ul>
+</li>
+<li><p>IBM情报中心：<a target="_blank" rel="noopener" href="https://exchange.xforce.ibmcloud.com/">https://exchange.xforce.ibmcloud.com/</a></p>
+</li>
+<li><ul>
+<li>BM X-Force Exchange 是一款基于云的威胁情报共享平台，支持使用、共享威胁情报并采取行动。它支持快速搜索全球最新安全威胁，汇总可操作情报、向专家咨询并与同行进行合作。IBM X-Force Exchange 由人员和机器生成的情报支持，可利用 IBM X-Force 的规模来帮助用户在新兴威胁面前保持领先地位。</li>
+</ul>
+</li>
+</ul>
+<p>威胁情报一直是安全行业热议的话题，实际上在国内的发展还比较初级。威胁情报具有优秀的预警能力、快速响应能力，并且能改善管理层之间的沟通、加强策略规划和投资。但是大部分企业机构并不具备充分利用威胁情报的能力：1.数据量太大且过于复杂；2.拥有相关知识的人才匮乏。</p>
+<ul>
+<li>日常应用：在安全事件、应急响应中，获取威胁情报，作为重要证据，辅助事件处置</li>
+<li>高级应用：集成到企业安全管理平台提高监控预警响应能力、结合威胁数据和其他解决方案实现数据安全、优秀的数据展示功能</li>
+<li>github链接：<a target="_blank" rel="noopener" href="https://github.com/ym2011/SecurityTechnique/blob/master/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5.xmind">https://github.com/ym2011/SecurityTechnique/blob/master/威胁情报/威胁情报.xmind</a></li>
+</ul>
+<p>案例演示</p>
+<p>利用CobaltStrike生成的后门文件进行平台分析展示</p>
+<p>利用威胁情报平台实现对未知文件及未知URL等信息进行分析溯源</p>
+<p>图片</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://blog.hvvl404.fun/">HVVL404</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://blog.hvvl404.fun/2023/05/23/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88AWD%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%EF%BC%89/82%EF%BC%9A%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-%E8%93%9D%E9%98%9Fatt&amp;ck&amp;IDS&amp;%E8%9C%9C%E7%BD%90&amp;%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5/">http://blog.hvvl404.fun/2023/05/23/小迪安全（AWD红蓝对抗）/82：红蓝对抗-蓝队att&amp;ck&amp;IDS&amp;蜜罐&amp;威胁情报/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://blog.hvvl404.fun" target="_blank">HVVL404</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/images/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/05/23/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88SRC%E6%8C%96%E6%8E%98%EF%BC%89/86%EF%BC%9ASRC%E6%8C%96%E6%8E%98-%E6%95%99%E8%82%B2%E8%A1%8C%E4%B8%9A%E5%B9%B3%E5%8F%B0&amp;%E8%A7%84%E5%88%99&amp;%E6%89%B9%E9%87%8F%E8%87%AA%E5%8A%A8%E5%8C%96/" title="86-SRC挖掘-教育行业平台&amp;规则&amp;批量自动化"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">86-SRC挖掘-教育行业平台&amp;规则&amp;批量自动化</div></div></a></div><div class="next-post pull-right"><a href="/2023/05/23/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88AWD%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%EF%BC%89/81%EF%BC%9A%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-AWD%E7%9B%91%E6%8E%A7&amp;%E4%B8%8D%E6%AD%BB%E9%A9%AC&amp;%E5%9E%83%E5%9C%BE%E5%8C%85&amp;%E8%B5%84%E6%BA%90%E5%BA%93/" title="81-红蓝对抗-AWD监控&amp;不死马&amp;垃圾包&amp;资源库"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">81-红蓝对抗-AWD监控&amp;不死马&amp;垃圾包&amp;资源库</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">HVVL404</div><div class="author-info__description">欢迎来到我的博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">49</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/23/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88SRC%E6%8C%96%E6%8E%98%EF%BC%89/88%EF%BC%9ASRC%E6%8C%96%E6%8E%98-%E6%8B%BF%E4%B8%8BCNVD%E8%AF%81%E4%B9%A6%E5%BC%80%E6%BA%90&amp;%E9%97%AD%E6%BA%90&amp;%E5%94%AE%E5%8D%96%E7%B3%BB%E7%BB%9F/" title="88-SRC挖掘-拿下CNVD证书开源&amp;闭源&amp;售卖系统">88-SRC挖掘-拿下CNVD证书开源&amp;闭源&amp;售卖系统</a><time datetime="2023-05-23T15:27:29.466Z" title="发表于 2023-05-23 23:27:29">2023-05-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/23/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88SRC%E6%8C%96%E6%8E%98%EF%BC%89/86%EF%BC%9ASRC%E6%8C%96%E6%8E%98-%E6%95%99%E8%82%B2%E8%A1%8C%E4%B8%9A%E5%B9%B3%E5%8F%B0&amp;%E8%A7%84%E5%88%99&amp;%E6%89%B9%E9%87%8F%E8%87%AA%E5%8A%A8%E5%8C%96/" title="86-SRC挖掘-教育行业平台&amp;规则&amp;批量自动化">86-SRC挖掘-教育行业平台&amp;规则&amp;批量自动化</a><time datetime="2023-05-23T15:17:30.681Z" title="发表于 2023-05-23 23:17:30">2023-05-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/23/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88AWD%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%EF%BC%89/82%EF%BC%9A%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-%E8%93%9D%E9%98%9Fatt&amp;ck&amp;IDS&amp;%E8%9C%9C%E7%BD%90&amp;%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5/" title="82-红蓝对抗-蓝队att&amp;ck&amp;IDS&amp;蜜罐&amp;威胁情报">82-红蓝对抗-蓝队att&amp;ck&amp;IDS&amp;蜜罐&amp;威胁情报</a><time datetime="2023-05-23T15:15:21.170Z" title="发表于 2023-05-23 23:15:21">2023-05-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/23/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88AWD%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%EF%BC%89/81%EF%BC%9A%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-AWD%E7%9B%91%E6%8E%A7&amp;%E4%B8%8D%E6%AD%BB%E9%A9%AC&amp;%E5%9E%83%E5%9C%BE%E5%8C%85&amp;%E8%B5%84%E6%BA%90%E5%BA%93/" title="81-红蓝对抗-AWD监控&amp;不死马&amp;垃圾包&amp;资源库">81-红蓝对抗-AWD监控&amp;不死马&amp;垃圾包&amp;资源库</a><time datetime="2023-05-23T15:11:59.107Z" title="发表于 2023-05-23 23:11:59">2023-05-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/23/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88AWD%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%EF%BC%89/80%EF%BC%9A%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-AWD%E6%A8%A1%E5%BC%8F&amp;%E5%87%86%E5%A4%87&amp;%E6%94%BB%E9%98%B2&amp;%E7%9B%91%E6%8E%A7&amp;%E6%89%B9%E9%87%8F/" title="80-红蓝对抗-AWD模式&amp;准备&amp;攻防&amp;监控&amp;批量">80-红蓝对抗-AWD模式&amp;准备&amp;攻防&amp;监控&amp;批量</a><time datetime="2023-05-23T15:08:42.869Z" title="发表于 2023-05-23 23:08:42">2023-05-23</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/images/bg.png')"><div id="footer-wrap"><div class="copyright">&copy;2023.4.27 - 2023 By HVVL404</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a href="http://blog.hvvl404.fun">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
