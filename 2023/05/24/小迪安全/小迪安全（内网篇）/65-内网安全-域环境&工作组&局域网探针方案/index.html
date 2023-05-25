@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://blog.hvvl404.fun/images/avatar.png">
 <meta property="article:published_time" content="2023-05-24T14:20:01.894Z">
-<meta property="article:modified_time" content="2023-05-25T05:38:03.368Z">
+<meta property="article:modified_time" content="2023-05-25T05:43:51.249Z">
 <meta property="article:author" content="HVVL404">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://blog.hvvl404.fun/images/avatar.png"><link rel="shortcut icon" href="/images/hacker.png"><link rel="canonical" href="http://blog.hvvl404.fun/2023/05/24/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/65-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E7%8E%AF%E5%A2%83&amp;%E5%B7%A5%E4%BD%9C%E7%BB%84&amp;%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8E%A2%E9%92%88%E6%96%B9%E6%A1%88/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
@@ -57,7 +57,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-05-25 13:38:03'
+  postUpdate: '2023-05-25 13:43:51'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -162,12 +162,12 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="HVVL404" type="application/atom+xml">
-</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">50</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 站点</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/bg.png')"><nav id="nav"><span id="blog-info"><a href="/" title="HVVL404"><span class="site-name">HVVL404</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 站点</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">65-内网安全-域环境&amp;工作组&amp;局域网探针方案</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-24T14:20:01.894Z" title="发表于 2023-05-24 22:20:01">2023-05-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-25T05:38:03.368Z" title="更新于 2023-05-25 13:38:03">2023-05-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/">小迪安全（内网篇）</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="65-内网安全-域环境&amp;工作组&amp;局域网探针方案"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>65-内网安全-域环境&amp;工作组&amp;局域网探针方案</p>
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">50</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 站点</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/bg.png')"><nav id="nav"><span id="blog-info"><a href="/" title="HVVL404"><span class="site-name">HVVL404</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 站点</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">65-内网安全-域环境&amp;工作组&amp;局域网探针方案</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-24T14:20:01.894Z" title="发表于 2023-05-24 22:20:01">2023-05-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-25T05:43:51.249Z" title="更新于 2023-05-25 13:43:51">2023-05-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/">小迪安全（内网篇）</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="65-内网安全-域环境&amp;工作组&amp;局域网探针方案"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>65-内网安全-域环境&amp;工作组&amp;局域网探针方案</p>
 <span id="more"></span>
 
 <p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/65-1.png" alt="65-1"></p>
 <p><strong>一 基本认知</strong></p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C65-2.png" alt="65-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/65-2.png" alt="65-1"></p>
 <p><strong>DMZ</strong>：</p>
 <ul>
 <li>英文全名“Demilitarized Zone”，中文含义是“隔离区”，在安全领域的具体含义是“内外网防火墙之间的区域”。DMZ区是一个缓冲区，在DMZ区存放着一些公共服务器，比如论坛等。</li>
@@ -211,7 +211,7 @@
 </ul>
 <p><strong>环境介绍</strong></p>
 <p>下图属于单域环境，Windows2008R2作为域控DC，有五个域成员主机，fileserver文件服务器、SqlServer数据库服务器、webserver网站服务器和两台个人PC。他们都是在192.168.3.0这个网段，网站服务器有两个网卡，一个在3.31一个在230.131，这个230.133就好比是它的一个对外出口（外网接口），kali攻击机就好比攻击者，它通过230.131这个接口进入网站服务器计算机，由于这台计算机是处于内网连接，所有它享有3这个网段的访问权限。拿下网站服务器后的首要攻击目标就是DC！只要拿下DC，也就相当于同时拿下了所有域成员主机权限。</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C65-3.png" alt="65-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/65-3.png" alt="65-1"></p>
 <p><strong>案例1：基本信息收集操作演示</strong></p>
 <p>旨在了解当前服务器的计算机基本信息，为后续判断服务器角色，网络环境等做准备。</p>
 <p>服务器角色就是这台服务器是干嘛的，它在内网中扮演什么角色，比如mary-pc就是个人办公电脑，SqlServer就是数据库服务器，每台服务器都是有一个角色的，是仅仅个人用，还是用来文件传输？用来dns解析？</p>
@@ -223,18 +223,18 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ipconfig /all 判断存在域-最简单方式查看主DNS后缀</span><br><span class="line">net view /domain 判断存在域</span><br><span class="line">net time /domain 判断主域（主域就是域控的意思）【在域环境下查看当前时间】</span><br><span class="line">nslookup &lt;域控制器全名&gt; 追踪来源地址</span><br><span class="line">netstat -ano 当前网络端口开放</span><br></pre></td></tr></table></figure>
 
 <p>&lt;1&gt;ipconfig &#x2F;all 查看主DNS后缀，这就是当前最简单最直接判断当前服务器是域环境还是单纯的工作组局域网环境！有域的话会有主DNS，因为在域环境里面通常会由DNS解析服务器。这是第一个判断标准。</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C65-4.png" alt="65-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/65-4.png" alt="65-1"></p>
 <p>&lt;2&gt;net view &#x2F;domain 判断存在域</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C65-5.png" alt="65-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/65-5.png" alt="65-1"></p>
 <p>&lt;3&gt;net time &#x2F;domain 判断主域（主域就是域控的意思）【在域环境下查看当前时间】</p>
 <p>net time &#x2F;domain 可以判断主域，是因为域成员计算机的时间一般会以域控制器为准，所以当执行net time  &#x2F;domain命令时，该计算机会去域控获取时间，此时返回的OWA2010CN-God.god.org就是域控的计算机全名。然后可以通过nslookup来最终确认域控IP。</p>
 <p>每一台计算机名字都是基于域名下面生成的（如SqlServer.god.org），另外，如果找到了god.org、sqlserver.god.org、xiaodi.sqlserver.god.org之类的计算机全名，说明当前环境存在多域，sqlserver.god.org是父域，xiaodi.sqlserver.god.org是子域。</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C65-6.png" alt="65-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/65-6.png" alt="65-1"></p>
 <p>&lt;4&gt;nslookup &lt;域控制器全名&gt; 追踪来源地址</p>
 <p>OWA2010CN-God.god.org就是域控的计算机全名，我们可以通过nslookup和ping命令去ping这个名字来获取域控的对应ip地址。</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C65-7.png" alt="65-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/65-7.png" alt="65-1"></p>
 <p>&lt;5&gt;netstat -ano 查看当前网络端口开放</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C65-8.png" alt="65-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/65-8.png" alt="65-1"></p>
 <p><strong>案例3：用户信息收集操作演示</strong></p>
 <p>旨在了解当前计算机或域环境下的用户及用户组信息，便于后期利用凭据进行测试</p>
 <p>系统默认常见用户身份：</p>
@@ -249,17 +249,17 @@
 </ul>
 <p>&lt;1&gt;net user 获取当前电脑里面的用户（本地用户），对于本地用户，当前计算机可通过用户名密码登录。</p>
 <p>net user &#x2F;domain 获取当前域里面的用户，对于域用户，当前计算机是否可登录，受活动目录限制，若权限不够，是不能登录的。</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C65-9.png" alt="65-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/65-9.png" alt="65-1"></p>
 <p>&lt;2&gt;net localgroup 本地用户组</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C65-10.png" alt="65-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/65-10.png" alt="65-1"></p>
 <p>&lt;3&gt;net group &#x2F;domain 获取域用户组信息</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C65-11.png" alt="65-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/65-11.png" alt="65-1"></p>
 <p>&lt;4&gt;wmic useraccount get &#x2F;all 涉及域用户详细信息</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C65-12.png" alt="65-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/65-12.png" alt="65-1"></p>
 <p>&lt;5&gt;net group “Domain Admins” &#x2F;domain 查询域管理员账户</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C65-13.png" alt="65-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/65-13.png" alt="65-1"></p>
 <p>&lt;6&gt;net group “Domain users” &#x2F;domain 查询域用户</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C65-14.png" alt="65-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/65-14.png" alt="65-1"></p>
 <p><strong>案例4：凭据信息收集操作演示（非常重要）</strong></p>
 <p>旨在收集各种密文，明文，口令等，为后续横向渗透做好测试准备</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">计算机用户HASH，明文获取   -mimikatz（win），mimipenguin（linux）</span><br><span class="line">计算机各种协议服务口令获取   -LaZagne（all,win&amp;linux），XenArmor（win）</span><br><span class="line"> </span><br><span class="line">Netsh WLAN show profiles  //查询所有连接过的wifi名称</span><br><span class="line">Netsh WLAN show profile name =&quot;无线名称&quot; key =clear  //查询某wifi密码</span><br><span class="line"> </span><br><span class="line">获取凭据的方法：</span><br><span class="line">1.站点源码备份文件，数据库备份文件等</span><br><span class="line">2.各类数据库WEB管理入口，如PHPmyadmin</span><br><span class="line">3.浏览器保存密码，浏览器cookies</span><br><span class="line">4.其他用户会话，3389和ipc$连接记录，回收站内容</span><br><span class="line">5.windows 保存的WIFI密码</span><br><span class="line">6.网络内部的各种账号和密码，如：Email，VPN，FTP，OA等</span><br></pre></td></tr></table></figure>
@@ -271,9 +271,9 @@
 <li>mimipenguin下载：<a target="_blank" rel="noopener" href="https://github.com/huntergregal/mimipenguin/releases/">https://github.com/huntergregal/mimipenguin/releases/</a></li>
 </ul>
 <p>新版mimikatz貌似运行有问题，下面是旧版运行结果，获取到了明文密码。注意：mimikatz运行需要域管理员权限，域用户无法运行，因为权限不够。</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C65-15.png" alt="65-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/65-15.png" alt="65-1"></p>
 <p>同样，mimipenguin运行需要root权限，普通用户无法运行。</p>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C65-16.png" alt="65-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/65-16.png" alt="65-1"></p>
 <p>2、获取计算机各种协议服务口令 LaZagne（all,win&amp;linux） &amp; XenArmor（win）</p>
 <p>LaZagne</p>
 <ul>
@@ -281,12 +281,12 @@
 <li>缺点：很多密码都获取不到，不好用</li>
 <li>下载：<a target="_blank" rel="noopener" href="https://github.com/AlessandroZ/LaZagne">https://github.com/AlessandroZ/LaZagne</a></li>
 </ul>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C65-17.png" alt="65-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/65-17.png" alt="65-1"></p>
 <p>XenArmor</p>
 <ul>
 <li>国外软件，价格40-50美元，网上可能有破解版，不过是老版</li>
 </ul>
-<p><img src="/%5Cimages%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%5C%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89%5C65-18.png" alt="65-1"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/65-18.png" alt="65-1"></p>
 <p>这两个软件主要是通过自动化翻找以下内容，从而获取凭据。</p>
 <ul>
 <li>1.站点源码备份文件，数据库备份文件等</li>
@@ -303,7 +303,7 @@
 <p>nbtscan下载：<a target="_blank" rel="noopener" href="http://unixwiz.net/tools/nbtscan.html">http://unixwiz.net/tools/nbtscan.html</a></p>
 <p>NiShang简介：</p>
 <p>Powershell用于渗透测试其实早在多年前就已经被提出了。利用Powershell，攻击者可以在无需接触磁盘的情况下执行命令等，并且相较已经被大家广泛关注并防御的Cmd而言，Powershell并非那么的引人瞩目。Nishang是基于PowerShell的渗透测试专用工具。它集成了框架、脚本和各种payload，能够帮助渗透测试人员在对Windows目标的全过程检测中使用，是一款来源于作者实战经历的智慧结晶。（类似于MSF）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;1&gt;下载NiShang：https://github.com/samratashok/nishang</span><br><span class="line">&lt;2&gt;进入目录，执行以下命令</span><br><span class="line">Import-Module .\nishang.psml        导入模块nishang</span><br><span class="line">set-ExecutionPolicy RemoteSigned    设置执行策略</span><br><span class="line">Get-Command -Module nishang     获取模块nishang的命令函数（有很多命令函数分别执行不同功能，比如以下命令）</span><br><span class="line">Get-information             获取常规计算机信息</span><br><span class="line">Invoke-Mimikatz             获取计算机用户名密码</span><br><span class="line">Invoke-Portscan -startaddress 192.168.3.0 -Endaddress 192.168.3.100 -ResolveHost -ScanPort  端口扫描（查看目录对应文件有演示语法，其他同理）</span><br><span class="line">其他功能：删除补丁，反弹shell，凭据获取等</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;1&gt;下载NiShang：https://github.com/samratashok/nishang</span><br><span class="line">&lt;2&gt;进入目录，执行以下命令</span><br><span class="line">Import-Module ./nishang.psml        导入模块nishang</span><br><span class="line">set-ExecutionPolicy RemoteSigned    设置执行策略</span><br><span class="line">Get-Command -Module nishang     获取模块nishang的命令函数（有很多命令函数分别执行不同功能，比如以下命令）</span><br><span class="line">Get-information             获取常规计算机信息</span><br><span class="line">Invoke-Mimikatz             获取计算机用户名密码</span><br><span class="line">Invoke-Portscan -startaddress 192.168.3.0 -Endaddress 192.168.3.100 -ResolveHost -ScanPort  端口扫描（查看目录对应文件有演示语法，其他同理）</span><br><span class="line">其他功能：删除补丁，反弹shell，凭据获取等</span><br></pre></td></tr></table></figure>
 
 <p>探针域内主机角色及服务信息</p>
 <ul>
