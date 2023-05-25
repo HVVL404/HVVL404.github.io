@@ -490,6 +490,13 @@
 
   
   <url>
+    <loc>http://blog.hvvl404.fun/categories/Java/</loc>
+    <lastmod>2023-05-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.hvvl404.fun/categories/C%E8%AF%AD%E8%A8%80/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -505,13 +512,6 @@
   
   <url>
     <loc>http://blog.hvvl404.fun/categories/Web%E6%BC%8F%E6%B4%9E/</loc>
-    <lastmod>2023-05-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.hvvl404.fun/categories/Java/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -539,14 +539,7 @@
   </url>
   
   <url>
-    <loc>http://blog.hvvl404.fun/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88SRC%E6%8C%96%E6%8E%98%EF%BC%89/</loc>
-    <lastmod>2023-05-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.hvvl404.fun/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88Web%E6%BC%8F%E6%B4%9E%E7%AF%87%EF%BC%89/</loc>
+    <loc>http://blog.hvvl404.fun/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -560,7 +553,14 @@
   </url>
   
   <url>
-    <loc>http://blog.hvvl404.fun/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/</loc>
+    <loc>http://blog.hvvl404.fun/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88Web%E6%BC%8F%E6%B4%9E%E7%AF%87%EF%BC%89/</loc>
+    <lastmod>2023-05-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.hvvl404.fun/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88SRC%E6%8C%96%E6%8E%98%EF%BC%89/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
